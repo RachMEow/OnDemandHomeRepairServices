@@ -1,7 +1,9 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -23,5 +25,11 @@ public class RegisterActivity extends AppCompatActivity {
         //set the spinners adapter to the previously created one.
         registerAs.setAdapter(adapter);
 
+    }
+
+    public void OnMainButton(View view){
+
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        startActivityForResult(intent, 0);
     }
 }
