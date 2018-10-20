@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -24,6 +25,13 @@ public class RegisterActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         //set the spinners adapter to the previously created one.
         registerAs.setAdapter(adapter);
+
+
+        final EditText username = (EditText)findViewById(R.id.editTextUsername);
+        final EditText password = (EditText)findViewById(R.id.editTextPassword);
+        final EditText firstname = (EditText) findViewById(R.id.editTextFirstName);
+        final EditText lastname = (EditText)findViewById(R.id.editTextLastName);
+
 
     }
 
