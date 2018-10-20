@@ -32,9 +32,6 @@
             android:name=".RegisterSuccess"
             android:label="@string/title_activity_register_success"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
     </application>
 
 </manifest>
