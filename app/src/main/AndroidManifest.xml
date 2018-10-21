@@ -22,9 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity android:name=".MenuPage"></activity>
-=======
         <!--<activity-->
             <!--android:name=".RegisterSuccess"-->
             <!--android:label="@string/title_activity_register_success"-->
@@ -33,7 +31,6 @@
         <activity android:name=".LoginUser" />
         <activity android:name=".LoginAdmin" />
         <activity android:name=".LoginServiceProvider"></activity>
->>>>>>> 0edc5b968289654d6043ffa8e7f066a8ceb44262
     </application>
 
 </manifest>

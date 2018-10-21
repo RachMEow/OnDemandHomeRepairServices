@@ -67,6 +67,14 @@
           }
         },
         {
+          "client_id": "346666889850-99i21u4kep7oo9c57ts4bvvjtnpq829c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ondemandhomerepairservices.on_demandhomerepairservices",
+            "certificate_hash": "5f753e01e8c4200ed5c6989cb612d25df8baeee6"
+          }
+        },
+        {
           "client_id": "346666889850-o9u4h37vhf5fv43o9t47okqasgrkn6kc.apps.googleusercontent.com",
           "client_type": 3
         }
