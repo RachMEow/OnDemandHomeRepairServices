@@ -16,7 +16,7 @@ public class Account {
         _password = password;
         _firstName = firstName;
         _lastName = lastName;
-        _role = role;
+        _role = role; 
     }
 
     public void set_username(String username) {
