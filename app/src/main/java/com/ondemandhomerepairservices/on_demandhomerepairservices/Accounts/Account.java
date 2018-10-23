@@ -1,6 +1,7 @@
-package com.ondemandhomerepairservices.on_demandhomerepairservices;
+package com.ondemandhomerepairservices.on_demandhomerepairservices.Accounts;
 
 public class Account {
+    private String _id;
     private String _username;
     private String _password;
     private String _firstName;
@@ -11,12 +12,20 @@ public class Account {
 
     }
 
-    public Account(String username, String password, String firstName, String lastName, String role) {
+    public Account(String id, String username, String password, String firstName, String lastName, String role) {
+        _id = id;
         _username = username;
         _password = password;
         _firstName = firstName;
         _lastName = lastName;
         _role = role; 
+    }
+
+    public void setId(String id) {
+        _id = id;
+    }
+    public String getId() {
+        return _id;
     }
 
     public void set_username(String username) {

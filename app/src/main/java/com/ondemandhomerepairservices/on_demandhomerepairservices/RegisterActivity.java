@@ -11,9 +11,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.ondemandhomerepairservices.on_demandhomerepairservices.Accounts.Account;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference databaseAccount = database.getReference("message");
+    DatabaseReference databaseAccounts = database.getReference("message");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnClear = (Button)findViewById(R.id.buttonClear);
         btnRegister = (Button)findViewById(R.id.buttonRegister);
 
-        databaseAccount = FirebaseDatabase.getInstance().getReference("Account");
+        databaseAccounts = FirebaseDatabase.getInstance().getReference("Accounts");
 
         accounts = new ArrayList<>();
 
@@ -74,6 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                String id;
                 String username = _username.getText().toString().trim();
                 String password = _password.getText().toString().trim();
                 String firstName = _firstName.getText().toString().trim();
@@ -106,16 +107,16 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                String id = databaseAccount.push().getKey();
+                String id = databaseAccounts.push().getKey();
 
                 //create an account object
-                account = new Account(username, password, firstName, lastName, role);
+                account = new Account(id, username, password, firstName, lastName, role);
 
 //                TODO: According to roles, split accounts into 3 different categories: Admin, Service Provider, User
 
 
                 //saving the account
-                databaseAccount.child(id).setValue(account);
+                databaseAccounts.child(id).setValue(account);
 
                 startActivity(new Intent(RegisterActivity.this, RegisterSuccess.class));
                 finish();
@@ -125,6 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    //Reset fields
     public void reset(){
         _username.getText().clear();
         _firstName.getText().clear();
