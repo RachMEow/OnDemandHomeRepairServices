@@ -15,6 +15,9 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -24,6 +27,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnClear, btnRegister;
 
     private Account account = new Account();
+    List<Account> accounts;
+
 //    private FirebaseAuth auth;
 
     // Write a message to the database
@@ -56,6 +61,8 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = (Button)findViewById(R.id.buttonRegister);
 
         databaseAccount = FirebaseDatabase.getInstance().getReference("Account");
+
+        accounts = new ArrayList<>();
 
         btnClear.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -98,8 +105,14 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                //create account
+                String id = databaseAccount.push().getKey();
+
+                //create an account object
                 account = new Account(username, password, firstName, lastName, role);
+
+                //saving the account
+                databaseAccount.child(id).setValue(account);
+
                 startActivity(new Intent(RegisterActivity.this, RegisterSuccess.class));
                 finish();
             }
@@ -117,9 +130,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    public void OnMainButton(View view){
-
-        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-        startActivityForResult(intent, 0);
-    }
+//    public void OnMainButton(View view){
+//
+//        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+//        startActivityForResult(intent, 0);
+//    }
 }
