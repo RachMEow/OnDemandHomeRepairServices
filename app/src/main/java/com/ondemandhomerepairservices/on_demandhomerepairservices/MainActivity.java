@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         final EditText username = (EditText)findViewById(R.id.editTextUsername);
         final EditText password = (EditText)findViewById(R.id.editTextPassword);
         final Button blogin = (Button) findViewById(R.id.buttonLogin);
+
+        //TODO: get value from FireBase and check username and password entered
     }
 
     public void OnsetRegisterButton(View view){

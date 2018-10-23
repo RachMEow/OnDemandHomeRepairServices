@@ -80,6 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String lastName = _lastName.getText().toString().trim();
                 String role = registerAs.getSelectedItem().toString();
 
+                //Validate fields
                 if(TextUtils.isEmpty(username)){
                     Toast.makeText(getApplicationContext(), "Enter username", Toast.LENGTH_SHORT).show();
                     return;
@@ -109,6 +110,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                 //create an account object
                 account = new Account(username, password, firstName, lastName, role);
+
+//                TODO: According to roles, split accounts into 3 different categories: Admin, Service Provider, User
+
 
                 //saving the account
                 databaseAccount.child(id).setValue(account);
