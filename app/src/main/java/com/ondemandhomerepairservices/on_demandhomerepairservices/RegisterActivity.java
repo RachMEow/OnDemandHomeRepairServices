@@ -111,9 +111,6 @@ public class RegisterActivity extends AppCompatActivity {
                 //create an account object
                 account = new Account(id, username, password, firstName, lastName, role);
 
-//                TODO: According to roles, split accounts into 3 different categories: Admin, Service Provider, User
-
-
                 //saving the account
                 databaseAccounts.child(id).setValue(account);
 
