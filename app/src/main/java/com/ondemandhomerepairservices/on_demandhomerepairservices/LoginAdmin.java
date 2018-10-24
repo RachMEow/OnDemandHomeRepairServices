@@ -13,7 +13,6 @@ public class LoginAdmin extends AppCompatActivity {
 
     Button buttonLogout;
     TextView firstName;
-
     SharedPreferences sharedPreferences;
 
     @Override
@@ -21,28 +20,15 @@ public class LoginAdmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_admin);
 
-
-
-        firstName = (TextView) findViewById(R.id.textViewFirstName);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
-
-
-
-        //TODO: shared preferences
-        sharedPreferences = getApplicationContext().getSharedPreferences("firstName",Context.MODE_PRIVATE);
-        firstName.setText(sharedPreferences.getString("firstName", ""));
-
+        firstName = (TextView) findViewById(R.id.textViewFirstName);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
                 v.getContext().startActivity(intent);
-
-                //String firstname = getIntent().getStringExtra("USERNAME");
-                //final TextView textViewToChange = (TextView) findViewById(R.id.textViewFirstName);
-
-                //textViewToChange.setText(firstname);
             }
         });
+        firstName.setText(getIntent().getStringExtra("FIRST_NAME"));
     }
 }
