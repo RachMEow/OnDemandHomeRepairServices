@@ -21,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MenuPage" />
         <!-- <activity -->
         <!-- android:name=".RegisterSuccess" -->
         <!-- android:label="@string/title_activity_register_success" -->
