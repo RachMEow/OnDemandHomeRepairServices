@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.ondemandhomerepairservices.on_demandhomerepairservices.Accounts.Account;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnClear = (Button)findViewById(R.id.buttonClear);
         btnRegister = (Button)findViewById(R.id.buttonRegister);
 
-        databaseAccounts = FirebaseDatabase.getInstance().getReference("Accounts");
+        databaseAccounts = FirebaseDatabase.getInstance().getReference("accounts");
 
         accounts = new ArrayList<>();
 

@@ -1,6 +1,8 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,16 +19,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText _username, _password;
     private Button btnLogin, btnRegister;
+    ListView listViewAccounts;
+    SharedPreferences sharedPreferences;
+
+    List<Account> accounts;
 
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+    //get reference to 'accounts' node
     DatabaseReference databaseAccounts = database.getReference("message");
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.buttonLogin);
         btnRegister = (Button) findViewById(R.id.buttonRegister);
 
+        databaseAccounts = FirebaseDatabase.getInstance().getReference("accounts");
+
+        accounts = new ArrayList<>();
+
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,64 +58,77 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        sharedPreferences = getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String usernameInput = _username.getText().toString().trim();
+                final String passwordInput = _password.getText().toString().trim();
 
-                String username = _username.getText().toString().trim();
-                accountExists(username);
+
+                //attaching value event listener
+                databaseAccounts.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //clearing the previous accounts list
+                        accounts.clear();
+
+                        //iterating through all the nodes
+                        for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
+                            //getting accounts
+                            Account account = postSnapShot.getValue(Account.class);
+                            //adding account to the list
+                            accounts.add(account);
+                        }
+
+                        if(validate()){
+                            for(Account account : accounts){
+                                if(usernameInput.equals(account.get_username()) && passwordInput.equals(account.get_password())){
+//                                Toast.makeText(getApplicationContext(), "Username and password correct", Toast.LENGTH_SHORT).show();
+                                    String role = account.get_role();
+                                    String firstName = account.get_firstName();
+
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("firstName", firstName);
+                                    editor.apply();
+
+                                    switch(role){
+                                        case "Admin":
+                                            startActivity(new Intent(MainActivity.this, LoginAdmin.class));
+                                            break;
+                                        case "Service Provider":
+                                            startActivity(new Intent(MainActivity.this, LoginServiceProvider.class));
+                                            break;
+                                        case "User":
+                                            startActivity(new Intent(MainActivity.this, LoginUser.class));
+                                            break;
+                                    }
+
+                                }else{
+                                    Toast.makeText(getApplicationContext(),"Username or password wrong", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
-    }
 
-//
-//    public void OnsetRegisterButton(View view){
-//
-//        Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
-//        startActivityForResult(intent, 0);
-//    }
-//
-//    public void OnsetLoginButton(View view){
-//        Intent intent = new Intent(getApplicationContext(),MenuPage.class);
-//        startActivityForResult(intent, 0);
-//    }
-
-    private String getRole(){
-        String role = "Admin";
-
-        return role;
     }
 
 
-    //TODO: check if account exists in the FireBase
-    private void accountExists(final String username){
-
-        //getting the specific product reference
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("accounts").child(username);
-
-        if(validate()){
-            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for(DataSnapshot data: dataSnapshot.getChildren())
-                    if(dataSnapshot.child(username).exists()){
-
-                        startActivity(new Intent(MainActivity.this, LoginAdmin.class));
-                        //TODO: according to different roles, go to different interfaces. Use switch or if
-
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), "Wrong username or password", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-        }
-    }
 
     //Valid the inputs are not empty
     private boolean validate(){
