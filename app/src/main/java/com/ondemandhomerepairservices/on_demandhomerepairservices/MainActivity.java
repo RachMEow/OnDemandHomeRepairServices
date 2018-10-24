@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.Response;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -71,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 final String usernameInput = _username.getText().toString().trim();
                 final String passwordInput = _password.getText().toString().trim();
 
+
                 //attaching value event listener
                 databaseAccounts.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -96,22 +96,26 @@ public class MainActivity extends AppCompatActivity {
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString("firstName", firstName);
                                     editor.apply();
-
+                                    Intent intent;
                                     switch(role){
                                         case "Admin":
-                                            Intent intent = new Intent(MainActivity.this, LoginAdmin.class);
-                                            //startActivity(intent);
-                                            //intent.putExtra("USERNAME",firstName);
-
+                                            intent = new Intent(MainActivity.this, LoginAdmin.class);
+                                            intent.putExtra("FIRST_NAME", firstName);
+                                            startActivity(intent);
                                             break;
                                         case "Service Provider":
-                                            startActivity(new Intent(MainActivity.this, LoginServiceProvider.class));
+                                            intent = new Intent(MainActivity.this, LoginServiceProvider.class);
+                                            intent.putExtra("FIRST_NAME", firstName);
+                                            startActivity(intent);
                                             break;
                                         case "Home Owner":
-                                            startActivity(new Intent(MainActivity.this, LoginUser.class));
+                                            intent = new Intent(MainActivity.this, LoginUser.class);
+                                            intent.putExtra("FIRST_NAME", firstName);
+                                            startActivity(intent);
                                             break;
                                     }
-
+                                    Toast.makeText(getApplicationContext(),"Login Success!", Toast.LENGTH_SHORT).show();
+                                    return;//check if success originally exist
                                 }else{
                                     Toast.makeText(getApplicationContext(),"Username or password wrong", Toast.LENGTH_SHORT).show();
                                 }
