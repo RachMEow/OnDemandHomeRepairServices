@@ -21,8 +21,12 @@ public class LoginAdmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_admin);
 
+
+
         firstName = (TextView) findViewById(R.id.textViewFirstName);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
+
+
 
         //TODO: shared preferences
         sharedPreferences = getApplicationContext().getSharedPreferences("firstName",Context.MODE_PRIVATE);
@@ -33,6 +37,11 @@ public class LoginAdmin extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
                 v.getContext().startActivity(intent);
+
+                //String firstname = getIntent().getStringExtra("USERNAME");
+                //final TextView textViewToChange = (TextView) findViewById(R.id.textViewFirstName);
+
+                //textViewToChange.setText(firstname);
             }
         });
     }

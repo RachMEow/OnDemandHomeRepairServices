@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Response;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -70,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
                 final String usernameInput = _username.getText().toString().trim();
                 final String passwordInput = _password.getText().toString().trim();
 
-
                 //attaching value event listener
                 databaseAccounts.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -99,7 +99,10 @@ public class MainActivity extends AppCompatActivity {
 
                                     switch(role){
                                         case "Admin":
-                                            startActivity(new Intent(MainActivity.this, LoginAdmin.class));
+                                            Intent intent = new Intent(MainActivity.this, LoginAdmin.class);
+                                            //startActivity(intent);
+                                            //intent.putExtra("USERNAME",firstName);
+
                                             break;
                                         case "Service Provider":
                                             startActivity(new Intent(MainActivity.this, LoginServiceProvider.class));
