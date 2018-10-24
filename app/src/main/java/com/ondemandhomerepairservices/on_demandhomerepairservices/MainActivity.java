@@ -96,19 +96,26 @@ public class MainActivity extends AppCompatActivity {
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString("firstName", firstName);
                                     editor.apply();
-
+                                    Intent intent;
                                     switch(role){
                                         case "Admin":
-                                            startActivity(new Intent(MainActivity.this, LoginAdmin.class));
+                                            intent = new Intent(MainActivity.this, LoginAdmin.class);
+                                            intent.putExtra("FIRST_NAME", firstName);
+                                            startActivity(intent);
                                             break;
                                         case "Service Provider":
-                                            startActivity(new Intent(MainActivity.this, LoginServiceProvider.class));
+                                            intent = new Intent(MainActivity.this, LoginServiceProvider.class);
+                                            intent.putExtra("FIRST_NAME", firstName);
+                                            startActivity(intent);
                                             break;
                                         case "Home Owner":
-                                            startActivity(new Intent(MainActivity.this, LoginUser.class));
+                                            intent = new Intent(MainActivity.this, LoginUser.class);
+                                            intent.putExtra("FIRST_NAME", firstName);
+                                            startActivity(intent);
                                             break;
                                     }
-
+                                    Toast.makeText(getApplicationContext(),"Login Success!", Toast.LENGTH_SHORT).show();
+                                    return;//check if success originally exist
                                 }else{
                                     Toast.makeText(getApplicationContext(),"Username or password wrong", Toast.LENGTH_SHORT).show();
                                 }
