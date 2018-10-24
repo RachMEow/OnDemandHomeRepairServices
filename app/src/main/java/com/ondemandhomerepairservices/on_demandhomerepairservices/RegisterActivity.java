@@ -136,6 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+
 //    public void OnMainButton(View view){
 //
 //        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
