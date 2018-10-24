@@ -1,5 +1,8 @@
-package com.ondemandhomerepairservices.on_demandhomerepairservices.Accounts;
+package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class Account {
     private String _id;
     private String _username;
