@@ -82,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String lastName = _lastName.getText().toString().trim();
                 String role = registerAs.getSelectedItem().toString();
 
-                Pattern p1 = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+                Pattern p1 = Pattern.compile("[^a-z0-9_]", Pattern.CASE_INSENSITIVE);
                 Pattern p2 = Pattern.compile("[^a-z ]", Pattern.CASE_INSENSITIVE);
                 boolean un = p1.matcher(username).find();
                 boolean fn = p2.matcher(firstName).find();
@@ -90,17 +90,17 @@ public class RegisterActivity extends AppCompatActivity {
 
                 //Validate fields
                 if(un) {
-                    Toast.makeText(getApplicationContext(), "User name can only contains characters and number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "User name can only contain letter, number and underscore", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if(fn) {
-                    Toast.makeText(getApplicationContext(), "First name can only contains characters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "First name can only contains letter", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if(ln) {
-                    Toast.makeText(getApplicationContext(), "Last name can only contains characters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Last name can only contains letter", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
