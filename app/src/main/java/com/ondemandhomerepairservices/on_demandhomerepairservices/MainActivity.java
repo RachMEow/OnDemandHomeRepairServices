@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                                         case "Service Provider":
                                             startActivity(new Intent(MainActivity.this, LoginServiceProvider.class));
                                             break;
-                                        case "User":
+                                        case "Home Owner":
                                             startActivity(new Intent(MainActivity.this, LoginUser.class));
                                             break;
                                     }
