@@ -8,6 +8,7 @@ import android.widget.Button;
 
 public class RegisterSuccess extends AppCompatActivity {
 
+    /* login button */
     Button btnLogin;
 
     @Override
