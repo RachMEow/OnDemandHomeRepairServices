@@ -11,9 +11,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //import com.google.firebase.auth.FirebaseAuth;
 
@@ -24,11 +28,13 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnClear, btnRegister;
 
     private Account account = new Account();
+    List<Account> accounts;
+
 //    private FirebaseAuth auth;
 
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference databaseAccount = database.getReference("message");
+    DatabaseReference databaseAccounts = database.getReference("message");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +61,9 @@ public class RegisterActivity extends AppCompatActivity {
         btnClear = (Button)findViewById(R.id.buttonClear);
         btnRegister = (Button)findViewById(R.id.buttonRegister);
 
-        databaseAccount = FirebaseDatabase.getInstance().getReference("Account");
+        databaseAccounts = FirebaseDatabase.getInstance().getReference("accounts");
+
+        accounts = new ArrayList<>();
 
         btnClear.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -67,14 +75,37 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                String id;
                 String username = _username.getText().toString().trim();
                 String password = _password.getText().toString().trim();
                 String firstName = _firstName.getText().toString().trim();
                 String lastName = _lastName.getText().toString().trim();
                 String role = registerAs.getSelectedItem().toString();
 
-                if(TextUtils.isEmpty(username)){
-                    Toast.makeText(getApplicationContext(), "Enter username", Toast.LENGTH_SHORT).show();
+                Pattern p1 = Pattern.compile("[^a-z0-9_]", Pattern.CASE_INSENSITIVE);
+                Pattern p2 = Pattern.compile("[^a-z ]", Pattern.CASE_INSENSITIVE);
+                boolean un = p1.matcher(username).find();
+                boolean fn = p2.matcher(firstName).find();
+                boolean ln = p2.matcher(lastName).find();
+
+                //Validate fields
+                if(un) {
+                    Toast.makeText(getApplicationContext(), "User name can only contain letter, number and underscore", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(fn) {
+                    Toast.makeText(getApplicationContext(), "First name can only contains letter", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(ln) {
+                    Toast.makeText(getApplicationContext(), "Last name can only contains letter", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(username)) {
+                    Toast.makeText( getApplicationContext(), "Enter username", Toast.LENGTH_SHORT ).show();
                     return;
                 }
 
@@ -98,8 +129,14 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                //create account
-                account = new Account(username, password, firstName, lastName, role);
+                String id = databaseAccounts.push().getKey();
+
+                //create an account object
+                account = new Account(id, username, password, firstName, lastName, role);
+
+                //saving the account
+                databaseAccounts.child(id).setValue(account);
+
                 startActivity(new Intent(RegisterActivity.this, RegisterSuccess.class));
                 finish();
             }
@@ -108,6 +145,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    //Reset fields
     public void reset(){
         _username.getText().clear();
         _firstName.getText().clear();
@@ -117,9 +155,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    public void OnMainButton(View view){
 
-        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-        startActivityForResult(intent, 0);
-    }
+//    public void OnMainButton(View view){
+//
+//        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+//        startActivityForResult(intent, 0);
+//    }
 }
