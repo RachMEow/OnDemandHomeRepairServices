@@ -15,8 +15,8 @@
             android:id="@+id/textViewWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Account created!"
-            android:textSize="18dp"/>
+            android:text="Account Created !"
+            android:textSize="18dp" />
     </LinearLayout>
 
 
