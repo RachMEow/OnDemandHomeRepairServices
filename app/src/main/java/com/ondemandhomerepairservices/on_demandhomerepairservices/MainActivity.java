@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         sharedPreferences = getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +85,11 @@ public class MainActivity extends AppCompatActivity {
                             //adding account to the list
                             accounts.add(account);
                         }
-
+                        String listString = "";
+                        for (Account a : accounts)
+                        {
+                            listString += a.get_firstName() + " " + a.get_lastName() + " (" + a.get_username() + "), " + a.get_role() + "\t";
+                        }
                         if(validate()){
                             for(Account account : accounts){
                                 if(usernameInput.equals(account.get_username()) && passwordInput.equals(account.get_password())){
@@ -101,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                                         case "Admin":
                                             intent = new Intent(MainActivity.this, LoginAdmin.class);
                                             intent.putExtra("FIRST_NAME", firstName);
+                                            intent.putExtra("USER_LIST", listString);
                                             startActivity(intent);
                                             break;
                                         case "Service Provider":
