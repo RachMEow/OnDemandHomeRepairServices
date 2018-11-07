@@ -26,8 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText _username, _password;
     private Button btnLogin, btnRegister;
-    ListView listViewAccounts;
-    SharedPreferences sharedPreferences;
+//    ListView listViewAccounts;
 
     List<Account> accounts;
 
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        sharedPreferences = getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                             //adding account to the list
                             accounts.add(account);
                         }
+
                         String listString = "";
                         for (Account a : accounts)
                         {
@@ -93,13 +93,10 @@ public class MainActivity extends AppCompatActivity {
                         if(validate()){
                             for(Account account : accounts){
                                 if(usernameInput.equals(account.get_username()) && passwordInput.equals(account.get_password())){
-//                                Toast.makeText(getApplicationContext(), "Username and password correct", Toast.LENGTH_SHORT).show();
+
                                     String role = account.get_role();
                                     String firstName = account.get_firstName();
 
-                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    editor.putString("firstName", firstName);
-                                    editor.apply();
                                     Intent intent;
                                     switch(role){
                                         case "Admin":

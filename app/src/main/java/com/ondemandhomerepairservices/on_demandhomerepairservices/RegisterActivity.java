@@ -30,8 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
     private Account account = new Account();
     List<Account> accounts;
 
-//    private FirebaseAuth auth;
-
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseAccounts = database.getReference("message");
@@ -137,7 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
                 //saving the account
                 databaseAccounts.child(id).setValue(account);
 
-                startActivity(new Intent(RegisterActivity.this, RegisterSuccess.class));
+                //startActivity(new Intent(RegisterActivity.this, RegisterSuccess.class));
                 finish();
             }
         });

@@ -13,20 +13,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class ServiceListActivity extends AppCompatActivity {
-//    Button buttonBack;
+    Button buttonBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_list);
 
-//        buttonBack = (Button) findViewById(R.id.buttonLogout);
-//        buttonBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(v.getContext(), LoginAdmin.class);
-//                v.getContext().startActivity(intent);
-//            }
-//        });
+        buttonBack = (Button) findViewById(R.id.buttonLogout);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

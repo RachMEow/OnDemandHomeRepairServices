@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class LoginAdmin extends AppCompatActivity {
 
     Button buttonLogout,buttonUserList,buttonServiceList;
     TextView firstName;
-    ListView userList;
+//    ListView userList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +34,7 @@ public class LoginAdmin extends AppCompatActivity {
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), MainActivity.class);
-                v.getContext().startActivity(intent);
+                finish();
             }
         });
 
@@ -42,7 +42,18 @@ public class LoginAdmin extends AppCompatActivity {
         buttonUserList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Bundle extras = getIntent().getExtras();
+                String listString = "";
+
+                if(extras != null){
+                    listString = extras.getString("USER_LIST");
+                }
+
+//                Toast.makeText(getApplicationContext(),listString,Toast.LENGTH_LONG).show();
+
                 Intent intent = new Intent(v.getContext(),UserListActivity.class);
+                intent.putExtra("USER_LIST", listString);
                 v.getContext().startActivity(intent);
             }
         });
