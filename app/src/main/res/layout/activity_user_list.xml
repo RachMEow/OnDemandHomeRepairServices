@@ -6,4 +6,26 @@
     android:paddingLeft="30dp"
     android:paddingRight="30dp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewUserList"
+        android:text="List of Registered User"
+        android:textSize="20dp"
+        android:paddingBottom="10dp"/>
+
+    <ListView
+        android:id="@+id/listViewUserList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"/>
+
+    <Button
+        android:id="@+id/buttonBack2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="BACK"
+        android:layout_marginTop="10dp"/>
+
 </LinearLayout>
