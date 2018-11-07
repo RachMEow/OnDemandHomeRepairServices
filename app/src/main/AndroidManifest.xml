@@ -30,7 +30,8 @@
         <activity android:name=".LoginAdmin" />
         <activity android:name=".LoginServiceProvider" />
         <activity android:name=".RegisterSuccess" />
-        <activity android:name=".AccountList"></activity>
+        <activity android:name=".UserListActivity" />
+        <activity android:name=".ServiceListActivity"></activity>
     </application>
 
 </manifest>
