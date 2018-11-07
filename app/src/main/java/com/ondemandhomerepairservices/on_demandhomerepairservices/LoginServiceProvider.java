@@ -12,7 +12,6 @@ public class LoginServiceProvider extends AppCompatActivity {
 
     Button buttonLogout;
     TextView firstName;
-    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

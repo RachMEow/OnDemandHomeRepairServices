@@ -37,6 +37,7 @@ public class LoginAdmin extends AppCompatActivity {
                 v.getContext().startActivity(intent);
             }
         });
+
         buttonUserList = (Button) findViewById(R.id.buttonUserList);
         buttonUserList.setOnClickListener(new View.OnClickListener() {
             @Override
