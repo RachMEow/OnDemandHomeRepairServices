@@ -49,6 +49,7 @@ public class ServiceListActivity extends AppCompatActivity {
         databaseServices = FirebaseDatabase.getInstance().getReference("services");
 
         services = new ArrayList<>();
+
 //        btnAddService.setOnClickListener(new View.OnClickListener(){
 //            @Override
 //            public void onClick(View view){
@@ -116,12 +117,11 @@ public class ServiceListActivity extends AppCompatActivity {
 //        });
 //    }
 
-    //openDialog() need to be edit
+//    openDialog() need to be edit
 
 //    public void openDialog(){
 //        AddServiceDialog addServiceDialog = new AddServiceDialog();
 //        addServiceDialog.show(getSupportFragmentManager(),"Add service dialog");
-//
 //    }
 
 
