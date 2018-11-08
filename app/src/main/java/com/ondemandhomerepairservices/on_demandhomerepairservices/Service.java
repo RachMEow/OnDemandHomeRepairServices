@@ -30,6 +30,6 @@ public class Service {
     }
 
     public double get_hoursRate(){
-        return get_hoursRate();
+        return _hoursRate;
     }
 }

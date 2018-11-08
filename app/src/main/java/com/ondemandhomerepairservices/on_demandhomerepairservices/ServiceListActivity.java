@@ -24,29 +24,31 @@ import java.util.regex.Pattern;
 
 public class ServiceListActivity extends AppCompatActivity {
 
-    Button buttonBack, btnAddService;
-    ListView listViewServiceList;
-    EditText editTextServiceName;
-    EditText editTextHoursRate;
+    private Button buttonBack, btnAddService;
+    private ListView listViewServiceList;
+    private EditText serviceName, hoursRate;
 
+    private Service service = new Service();
     List<Service> services;
 
-    Service service = new Service();
-
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference databaseServices;
+    DatabaseReference databaseServices = database.getReference("messagem");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_list);
 
-        editTextServiceName = (EditText) findViewById(R.id.editTextServiceName);
-        editTextHoursRate = (EditText) findViewById(R.id.editTextHoursRate);
+        serviceName = (EditText) findViewById(R.id.editTextServiceName);
+        hoursRate = (EditText) findViewById(R.id.editTextHoursRate);
         listViewServiceList = (ListView) findViewById(R.id.listViewServiceList);
 
+        buttonBack = (Button) findViewById(R.id.buttonBack);
         btnAddService = (Button) findViewById(R.id.buttonAddService);
 
+        databaseServices = FirebaseDatabase.getInstance().getReference("services");
+
+        services = new ArrayList<>();
 //        btnAddService.setOnClickListener(new View.OnClickListener(){
 //            @Override
 //            public void onClick(View view){
@@ -54,9 +56,6 @@ public class ServiceListActivity extends AppCompatActivity {
 //            }
 //        });
 
-
-        buttonBack = (Button) findViewById(R.id.buttonLogout);
-        buttonBack = (Button) findViewById(R.id.buttonBack);
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,66 +63,58 @@ public class ServiceListActivity extends AppCompatActivity {
             }
         });
 
-        databaseServices = FirebaseDatabase.getInstance().getReference("services");
-
-        services = new ArrayList<>();
-
         btnAddService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                addService();
-
-                Toast.makeText(ServiceListActivity.this, "Add Service button works", Toast.LENGTH_LONG).show();
-
-
+                addService();
             }
         });
 
     }
 
-    @Override
-    protected void onStart(){
-        super.onStart();
-
-        databaseServices.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                services.clear();
-
-//                String[] serviceListArray = new String[100];
-
-                for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
-                    Service service = postSnapShot.getValue(Service.class);
-                    services.add(service);
-                }
-
-//                int i=0;
-//                for(Service service : services){
-//                    serviceListArray[i] = service.get_serviceName() + " " + service.get_hoursRate();
-//                    i++;
+//    @Override
+//    protected void onStart(){
+//        super.onStart();
+//
+//        databaseServices.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                services.clear();
+//
+////                String[] serviceListArray = new String[100];
+//
+//                for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
+//                    Service service = postSnapShot.getValue(Service.class);
+//                    services.add(service);
 //                }
 //
-//                List<String> arrayList = new ArrayList<String>();
-//                for(int k = 0; k < serviceListArray.length; k++){
-//                    arrayList.add(serviceListArray[i]);
-//                }
-//                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ServiceListActivity.this, android.R.layout.simple_list_item_1, arrayList);
-//                listViewServiceList.setAdapter(arrayAdapter);
-
-//                String[] serviceList;
-//                String serviceList = "";
-//                for(Service s: services){
-//                    serviceList += s.get_serviceName() + " " + s.get_hoursRate() + "\t";
-//                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
+////                int i=0;
+////                for(Service service : services){
+////                    serviceListArray[i] = service.get_serviceName() + " " + service.get_hoursRate();
+////                    i++;
+////                }
+////
+////                List<String> arrayList = new ArrayList<String>();
+////                for(int k = 0; k < serviceListArray.length; k++){
+////                    arrayList.add(serviceListArray[i]);
+////                }
+////                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ServiceListActivity.this, android.R.layout.simple_list_item_1, arrayList);
+////                listViewServiceList.setAdapter(arrayAdapter);
+//
+////                String[] serviceList;
+////                String serviceList = "";
+////                for(Service s: services){
+////                    serviceList += s.get_serviceName() + " " + s.get_hoursRate() + "\t";
+////                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
     //openDialog() need to be edit
 
@@ -136,8 +127,9 @@ public class ServiceListActivity extends AppCompatActivity {
 
     public boolean validateAddService(){
 
-        String userInputServiceName = editTextServiceName.getText().toString().trim();
-        String userInputHoursRate = editTextHoursRate.getText().toString().trim();
+        String userInputServiceName = serviceName.getText().toString().trim();
+        String userInputHoursRate = hoursRate.getText().toString().trim();
+        double numHoursRate = 0;
 
         Pattern p1 = Pattern.compile("[^a-z0-9_]", Pattern.CASE_INSENSITIVE);
 
@@ -151,10 +143,10 @@ public class ServiceListActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Service name can only contain letter, number and underscore", Toast.LENGTH_SHORT).show();
             return false;
         }
-//        else {
+//        else if(!TextUtils.isEmpty(userInputHoursRate)){
 //            while (true) {
 //                try {
-//                    hoursRate = Double.parseDouble(String.valueOf(editTextHoursRate.getText().toString()));
+//                    numHoursRate = Double.parseDouble(String.valueOf(hoursRate.getText().toString()));
 //                    break;
 //                } catch (NumberFormatException ignore) {
 //                    Toast.makeText(this, "Please enter an invalid hours rate (number only)", Toast.LENGTH_SHORT).show();
@@ -167,16 +159,16 @@ public class ServiceListActivity extends AppCompatActivity {
     }
 
     public void addService(){
-        String userInputServiceName = editTextServiceName.getText().toString().trim();
-        double userInputHoursRate = Double.parseDouble(String.valueOf(editTextHoursRate.getText().toString()));
+        String userInputServiceName = serviceName.getText().toString().trim();
+        double userInputHoursRate = Double.parseDouble(String.valueOf(hoursRate.getText().toString()));
 
-        if(true){
+        if(validateAddService()){
             String id = databaseServices.push().getKey();
             service = new Service(id, userInputServiceName, userInputHoursRate);
             databaseServices.child(id).setValue(service);
 
-            editTextServiceName.setText("");
-            editTextHoursRate.setText("");
+            serviceName.setText("");
+            hoursRate.setText("");
 
             Toast.makeText(this, "Service added", Toast.LENGTH_LONG).show();
         }
