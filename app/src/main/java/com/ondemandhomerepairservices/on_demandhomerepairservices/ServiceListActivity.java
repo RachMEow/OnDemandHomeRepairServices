@@ -50,12 +50,12 @@ public class ServiceListActivity extends AppCompatActivity {
 
         services = new ArrayList<>();
 
-        btnAddService.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                openDialog();
-            }
-        });
+//        btnAddService.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                openDialog();
+//            }
+//        });
 
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,12 +64,12 @@ public class ServiceListActivity extends AppCompatActivity {
             }
         });
 
-//        btnAddService.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                addService();
-//            }
-//        });
+        btnAddService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addService();
+            }
+        });
 
     }
 
@@ -119,10 +119,10 @@ public class ServiceListActivity extends AppCompatActivity {
 
 //    openDialog() need to be edit
 
-    public void openDialog(){
-        AddServiceDialog addServiceDialog = new AddServiceDialog();
-        addServiceDialog.show(getSupportFragmentManager(),"Add service dialog");
-    }
+//    public void openDialog(){
+//        AddServiceDialog addServiceDialog = new AddServiceDialog();
+//        addServiceDialog.show(getSupportFragmentManager(),"Add service dialog");
+//    }
 
 
     public boolean validateAddService(){
