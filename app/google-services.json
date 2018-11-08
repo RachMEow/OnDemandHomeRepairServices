@@ -75,6 +75,22 @@
           }
         },
         {
+          "client_id": "346666889850-j7l06n99j846gs76367rb3k0bfq1tt0p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ondemandhomerepairservices.on_demandhomerepairservices",
+            "certificate_hash": "ef2656e79841dec495794290f6c4cc28c04461e3"
+          }
+        },
+        {
+          "client_id": "346666889850-to77rin8odcl02n4m10knj9fk0o0rd11.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ondemandhomerepairservices.on_demandhomerepairservices",
+            "certificate_hash": "f450ef7e7e8721853ec63b49d2fc1a8eaa662d03"
+          }
+        },
+        {
           "client_id": "346666889850-o9u4h37vhf5fv43o9t47okqasgrkn6kc.apps.googleusercontent.com",
           "client_type": 3
         }

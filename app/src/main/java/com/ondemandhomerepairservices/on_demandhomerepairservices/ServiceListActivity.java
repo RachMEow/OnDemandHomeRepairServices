@@ -160,17 +160,25 @@ public class ServiceListActivity extends AppCompatActivity {
 
     public void addService(){
         String userInputServiceName = serviceName.getText().toString().trim();
-        double userInputHoursRate = Double.parseDouble(String.valueOf(hoursRate.getText().toString()));
+        double userInputHoursRate = 0.0;
 
         if(validateAddService()){
-            String id = databaseServices.push().getKey();
-            service = new Service(id, userInputServiceName, userInputHoursRate);
-            databaseServices.child(id).setValue(service);
 
-            serviceName.setText("");
-            hoursRate.setText("");
+            try{
+                userInputHoursRate = Double.parseDouble(String.valueOf(hoursRate.getText().toString()));
+                String id = databaseServices.push().getKey();
+                service = new Service(id, userInputServiceName, userInputHoursRate);
+                databaseServices.child(id).setValue(service);
 
-            Toast.makeText(this, "Service added", Toast.LENGTH_LONG).show();
+                serviceName.setText("");
+                hoursRate.setText("");
+
+                Toast.makeText(this, "Service added", Toast.LENGTH_LONG).show();
+            }catch (NumberFormatException ignore){
+                Toast.makeText(this, "Invalid hours rate (number only)", Toast.LENGTH_SHORT).show();
+            }
+
+
         }
     }
 }
