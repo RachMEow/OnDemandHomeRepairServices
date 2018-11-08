@@ -23,8 +23,6 @@ public class LoginServiceProvider extends AppCompatActivity {
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(v.getContext(), MainActivity.class);
-                //v.getContext().startActivity(intent);
                 finish();
             }
         });

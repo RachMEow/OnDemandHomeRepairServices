@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText _username, _password;
     private Button btnLogin, btnRegister;
-//    ListView listViewAccounts;
 
     List<Account> accounts;
 
@@ -57,18 +56,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String usernameInput = _username.getText().toString().trim();
                 final String passwordInput = _password.getText().toString().trim();
-
 
                 //attaching value event listener
                 databaseAccounts.addValueEventListener(new ValueEventListener() {
@@ -90,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         {
                             listString += a.get_firstName() + " " + a.get_lastName() + " (" + a.get_username() + "), " + a.get_role() + "\t";
                         }
+
                         if(validate()){
                             for(Account account : accounts){
                                 if(usernameInput.equals(account.get_username()) && passwordInput.equals(account.get_password())){
@@ -136,6 +129,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//
+//
+//    }
 
 
 
