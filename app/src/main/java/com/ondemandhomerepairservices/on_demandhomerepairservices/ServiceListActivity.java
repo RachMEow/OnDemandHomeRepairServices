@@ -47,6 +47,15 @@ public class ServiceListActivity extends AppCompatActivity {
 
         btnAddService = (Button) findViewById(R.id.buttonAddService);
 
+//        btnAddService.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                openDialog();
+//            }
+//        });
+
+
+        buttonBack = (Button) findViewById(R.id.buttonLogout);
         buttonBack = (Button) findViewById(R.id.buttonBack);
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +90,7 @@ public class ServiceListActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 services.clear();
 
-                String[] serviceListArray = new String[100];
+//                String[] serviceListArray = new String[100];
 
                 for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
                     Service service = postSnapShot.getValue(Service.class);
@@ -115,6 +124,14 @@ public class ServiceListActivity extends AppCompatActivity {
             }
         });
     }
+
+    //openDialog() need to be edit
+
+//    public void openDialog(){
+//        AddServiceDialog addServiceDialog = new AddServiceDialog();
+//        addServiceDialog.show(getSupportFragmentManager(),"Add service dialog");
+//
+//    }
 
 
     public boolean validateAddService(){
