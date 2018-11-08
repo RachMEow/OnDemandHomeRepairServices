@@ -165,7 +165,7 @@ public class ServiceListActivity extends AppCompatActivity {
 
         return true;
     }
-
+// add a service
     public void addService(){
         String userInputServiceName = serviceName.getText().toString().trim();
         double userInputHoursRate = 0.0;
