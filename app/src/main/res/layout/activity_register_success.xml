@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingTop="25dp"
-        android:paddingLeft="30dp">
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp">
 
         <TextView
             android:id="@+id/textViewWelcome"
