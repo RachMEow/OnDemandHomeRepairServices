@@ -20,7 +20,7 @@ import java.util.List;
 
 public class ServiceListActivity extends AppCompatActivity {
 
-    Button buttonBack, btnAddService;
+    Button buttonBack, buttonAddService;
     ListView listViewServiceList;
     EditText editTextAddService;
     EditText editTextHoursRate;
@@ -34,6 +34,16 @@ public class ServiceListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_list);
+
+        //AddServicebutton
+        buttonAddService = (Button)findViewById( R.id.buttonAddService);
+        buttonBack.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                openDialog();
+            }
+        });
+
 
         buttonBack = (Button) findViewById(R.id.buttonLogout);
         buttonBack.setOnClickListener(new View.OnClickListener() {
@@ -69,13 +79,23 @@ public class ServiceListActivity extends AppCompatActivity {
             }
         });
 
-        btnAddService.setOnClickListener(new View.OnClickListener() {
+        buttonAddService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //todo: get valud from user
             }
         });
     }
+
+    //openDialog() need to be edit
+
+    public void openDialog(){
+        AddServiceDialog addServiceDialog = new AddServiceDialog();
+        addServiceDialog.show(getSupportFragmentManager(),"Add service dialog");
+
+    }
+
+
 
 
     //todo: validateAddService()
