@@ -36,7 +36,7 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -45,19 +45,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="You are login as: "
-        android:textSize="18dp"/>
+        android:textSize="18dp"
+        android:layout_weight="0.8"/>
 
     <TextView
         android:id="@+id/textViewRoleName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ADMIN"
-        android:textSize="25dp"/>
+        android:textSize="25dp"
+        android:layout_weight="1"/>
+
+
+    <Button
+        android:id="@+id/buttonLogout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="LOGOUT"
+        android:textSize="12dp"
+        android:layout_weight="1"/>
+
     </LinearLayout>
 
     <Button
         android:id="@+id/buttonUserList"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="List of Users"
@@ -65,19 +77,12 @@
 
     <Button
         android:id="@+id/buttonServiceList"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="List of Service"
-        android:layout_marginTop="10dp"/>
+        android:text="List of Service"/>
 
-    <Button
-        android:id="@+id/buttonLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="LOGOUT"
-        android:layout_marginTop="10dp"/>
+
 
     <!--<ListView-->
         <!--android:id="@+id/_userlist"-->
