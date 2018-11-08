@@ -37,7 +37,7 @@ public class ServiceListActivity extends AppCompatActivity {
 
         //AddServicebutton
         buttonAddService = (Button)findViewById( R.id.buttonAddService);
-        buttonBack.setOnClickListener(new View.OnClickListener(){
+        buttonAddService.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 openDialog();
