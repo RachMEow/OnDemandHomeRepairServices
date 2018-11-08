@@ -21,10 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- <activity -->
-        <!-- android:name=".RegisterSuccess" -->
-        <!-- android:label="@string/title_activity_register_success" -->
-        <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginUser" />
         <activity android:name=".LoginAdmin" />

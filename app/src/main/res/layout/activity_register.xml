@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp">
+    android:paddingLeft="18dp"
+    android:paddingRight="18dp">
 
     <TextView
         android:id="@+id/textViewRegister"
