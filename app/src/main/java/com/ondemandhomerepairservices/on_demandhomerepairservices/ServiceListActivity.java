@@ -30,6 +30,7 @@ public class ServiceListActivity extends AppCompatActivity {
 
     private Service service = new Service();
     List<Service> services;
+    List<String> serviceListString;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseServices = database.getReference("messagem");
@@ -49,6 +50,8 @@ public class ServiceListActivity extends AppCompatActivity {
         databaseServices = FirebaseDatabase.getInstance().getReference("services");
 
         services = new ArrayList<>();
+
+        serviceListString = new ArrayList<>();
 
 //        btnAddService.setOnClickListener(new View.OnClickListener(){
 //            @Override
@@ -73,49 +76,54 @@ public class ServiceListActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    protected void onStart(){
-//        super.onStart();
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        databaseServices.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                services.clear();
+
+
+                for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
+                    Service service = postSnapShot.getValue(Service.class);
+                    services.add(service);
+                }
+
+                serviceListString.clear();
+
+                for(Service service : services){
+                    String s = service.get_serviceName() + " ($" + service.get_hoursRate() + "/hour)";
+                    serviceListString.add(s);
+                }
+
+                ArrayAdapter<String> servicesAdapter = new ArrayAdapter<String>(ServiceListActivity.this, android.R.layout.simple_list_item_1, serviceListString);
+                listViewServiceList.setAdapter(servicesAdapter);
+
+//                int i=0;
 //
-//        databaseServices.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                services.clear();
-//
-////                String[] serviceListArray = new String[100];
-//
-//                for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
-//                    Service service = postSnapShot.getValue(Service.class);
-//                    services.add(service);
+//                List<String> arrayList = new ArrayList<String>();
+//                for(int k = 0; k < serviceListArray.length; k++){
+//                    arrayList.add(serviceListArray[i]);
 //                }
-//
-////                int i=0;
-////                for(Service service : services){
-////                    serviceListArray[i] = service.get_serviceName() + " " + service.get_hoursRate();
-////                    i++;
-////                }
-////
-////                List<String> arrayList = new ArrayList<String>();
-////                for(int k = 0; k < serviceListArray.length; k++){
-////                    arrayList.add(serviceListArray[i]);
-////                }
-////                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ServiceListActivity.this, android.R.layout.simple_list_item_1, arrayList);
-////                listViewServiceList.setAdapter(arrayAdapter);
+//                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ServiceListActivity.this, android.R.layout.simple_list_item_1, arrayList);
+//                listViewServiceList.setAdapter(arrayAdapter);
 //
 ////                String[] serviceList;
-////                String serviceList = "";
-////                for(Service s: services){
-////                    serviceList += s.get_serviceName() + " " + s.get_hoursRate() + "\t";
-////                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+//                String serviceList = "";
+//                for(Service s: services){
+//                    serviceList += s.get_serviceName() + " " + s.get_hoursRate() + "\t";
+//                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
 //    openDialog() need to be edit
 
@@ -131,7 +139,7 @@ public class ServiceListActivity extends AppCompatActivity {
         String userInputHoursRate = hoursRate.getText().toString().trim();
         double numHoursRate = 0;
 
-        Pattern p1 = Pattern.compile("[^a-z0-9_]", Pattern.CASE_INSENSITIVE);
+        Pattern p1 = Pattern.compile("[^a-z0-9_ ]", Pattern.CASE_INSENSITIVE);
 
         if(TextUtils.isEmpty(userInputServiceName)){
             Toast.makeText(this,"Please enter a service name", Toast.LENGTH_SHORT).show();
