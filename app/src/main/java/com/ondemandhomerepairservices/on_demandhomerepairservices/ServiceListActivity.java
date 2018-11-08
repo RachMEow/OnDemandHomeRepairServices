@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,8 +20,10 @@ import java.util.List;
 
 public class ServiceListActivity extends AppCompatActivity {
 
-    Button buttonBack;
+    Button buttonBack, btnAddService;
     ListView listViewServiceList;
+    EditText editTextAddService;
+    EditText editTextHoursRate;
 
     List<Service> services;
 
@@ -65,5 +68,20 @@ public class ServiceListActivity extends AppCompatActivity {
 
             }
         });
+
+        btnAddService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //todo: get valud from user
+            }
+        });
+    }
+
+
+    //todo: validateAddService()
+
+    public boolean validateAddService(){
+
+        return true;
     }
 }
