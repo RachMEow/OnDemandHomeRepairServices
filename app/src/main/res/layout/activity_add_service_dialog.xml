@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Enter service Name" />
+            android:hint="Enter Service Name" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,8 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Enter hourly rate"
-            android:inputType="textPassword" />
+            android:hint="Enter Hourly Rate" />
     </LinearLayout>
 
     <LinearLayout
