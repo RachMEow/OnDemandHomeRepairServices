@@ -68,7 +68,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="List of Service Provided"/>
+        android:text="List of Service"
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:id="@+id/buttonLogout"
@@ -78,10 +79,10 @@
         android:text="LOGOUT"
         android:layout_marginTop="10dp"/>
 
-    <ListView
-        android:id="@+id/_userlist"
-        android:layout_width="match_parent"
-        android:layout_height="227dp" />
+    <!--<ListView-->
+        <!--android:id="@+id/_userlist"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="227dp" />-->
 
 
 </LinearLayout>

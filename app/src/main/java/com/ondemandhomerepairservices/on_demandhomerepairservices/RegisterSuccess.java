@@ -21,7 +21,8 @@ public class RegisterSuccess extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterSuccess.this, MainActivity.class));
+                //startActivity(new Intent(RegisterSuccess.this, MainActivity.class));
+                finish();
             }
         });
     }

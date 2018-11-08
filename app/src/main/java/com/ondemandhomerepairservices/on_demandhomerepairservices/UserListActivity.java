@@ -22,14 +22,13 @@ public class UserListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
 
-        userList = (ListView) findViewById(R.id._userlist);
+        userList = (ListView) findViewById(R.id.listViewUserList);
 
-        buttonBack = (Button) findViewById(R.id.buttonLogout);
+        buttonBack = (Button) findViewById(R.id.buttonBack2);
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), MainActivity.class);
-                v.getContext().startActivity(intent);
+                finish();
             }
         });
 
