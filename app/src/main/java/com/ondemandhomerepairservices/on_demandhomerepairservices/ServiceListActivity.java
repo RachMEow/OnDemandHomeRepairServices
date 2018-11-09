@@ -224,6 +224,9 @@ public class ServiceListActivity extends AppCompatActivity {
 
     //TODO: update hours rate
     public void updateHoursRate(String id, String serviceName, double hoursRate){
-
+      /*  DatabaseReference dr = FirebaseDatabase.getInstance().getReference("rate").child(id);
+        Service service = new Service(id,serviceName,hoursRate);
+        dr.setValue(service);
+        Toast.makeText(getApplicationContext(),"Hour rate updated",Toast.LENGTH_LONG).show();*/
     }
 }
