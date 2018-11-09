@@ -22,11 +22,11 @@ public class RegisterActivityTest {
     }
     @Test
     @UiThreadTest
-    public void checkFirstName() throws Exception{
-//        assertNotNull(rActivity.findViewById(R.id.textView1));
-//        text= rActivity.findViewById(R.id.username);
-//        text.setText("user1");
-//        String name= text.getText().toString();
-//        assertNotEquals("user",name);
+    public void checkUserName() throws Exception{
+        assertNotNull(rActivity.findViewById(R.id.textViewUsername));
+        text= rActivity.findViewById(R.id.editTextUsername);
+        text.setText("username1");
+        String name= text.getText().toString();
+        assertNotEquals("username2",name);
     }
 }
