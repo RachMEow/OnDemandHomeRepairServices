@@ -75,8 +75,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/textViewServiceList"
         android:text="List of Service Provided: "
-        android:textSize="20dp"
-        android:paddingBottom="10dp"/>
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textHint"
+        android:text="(Long click on the service to update or delete)"
+        android:textSize="12dp"/>
 
     <ListView
         android:id="@+id/listViewServiceList"
