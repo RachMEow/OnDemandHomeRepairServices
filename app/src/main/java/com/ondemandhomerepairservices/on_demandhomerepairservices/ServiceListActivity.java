@@ -2,10 +2,13 @@ package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,6 +63,15 @@ public class ServiceListActivity extends AppCompatActivity {
 //            }
 //        });
 
+        listViewServiceList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Service service = services.get(i);
+                showUpdateServiceDialog(service.get_id(), service.get_serviceName());
+                return true;
+            }
+        });
+
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,21 +113,6 @@ public class ServiceListActivity extends AppCompatActivity {
                 ArrayAdapter<String> servicesAdapter = new ArrayAdapter<String>(ServiceListActivity.this, android.R.layout.simple_list_item_1, serviceListString);
                 listViewServiceList.setAdapter(servicesAdapter);
 
-//                int i=0;
-//
-//                List<String> arrayList = new ArrayList<String>();
-//                for(int k = 0; k < serviceListArray.length; k++){
-//                    arrayList.add(serviceListArray[i]);
-//                }
-//                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ServiceListActivity.this, android.R.layout.simple_list_item_1, arrayList);
-//                listViewServiceList.setAdapter(arrayAdapter);
-//
-////                String[] serviceList;
-//                String serviceList = "";
-//                for(Service s: services){
-//                    serviceList += s.get_serviceName() + " " + s.get_hoursRate() + "\t";
-//                }
-
             }
 
             @Override
@@ -151,17 +148,6 @@ public class ServiceListActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Service name can only contain letter, number and underscore", Toast.LENGTH_SHORT).show();
             return false;
         }
-//        else if(!TextUtils.isEmpty(userInputHoursRate)){
-//            while (true) {
-//                try {
-//                    numHoursRate = Double.parseDouble(String.valueOf(hoursRate.getText().toString()));
-//                    break;
-//                } catch (NumberFormatException ignore) {
-//                    Toast.makeText(this, "Please enter an invalid hours rate (number only)", Toast.LENGTH_SHORT).show();
-//                }
-//                return false;
-//            }
-//        }
 
         return true;
     }
@@ -188,5 +174,56 @@ public class ServiceListActivity extends AppCompatActivity {
 
 
         }
+    }
+
+    private void showUpdateServiceDialog(final String serviceId, String serviceName){
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.layout_service_longclick_dialogue, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText editTextServiceName = (EditText) dialogView.findViewById(R.id.editTextServiceName);
+        final EditText editTextHoursRate = (EditText) dialogView.findViewById(R.id.editTextHoursRate);
+        final Button btnUpdateServiceName = (Button) dialogView.findViewById(R.id.buttonUpdateServiceName);
+        final Button btnUpdateHoursRate = (Button) dialogView.findViewById(R.id.buttonUpdateHoursRate);
+        final Button btnDelete = (Button)dialogView.findViewById(R.id.buttonDeleteService);
+
+        dialogBuilder.setTitle(serviceName);
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
+        //TODO: update service name button event listener
+
+        //TODO: update hours rate button event listener
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteService(serviceId);
+                b.dismiss();
+            }
+        });
+
+    }
+
+    public boolean deleteService(String id){
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("services").child(id);
+        dR.removeValue();
+        Toast.makeText(getApplicationContext(),"Service Deleted", Toast.LENGTH_LONG).show();
+        return true;
+    }
+
+    //TODO: update service name and validate
+    public void updateServiceName(String id, String serviceName, double hoursRate){
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("services").child(id);
+        Service service = new Service(id, serviceName, hoursRate);
+        dR.setValue(service);
+        Toast.makeText(getApplicationContext(), "Service updated", Toast.LENGTH_LONG).show();
+    }
+
+    //TODO: update hours rate
+    public void updateHoursRate(String id, String serviceName, double hoursRate){
+
     }
 }
