@@ -135,8 +135,9 @@ public class RegisterActivity extends AppCompatActivity {
                 //saving the account
                 databaseAccounts.child(id).setValue(account);
 
+                finish();
                 startActivity(new Intent(RegisterActivity.this, RegisterSuccess.class));
-//                finish();
+
             }
         });
 
