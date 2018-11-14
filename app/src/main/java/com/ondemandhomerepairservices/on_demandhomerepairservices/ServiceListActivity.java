@@ -67,7 +67,7 @@ public class ServiceListActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Service service = services.get(i);
-                showUpdateServiceDialog(service.get_id(), service.get_serviceName());
+                showUpdateServiceDialog(service.get_id(), service.get_serviceName(), service.get_hoursRate());
                 return true;
             }
         });
@@ -151,6 +151,31 @@ public class ServiceListActivity extends AppCompatActivity {
 
         return true;
     }
+
+    public boolean validateServiceName(String userInputServiceName){
+
+        Pattern p1 = Pattern.compile("[^a-z0-9_ ]", Pattern.CASE_INSENSITIVE);
+
+        if(TextUtils.isEmpty(userInputServiceName)) {
+            Toast.makeText(this, "Please enter a service name", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if(p1.matcher(userInputServiceName).find()){
+            Toast.makeText(getApplicationContext(), "Service name can only contain letter, number and underscore", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    //check if it is empty; true means empty
+    public boolean isEmptyHoursRate(String userInputHoursRate){
+        if(TextUtils.isEmpty(userInputHoursRate)){
+//            Toast.makeText(this,"Please enter a hours rate", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
+    }
+
 // add a service
     public void addService(){
         String userInputServiceName = serviceName.getText().toString().trim();
@@ -176,7 +201,7 @@ public class ServiceListActivity extends AppCompatActivity {
         }
     }
 
-    private void showUpdateServiceDialog(final String serviceId, String serviceName){
+    private void showUpdateServiceDialog(final String serviceId, final String serviceName, final double hoursRate){
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -193,9 +218,41 @@ public class ServiceListActivity extends AppCompatActivity {
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
-        //TODO: update service name button event listener
+        btnUpdateServiceName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String serviceName = editTextServiceName.getText().toString().trim();
+
+                if(validateServiceName(serviceName)) {
+                    updateServiceName(serviceId, serviceName, hoursRate);
+                    b.dismiss();
+                }else{
+                    updateServiceName(serviceId, serviceName, hoursRate);
+                }
+            }
+        });
 
         //TODO: update hours rate button event listener
+        btnUpdateHoursRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String textHoursRate = editTextHoursRate.getText().toString().trim();
+
+                if(isEmptyHoursRate(textHoursRate)){
+                    Toast.makeText(getApplicationContext(),"Please enter a hours rate", Toast.LENGTH_SHORT).show();
+                }else if(!isValidateHoursRate(textHoursRate)){
+
+                }else{
+
+                    double numHoursRate = Double.parseDouble(String.valueOf(textHoursRate));
+                    DatabaseReference dR = FirebaseDatabase.getInstance().getReference("services").child(serviceId);
+                    Service service = new Service(serviceId, serviceName, numHoursRate);
+                    dR.setValue(service);
+                    Toast.makeText(getApplicationContext(), "Service hours rate updated", Toast.LENGTH_LONG).show();
+                    b.dismiss();
+                }
+            }
+        });
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,19 +271,30 @@ public class ServiceListActivity extends AppCompatActivity {
         return true;
     }
 
-    //TODO: update service name and validate
     public void updateServiceName(String id, String serviceName, double hoursRate){
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("services").child(id);
-        Service service = new Service(id, serviceName, hoursRate);
-        dR.setValue(service);
-        Toast.makeText(getApplicationContext(), "Service updated", Toast.LENGTH_LONG).show();
+
+        if(validateServiceName(serviceName)){
+            DatabaseReference dR = FirebaseDatabase.getInstance().getReference("services").child(id);
+            Service service = new Service(id, serviceName, hoursRate);
+            dR.setValue(service);
+            Toast.makeText(getApplicationContext(), "Service name updated", Toast.LENGTH_LONG).show();
+        }
+
     }
 
-    //TODO: update hours rate
-    public void updateHoursRate(String id, String serviceName, double hoursRate){
-      /*  DatabaseReference dr = FirebaseDatabase.getInstance().getReference("rate").child(id);
-        Service service = new Service(id,serviceName,hoursRate);
-        dr.setValue(service);
-        Toast.makeText(getApplicationContext(),"Hour rate updated",Toast.LENGTH_LONG).show();*/
+    //validate hours rate is a double type number, true means it is validated
+    public boolean isValidateHoursRate(String hoursRate){
+
+        double numHoursRate = 0.0;
+
+        if(!isEmptyHoursRate(hoursRate)) {
+            try {
+                numHoursRate = Double.parseDouble(String.valueOf(hoursRate));
+            } catch (NumberFormatException ignore) {
+                Toast.makeText(getApplicationContext(), "Invalid hours rate (number only)", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+            return true;
     }
 }

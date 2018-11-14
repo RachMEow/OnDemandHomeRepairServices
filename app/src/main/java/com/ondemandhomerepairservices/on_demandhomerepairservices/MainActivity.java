@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                                             intent = new Intent(MainActivity.this, LoginAdmin.class);
                                             intent.putExtra("FIRST_NAME", firstName);
                                             intent.putExtra("USER_LIST", listString);
+                                            finish();
                                             startActivity(intent);
                                             break;
                                         case "Service Provider":

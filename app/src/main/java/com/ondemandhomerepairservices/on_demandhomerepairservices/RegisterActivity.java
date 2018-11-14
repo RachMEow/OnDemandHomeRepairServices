@@ -74,10 +74,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                String id;
-                String username = _username.getText().toString().trim();
-                String password = _password.getText().toString().trim();
-                String firstName = _firstName.getText().toString().trim();
-                String lastName = _lastName.getText().toString().trim();
+                String username = trimString(_username.getText().toString());
+                String password = trimString(_password.getText().toString());
+                String firstName = trimString(_firstName.getText().toString());
+                String lastName = trimString(_lastName.getText().toString());
                 String role = registerAs.getSelectedItem().toString();
 
                 Pattern p1 = Pattern.compile("[^a-z0-9_]", Pattern.CASE_INSENSITIVE);
@@ -135,8 +135,9 @@ public class RegisterActivity extends AppCompatActivity {
                 //saving the account
                 databaseAccounts.child(id).setValue(account);
 
+                finish();
                 startActivity(new Intent(RegisterActivity.this, RegisterSuccess.class));
-//                finish();
+
             }
         });
 
@@ -153,6 +154,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    public String trimString(String e) {
+        return e.trim();
+    }
 
 //    public void OnMainButton(View view){
 //

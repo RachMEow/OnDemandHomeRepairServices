@@ -35,6 +35,7 @@ public class LoginAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                startActivity(new Intent(LoginAdmin.this, MainActivity.class));
             }
         });
 
