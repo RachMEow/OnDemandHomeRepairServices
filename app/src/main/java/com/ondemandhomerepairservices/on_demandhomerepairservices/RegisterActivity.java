@@ -25,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private Spinner registerAs;
     private EditText _username, _password, _firstName, _lastName;
-    private Button btnClear, btnRegister;
+    private Button btnReset1, btnRegister;
 
     private Account account = new Account();
     List<Account> accounts;
@@ -56,14 +56,14 @@ public class RegisterActivity extends AppCompatActivity {
         _password = (EditText)findViewById(R.id.editTextPassword);
         _firstName = (EditText) findViewById(R.id.editTextFirstName);
         _lastName = (EditText)findViewById(R.id.editTextLastName);
-        btnClear = (Button)findViewById(R.id.buttonClear);
-        btnRegister = (Button)findViewById(R.id.buttonRegister);
+        btnReset1 = (Button)findViewById(R.id.buttonReset1);
+        btnRegister = (Button)findViewById(R.id.buttonNext1);
 
         databaseAccounts = FirebaseDatabase.getInstance().getReference("accounts");
 
         accounts = new ArrayList<>();
 
-        btnClear.setOnClickListener(new View.OnClickListener(){
+        btnReset1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 reset();

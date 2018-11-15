@@ -55,41 +55,41 @@
             android:layout_weight="1"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/textViewFirstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="First Name"
-            android:layout_weight="1"
-            android:textSize="20dp"/>
-        <EditText
-            android:id="@+id/editTextFirstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Enter First Name"
-            android:layout_weight="1"/>
-    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+            <!--android:id="@+id/textViewFirstName"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="First Name"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="20dp"/>-->
+        <!--<EditText-->
+            <!--android:id="@+id/editTextFirstName"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Enter First Name"-->
+            <!--android:layout_weight="1"/>-->
+    <!--</LinearLayout>-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/textViewLastName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Name"
-            android:layout_weight="1"
-            android:textSize="20dp"/>
-        <EditText
-            android:id="@+id/editTextLastName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Enter Last Name"
-            android:layout_weight="1"/>
-    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+            <!--android:id="@+id/textViewLastName"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Last Name"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="20dp"/>-->
+        <!--<EditText-->
+            <!--android:id="@+id/editTextLastName"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Enter Last Name"-->
+            <!--android:layout_weight="1"/>-->
+    <!--</LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -116,11 +116,11 @@
         android:paddingRight="20dp">
 
         <Button
-            android:id="@+id/buttonClear"
+            android:id="@+id/buttonReset1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="CLEAR" />
+            android:text="RESET" />
 
         <!--<Button-->
             <!--android:id="@+id/buttonNext"-->
@@ -130,12 +130,12 @@
             <!--android:onClick="OnMainButton"-->
             <!--android:text="NEXT" />-->
         <Button
-            android:id="@+id/buttonRegister"
+            android:id="@+id/buttonNext1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="OnMainButton"
-            android:text="REGISTER" />
+            android:text="NEXT" />
 
     </LinearLayout>
 
