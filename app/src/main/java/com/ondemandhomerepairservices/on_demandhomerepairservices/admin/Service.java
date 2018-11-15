@@ -1,4 +1,4 @@
-package com.ondemandhomerepairservices.on_demandhomerepairservices;
+package com.ondemandhomerepairservices.on_demandhomerepairservices.admin;
 
 public class Service {
     private String _id;

@@ -77,56 +77,56 @@
             android:layout_weight="1"/>
     </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--<TextView-->
-            <!--android:id="@+id/textViewFirstName"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="First Name"-->
-            <!--android:layout_weight="1"-->
-            <!--android:textSize="20dp"/>-->
-        <!--<EditText-->
-            <!--android:id="@+id/editTextFirstName"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="Enter First Name"-->
-            <!--android:layout_weight="1"/>-->
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--<TextView-->
-            <!--android:id="@+id/textViewLastName"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Last Name"-->
-            <!--android:layout_weight="1"-->
-            <!--android:textSize="20dp"/>-->
-        <!--<EditText-->
-            <!--android:id="@+id/editTextLastName"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="Enter Last Name"-->
-            <!--android:layout_weight="1"/>-->
-    <!--</LinearLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textViewFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="First Name"
+            android:layout_weight="1"
+            android:textSize="20dp"/>
+        <EditText
+            android:id="@+id/editTextFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enter First Name"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/textViewRegisterAs"
+            android:id="@+id/textViewLastName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register As"
+            android:text="Last Name"
             android:layout_weight="1"
             android:textSize="20dp"/>
-        <Spinner
-            android:id="@+id/spinnerRegisterAs"
+        <EditText
+            android:id="@+id/editTextLastName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></Spinner>
+            android:layout_height="wrap_content"
+            android:hint="Enter Last Name"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--<TextView-->
+            <!--android:id="@+id/textViewRegisterAs"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Register As"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="20dp"/>-->
+        <!--<Spinner-->
+            <!--android:id="@+id/spinnerRegisterAs"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"></Spinner>-->
     </LinearLayout>
 
     <LinearLayout
@@ -152,11 +152,11 @@
             <!--android:onClick="OnMainButton"-->
             <!--android:text="NEXT" />-->
         <Button
-            android:id="@+id/buttonNext"
+            android:id="@+id/buttonRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="NEXT" />
+            android:text="REGISTER" />
 
     </LinearLayout>
 

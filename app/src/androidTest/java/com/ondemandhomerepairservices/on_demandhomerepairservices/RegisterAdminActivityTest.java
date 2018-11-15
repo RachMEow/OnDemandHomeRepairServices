@@ -10,10 +10,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class RegisterActivityTest {
+public class RegisterAdminActivityTest {
     @Rule
-    public ActivityTestRule<RegisterActivity> rActivityTestRule= new ActivityTestRule<RegisterActivity>(RegisterActivity.class);
-    private RegisterActivity rActivity=null;
+    public ActivityTestRule<RegisterAdminActivity> rActivityTestRule= new ActivityTestRule<RegisterAdminActivity>(RegisterAdminActivity.class);
+    private RegisterAdminActivity rActivity=null;
     private TextView text;
 
     @Before
