@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,7 +11,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingLeft="18dp"
-        android:paddingRight="18dp">
+        android:paddingRight="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textViewRegister"
@@ -99,6 +102,7 @@
             <EditText
                 android:id="@+id/editTextPostCode"
                 android:layout_width="wrap_content"
+                android:maxLength="7"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Enter Post Code" />
