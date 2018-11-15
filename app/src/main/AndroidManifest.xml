@@ -29,7 +29,8 @@
         <activity android:name=".RegisterSuccess" />
         <activity android:name=".UserListActivity" />
         <activity android:name=".ServiceListActivity" />
-        <activity android:name=".RegisterHomeOwnerActivity"></activity>
+        <activity android:name=".RegisterHomeOwnerActivity" />
+        <activity android:name=".RegisterMainActivity"></activity>
     </application>
 
 </manifest>
