@@ -46,6 +46,12 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
                 reset();
             }
         });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
