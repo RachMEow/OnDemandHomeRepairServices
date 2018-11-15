@@ -61,10 +61,4 @@ public class RegisterActivityTest {
         assertNotEquals("lastName", lastName);
     }
 
-    @Test
-    @UiThreadTest
-    public void checkRole() throws Exception{
-
-    }
-
 }
