@@ -74,78 +74,31 @@ public class RegisterAdminActivity extends AppCompatActivity {
         btnNext.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String id;
+
                 String username = _username.getText().toString().trim();
                 String password = _password.getText().toString().trim();
                 String firstName = _firstName.getText().toString().trim();
                 String lastName = _lastName.getText().toString().trim();
-//                String role = registerAs.getSelectedItem().toString();
 
-                Pattern p1 = Pattern.compile( "[^a-z0-9_]", Pattern.CASE_INSENSITIVE );
-                Pattern p2 = Pattern.compile( "[^a-z ]", Pattern.CASE_INSENSITIVE );
-                boolean un = p1.matcher( username ).find();
-                boolean fn = p2.matcher(firstName).find();
-                boolean ln = p2.matcher(lastName).find();
+                if(is_Validate(username, password, firstName, lastName)){
+                    String id = databaseAdmins.push().getKey();
 
-                //Validate fields
-                if (un) {
-                    Toast.makeText( getApplicationContext(), "User name can only contain letter, number and underscore", Toast.LENGTH_SHORT ).show();
-                    return;
+                    admin.setId(id);
+                    admin.set_username(username);
+                    admin.set_password(password);
+                    admin.set_FirstName(firstName);
+                    admin.set_LastName(lastName);
+
+                    //saving the account
+                    databaseAdmins.child( id ).setValue( admin );
+
+                    finish();
+
+                    startActivity( new Intent( RegisterAdminActivity.this, RegisterSuccess.class ) );
                 }
-
-                if(fn) {
-                    Toast.makeText(getApplicationContext(), "First name can only contains letter", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if(ln) {
-                    Toast.makeText(getApplicationContext(), "Last name can only contains letter", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty( username )) {
-                    Toast.makeText( getApplicationContext(), "Enter username", Toast.LENGTH_SHORT ).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty( password )) {
-                    Toast.makeText( getApplicationContext(), "Enter password", Toast.LENGTH_SHORT ).show();
-                    return;
-                }
-
-                if (password.length() < 6) {
-                    Toast.makeText( getApplicationContext(), "Password too short, enter minimum 6 characters", Toast.LENGTH_SHORT ).show();
-                    return;
-                }
-
-                if(TextUtils.isEmpty(firstName)){
-                    Toast.makeText(getApplicationContext(), "Enter first name", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if(TextUtils.isEmpty(lastName)){
-                    Toast.makeText(getApplicationContext(), "Enter last name", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                String id = databaseAdmins.push().getKey();
-
-                admin.setId(id);
-                admin.set_username(username);
-                admin.set_password(password);
-                admin.set_FirstName(firstName);
-                admin.set_LastName(lastName);
-
-                //saving the account
-                databaseAdmins.child( id ).setValue( admin );
-
-                finish();
-
-                startActivity( new Intent( RegisterAdminActivity.this, RegisterSuccess.class ) );
 
             }
         } );
-
 
         btnLogin = (Button)findViewById(R.id.buttonLogin);
 
@@ -168,4 +121,58 @@ public class RegisterAdminActivity extends AppCompatActivity {
         return;
 
     }
+
+    public boolean is_Validate(String username, String password, String firstName, String lastName){
+
+        Pattern p1 = Pattern.compile( "[^a-z0-9_]", Pattern.CASE_INSENSITIVE );
+        Pattern p2 = Pattern.compile( "[^a-z ]", Pattern.CASE_INSENSITIVE );
+        boolean un = p1.matcher( username ).find();
+        boolean fn = p2.matcher(firstName).find();
+        boolean ln = p2.matcher(lastName).find();
+
+        //Validate fields
+        if (un) {
+            Toast.makeText( getApplicationContext(), "User name can only contain letter, number and underscore", Toast.LENGTH_SHORT ).show();
+            return false;
+        }
+
+        if(fn) {
+            Toast.makeText(getApplicationContext(), "First name can only contains letter", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(ln) {
+            Toast.makeText(getApplicationContext(), "Last name can only contains letter", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty( username )) {
+            Toast.makeText( getApplicationContext(), "Enter username", Toast.LENGTH_SHORT ).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty( password )) {
+            Toast.makeText( getApplicationContext(), "Enter password", Toast.LENGTH_SHORT ).show();
+            return false;
+        }
+
+        if (password.length() < 6) {
+            Toast.makeText( getApplicationContext(), "Password too short, enter minimum 6 characters", Toast.LENGTH_SHORT ).show();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(firstName)){
+            Toast.makeText(getApplicationContext(), "Enter first name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(lastName)){
+            Toast.makeText(getApplicationContext(), "Enter last name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+
+
 }

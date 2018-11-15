@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 public class RegisterHomeOwnerActivity extends AppCompatActivity {
 
-    private EditText firstName, lastName, address, postCode;
+    private EditText firstName, lastName, address, postalCode;
     private Button btnclear, btnRegister, btnCancel;
 
     private Account account = new Account();
@@ -37,9 +37,9 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
         firstName = (EditText) findViewById(R.id.editTextFirstName);
         lastName = (EditText) findViewById(R.id.editTextLastName);
         address = (EditText) findViewById(R.id.editTextAddress);
-        postCode = (EditText) findViewById(R.id.editTextPostCode);
+        postalCode = (EditText) findViewById(R.id.editTextPostalCode);
 
-        databaseAccounts = FirebaseDatabase.getInstance().getReference("accounts");
+        databaseAccounts = FirebaseDatabase.getInstance().getReference("homeOwners");
 
         btnclear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +61,7 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
                 String firstN = trimString(firstName.getText().toString());
                 String lastN = trimString(lastName.getText().toString());
                 String addr = trimString(address.getText().toString());
-                String postC = trimString(postCode.getText().toString());
+                String postC = trimString(postalCode.getText().toString());
 
                 Pattern p1 = Pattern.compile("[^-," +
                         "^a-zA-Z_0-9" + "^\\t]", Pattern.CASE_INSENSITIVE);
@@ -136,7 +136,7 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
         firstName.getText().clear();
         lastName.getText().clear();
         address.getText().clear();
-        postCode.getText().clear();
+        postalCode.getText().clear();
         return;
 
     }
