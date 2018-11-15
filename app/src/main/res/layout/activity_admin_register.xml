@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:paddingLeft="18dp"
     android:paddingRight="18dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -138,19 +139,19 @@
         android:paddingRight="20dp">
 
         <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel" />
+
+        <Button
             android:id="@+id/buttonReset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="RESET" />
 
-        <!--<Button-->
-            <!--android:id="@+id/buttonNext"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:onClick="OnMainButton"-->
-            <!--android:text="NEXT" />-->
         <Button
             android:id="@+id/buttonRegister"
             android:layout_width="wrap_content"
