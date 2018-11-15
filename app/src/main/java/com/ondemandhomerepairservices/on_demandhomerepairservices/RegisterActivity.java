@@ -56,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
         _password = (EditText) findViewById( R.id.editTextPassword );
 //        _firstName = (EditText) findViewById(R.id.editTextFirstName);
 //        _lastName = (EditText)findViewById(R.id.editTextLastName);
-        btnReset1 = (Button) findViewById( R.id.buttonReset1 );
+        btnReset1 = (Button) findViewById(R.id.buttonReset1);
         btnNext1 = (Button) findViewById( R.id.buttonNext1 );
 
         databaseAccounts = FirebaseDatabase.getInstance().getReference( "accounts" );
