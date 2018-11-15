@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 public class RegisterActivity extends AppCompatActivity {
 
     private Spinner registerAs;
-    private EditText _username, _password, _firstName, _lastName;
+    private EditText _username, _password;// _firstName, _lastName;
     private Button btnReset1, btnRegister;
 
     private Account account = new Account();
@@ -54,8 +54,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         _username = (EditText)findViewById(R.id.editTextUsername);
         _password = (EditText)findViewById(R.id.editTextPassword);
-        _firstName = (EditText) findViewById(R.id.editTextFirstName);
-        _lastName = (EditText)findViewById(R.id.editTextLastName);
+//        _firstName = (EditText) findViewById(R.id.editTextFirstName);
+//        _lastName = (EditText)findViewById(R.id.editTextLastName);
         btnReset1 = (Button)findViewById(R.id.buttonReset1);
         btnRegister = (Button)findViewById(R.id.buttonNext1);
 
@@ -76,15 +76,15 @@ public class RegisterActivity extends AppCompatActivity {
 //                String id;
                 String username = trimString(_username.getText().toString());
                 String password = trimString(_password.getText().toString());
-                String firstName = trimString(_firstName.getText().toString());
-                String lastName = trimString(_lastName.getText().toString());
+//                String firstName = trimString(_firstName.getText().toString());
+//                String lastName = trimString(_lastName.getText().toString());
                 String role = registerAs.getSelectedItem().toString();
 
                 Pattern p1 = Pattern.compile("[^a-z0-9_]", Pattern.CASE_INSENSITIVE);
                 Pattern p2 = Pattern.compile("[^a-z ]", Pattern.CASE_INSENSITIVE);
                 boolean un = p1.matcher(username).find();
-                boolean fn = p2.matcher(firstName).find();
-                boolean ln = p2.matcher(lastName).find();
+//                boolean fn = p2.matcher(firstName).find();
+//                boolean ln = p2.matcher(lastName).find();
 
                 //Validate fields
                 if(un) {
@@ -92,15 +92,15 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(fn) {
-                    Toast.makeText(getApplicationContext(), "First name can only contains letter", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if(ln) {
-                    Toast.makeText(getApplicationContext(), "Last name can only contains letter", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                if(fn) {
+//                    Toast.makeText(getApplicationContext(), "First name can only contains letter", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//                if(ln) {
+//                    Toast.makeText(getApplicationContext(), "Last name can only contains letter", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
 
                 if(TextUtils.isEmpty(username)) {
                     Toast.makeText( getApplicationContext(), "Enter username", Toast.LENGTH_SHORT ).show();
@@ -117,20 +117,21 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(TextUtils.isEmpty(firstName)){
-                    Toast.makeText(getApplicationContext(), "Enter first name", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if(TextUtils.isEmpty(lastName)){
-                    Toast.makeText(getApplicationContext(), "Enter last name", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                if(TextUtils.isEmpty(firstName)){
+//                    Toast.makeText(getApplicationContext(), "Enter first name", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//                if(TextUtils.isEmpty(lastName)){
+//                    Toast.makeText(getApplicationContext(), "Enter last name", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
 
                 String id = databaseAccounts.push().getKey();
 
                 //create an account object
-                account = new Account(id, username, password, firstName, lastName, role);
+//                account = new Account(id, username, password, firstName, lastName, role);
+                account = new Account(id, username, password, role);
 
                 //saving the account
                 databaseAccounts.child(id).setValue(account);
@@ -147,8 +148,8 @@ public class RegisterActivity extends AppCompatActivity {
     //Reset fields
     public void reset(){
         _username.getText().clear();
-        _firstName.getText().clear();
-        _lastName.getText().clear();
+//        _firstName.getText().clear();
+//        _lastName.getText().clear();
         _password.getText().clear();
         return;
 
