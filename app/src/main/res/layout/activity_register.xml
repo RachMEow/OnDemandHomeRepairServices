@@ -6,6 +6,28 @@
     android:orientation="vertical"
     android:paddingLeft="18dp"
     android:paddingRight="18dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+        <TextView
+            android:id="@+id/textViewAlreadyHaveAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account?"
+            android:layout_weight="1"
+            android:textSize="20dp"/>
+        <Button
+            android:id="@+id/buttonLogin1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:text="Login" />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/textViewRegister"
@@ -134,7 +156,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="OnMainButton"
             android:text="NEXT" />
 
     </LinearLayout>
