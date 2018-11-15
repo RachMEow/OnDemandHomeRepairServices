@@ -24,6 +24,13 @@ public class Account {
         _role = role; 
     }
 
+    public Account(String id, String username, String password, String role){
+        _id = id;
+        _username = username;
+        _password = password;
+        _role = role;
+    }
+
     public void setId(String id) {
         _id = id;
     }

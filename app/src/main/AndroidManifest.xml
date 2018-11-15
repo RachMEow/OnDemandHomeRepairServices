@@ -6,8 +6,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,7 +28,8 @@
         <activity android:name=".LoginServiceProvider" />
         <activity android:name=".RegisterSuccess" />
         <activity android:name=".UserListActivity" />
-        <activity android:name=".ServiceListActivity"></activity>
+        <activity android:name=".ServiceListActivity" />
+        <activity android:name=".RegisterHomeOwnerActivity"></activity>
     </application>
 
 </manifest>
