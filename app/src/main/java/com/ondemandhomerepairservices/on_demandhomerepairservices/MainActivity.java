@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 ////                                            startActivity(intent);
 ////                                            break;
 ////                                        case "Home Owner":
-////                                            intent = new Intent(MainActivity.this, LoginUser.class);
+////                                            intent = new Intent(MainActivity.this, LoginHomeOwner.class);
 //////                                            intent.putExtra("FIRST_NAME", firstName);
 ////                                            startActivity(intent);
 ////                                            break;

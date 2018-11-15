@@ -8,7 +8,8 @@ public class Admin extends Account{
 
     }
 
-    public Admin(String firstName, String lastName){
+    public Admin(String id, String username, String password, String firstName, String lastName){
+        super(id, username, password);
         _firstName = firstName;
         _lastName = lastName;
     }

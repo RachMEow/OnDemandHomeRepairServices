@@ -7,24 +7,15 @@ public class Account {
     private String _id;
     private String _username;
     private String _password;
-//    private String _role;
 
     public Account() {
 
     }
 
-    public Account(String id, String username, String password, String firstName, String lastName, String role) {
+    public Account(String id, String username, String password) {
         _id = id;
         _username = username;
         _password = password;
-//        _role = role;
-    }
-
-    public Account(String id, String username, String password, String role){
-        _id = id;
-        _username = username;
-        _password = password;
-//        _role = role;
     }
 
     public void setId(String id) {
@@ -50,13 +41,7 @@ public class Account {
         return _password;
     }
 
-//    public void set_role(String role) {
-//        _role = role;
-//    }
 
-//    public String get_role() {
-//        return _role;
-//    }
 
 }
 

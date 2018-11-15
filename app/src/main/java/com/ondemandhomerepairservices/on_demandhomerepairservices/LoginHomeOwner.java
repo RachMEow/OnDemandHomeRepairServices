@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.Button;
 import android.content.SharedPreferences;
 
-public class LoginUser extends AppCompatActivity {
+public class LoginHomeOwner extends AppCompatActivity {
 
     Button buttonLogout;
     TextView firstName;

@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterAdminActivity">
+        <activity android:name=".RegisterHomeOwnerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,13 +23,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".LoginUser" />
+        <activity android:name=".LoginHomeOwner" />
         <activity android:name=".LoginAdmin" />
         <activity android:name=".LoginServiceProvider" />
         <activity android:name=".RegisterSuccess" />
         <activity android:name=".UserListActivity" />
         <activity android:name=".ServiceListActivity" />
-        <activity android:name=".RegisterHomeOwnerActivity" />
+        <activity android:name=".RegisterAdminActivity" />
         <activity android:name=".RegisterMainActivity"></activity>
     </application>
 

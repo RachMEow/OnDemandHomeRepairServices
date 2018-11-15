@@ -82,12 +82,14 @@ public class RegisterAdminActivity extends AppCompatActivity {
 
                 if(is_Validate(username, password, firstName, lastName)){
                     String id = databaseAdmins.push().getKey();
+//
+//                    admin.setId(id);
+//                    admin.set_username(username);
+//                    admin.set_password(password);
+//                    admin.set_FirstName(firstName);
+//                    admin.set_LastName(lastName);
 
-                    admin.setId(id);
-                    admin.set_username(username);
-                    admin.set_password(password);
-                    admin.set_FirstName(firstName);
-                    admin.set_LastName(lastName);
+                    admin = new Admin(id, username, password, firstName, lastName);
 
                     //saving the account
                     databaseAdmins.child( id ).setValue( admin );
@@ -132,7 +134,7 @@ public class RegisterAdminActivity extends AppCompatActivity {
 
         //Validate fields
         if (un) {
-            Toast.makeText( getApplicationContext(), "User name can only contain letter, number and underscore", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( getApplicationContext(), "HomeOwner name can only contain letter, number and underscore", Toast.LENGTH_SHORT ).show();
             return false;
         }
 
