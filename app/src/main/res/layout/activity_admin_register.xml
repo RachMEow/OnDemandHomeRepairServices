@@ -35,7 +35,7 @@
         android:id="@+id/textViewRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="REGISTER"
+        android:text="ADMIN REGISTER"
         android:gravity="center"
         android:textSize="25dp"
         android:paddingTop="20dp"

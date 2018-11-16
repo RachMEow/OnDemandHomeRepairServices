@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Register as a Service Provider"
+        android:text="Service Provider REGISTER"
         android:textSize="25dp"
         android:paddingBottom="5dp"/>
 
@@ -74,7 +74,7 @@
             android:id="@+id/editTextPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Enter password"
+            android:hint="Length at least 6"
             android:inputType="textPassword"
             android:layout_weight="1"/>
 
@@ -107,8 +107,8 @@
 
         <TextView
             android:id="@+id/textViewAddress"
-            android:layout_width="66dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Address (Mandatory)"
             android:textSize="16dp" />
@@ -118,7 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Enter Address"
+            android:hint="Ex. 1 North Pole"
             android:inputType="none" />
     </LinearLayout>
 
@@ -128,7 +128,7 @@
 
         <TextView
             android:id="@+id/textViewPhoneNumber"
-            android:layout_width="120dp"
+            android:layout_width="80dp"
             android:layout_height="60dp"
             android:layout_weight="1"
             android:text="Phone Number (Mandatory)"
@@ -139,7 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Enter Phone Number" />
+            android:hint="Ex.1112223333" />
     </LinearLayout>
 
     <LinearLayout
@@ -175,6 +175,7 @@
             android:textSize="16dp" />
 
         <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 

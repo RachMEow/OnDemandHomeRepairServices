@@ -7,6 +7,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -46,6 +48,7 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
         btnClear = (Button) findViewById(R.id.buttonClear);
         btnRegister = (Button) findViewById(R.id.buttonRegister);
 
+
         databaseHomeOwners = FirebaseDatabase.getInstance().getReference("homeOwners");
 
         homeOwners = new ArrayList<>();
@@ -73,6 +76,7 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
                 String lastName = _lastName.getText().toString().trim();
                 String address = _address.getText().toString().trim();
                 String postalCode = _postalCode.getText().toString().trim();
+
 
                 if(is_validate(username, password, firstName, lastName, address, postalCode)){
                       String id = databaseHomeOwners.push().getKey();
@@ -174,8 +178,8 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
             return false;
         }
 
-        if (pc || postalCode.length() < 6 || postalCode.length()>8) {
-            Toast.makeText(getApplicationContext(), "Invalid Post Code", Toast.LENGTH_SHORT).show();
+        if (pc || postalCode.length() != 6) {
+            Toast.makeText(getApplicationContext(), "Invalid Postal Code", Toast.LENGTH_SHORT).show();
             return false;
         }
 
