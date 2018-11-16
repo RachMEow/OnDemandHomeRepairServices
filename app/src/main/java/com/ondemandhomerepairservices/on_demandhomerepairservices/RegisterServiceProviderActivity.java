@@ -77,6 +77,8 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
                         Toast.makeText(getApplicationContext(), "Please select if you are licensed", Toast.LENGTH_SHORT);
 
                     }else{
+
+                        //todo: radio button problem
                         int selectedId = radioGroup.getCheckedRadioButtonId();
                         radioButton = (RadioButton) findViewById(selectedId);
 
