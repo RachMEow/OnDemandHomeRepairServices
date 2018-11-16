@@ -45,7 +45,7 @@
             android:gravity="center"
             android:paddingTop="20dp"
             android:paddingBottom="10dp"
-            android:text="Register as a Home Owner"
+            android:text="Home Owner REGISTER"
             android:textSize="25dp" />
 
 
@@ -133,7 +133,7 @@
 
             <TextView
                 android:id="@+id/textViewAddress"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Address"
@@ -155,7 +155,7 @@
 
             <TextView
                 android:id="@+id/textViewPostalCode"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Postal Code"

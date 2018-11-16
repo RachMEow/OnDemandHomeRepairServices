@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Register as a Service Provider"
+        android:text="Service Provider REGISTER"
         android:textSize="25dp"
         android:paddingBottom="5dp"/>
 
