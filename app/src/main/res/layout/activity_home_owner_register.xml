@@ -164,7 +164,6 @@
             <EditText
                 android:id="@+id/editTextPostalCode"
                 android:layout_width="wrap_content"
-                android:maxLength="7"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Enter Post Code" />
@@ -198,7 +197,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="OnMainButton"
                 android:text="REGISTER" />
 
         </LinearLayout>
