@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 public class RegisterServiceProviderActivity extends AppCompatActivity{
     private EditText _username, _password, _companyname, _address, _phonenumber, _description;
-    private Button btnCancel,btnReset, btnRegister;
+    private Button btnCancel,btnReset, btnRegister, btnlogin;
     private RadioGroup radioGroup;
     private RadioButton radioButton;
 
@@ -47,6 +47,7 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
         btnCancel=(Button)findViewById(R.id.buttonCancel);
         btnReset = (Button)findViewById(R.id.buttonReset);
         btnRegister = (Button)findViewById(R.id.buttonRegister);
+        btnlogin = (Button) findViewById(R.id.buttonLogin);
 
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
@@ -57,6 +58,13 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
             @Override
             public void onClick(View v){
                 reset();
+            }
+        });
+
+        btnlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterServiceProviderActivity.this, MainActivity.class));
             }
         });
 
@@ -117,7 +125,7 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
     }
 
     public boolean is_validated(String username, String password, String companyName, String address, String phoneNumber, String generalDescription){
-        Pattern p1 = Pattern.compile("[^a-z0-9_]", Pattern.CASE_INSENSITIVE);
+        Pattern p1 = Pattern.compile("[^a-z0-9_ "+ "^\\t]", Pattern.CASE_INSENSITIVE);
         Pattern p2 = Pattern.compile("[^a-z ]", Pattern.CASE_INSENSITIVE);
 //        Pattern p3 = Pattern.compile("[^0-9]{10}");
         Pattern p3 = Pattern.compile("[0-9]");

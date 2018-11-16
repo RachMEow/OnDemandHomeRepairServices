@@ -5,7 +5,7 @@ public class ServiceProvider extends Account{
     private String _companyName;
     private String _address;
     private String _phoneNum;
-    private String _generalDescription = "Nothing here";
+    private String _generalDescription;// = "Nothing here";
     private boolean _licensed;
 
     public ServiceProvider(){}

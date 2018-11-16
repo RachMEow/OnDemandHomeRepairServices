@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 public class RegisterHomeOwnerActivity extends AppCompatActivity {
 
     private EditText _username, _password, _firstName, _lastName, _address, _postalCode;
-    private Button btnClear, btnRegister, btnCancel;
+    private Button btnClear, btnRegister, btnCancel, btnLogin;
 
     private HomeOwner homeOwner = new HomeOwner();
     List<HomeOwner> homeOwners;
@@ -47,11 +47,20 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
         btnCancel = (Button) findViewById(R.id.buttonCancel);
         btnClear = (Button) findViewById(R.id.buttonClear);
         btnRegister = (Button) findViewById(R.id.buttonRegister);
+        btnLogin = (Button) findViewById(R.id.buttonLogin);
 
 
         databaseHomeOwners = FirebaseDatabase.getInstance().getReference("homeOwners");
 
         homeOwners = new ArrayList<>();
+
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterHomeOwnerActivity.this, MainActivity.class));
+            }
+        });
 
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +120,7 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
         Pattern p1 = Pattern.compile("[^-, " +
                 "^a-zA-Z_0-9" + "^\\t]", Pattern.CASE_INSENSITIVE);
         Pattern p2 = Pattern.compile("[^a-zA-z ]", Pattern.CASE_INSENSITIVE);
-        Pattern p3 = Pattern.compile("[^a-zA-Z0-9 \\t]");
+        Pattern p3 = Pattern.compile("[^a-zA-Z0-9"+"^\\t]");
 
         boolean un = p1.matcher( username ).find();
         boolean fn = p2.matcher(firstName).find();
