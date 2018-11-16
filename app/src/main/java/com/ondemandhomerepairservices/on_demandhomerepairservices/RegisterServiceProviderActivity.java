@@ -80,32 +80,29 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
                 String description  = _description.getText().toString().trim();
                 boolean licensed = false;
 
-                if(is_validated(username, password, companyname, address, phonenumber, description)){
-                    if(radioGroup.getCheckedRadioButtonId() == -1){
-                        Toast.makeText(getApplicationContext(), "Please select if you are licensed", Toast.LENGTH_SHORT);
+                if(is_validated(username, password, companyname, address, phonenumber, description)
+                        && is_radioButton_checked(radioGroup)
+                        )
+                {
 
-                    }else{
+                    int selectedId = radioGroup.getCheckedRadioButtonId();
+//                    Toast.makeText(getApplicationContext(),"Id is "+selectedId,Toast.LENGTH_SHORT);
 
-                        //todo: radio button problem
-                        int selectedId = radioGroup.getCheckedRadioButtonId();
-                        radioButton = (RadioButton) findViewById(selectedId);
+                    radioButton = (RadioButton) findViewById(selectedId);
 
-                        if(selectedId == 0){
-                            licensed = true;
-                        }
+                    licensed = onRadioButtonClicked(radioButton, licensed);
 
-                        String id = databaseServiceProviders.push().getKey();
+                    String id = databaseServiceProviders.push().getKey();
 
                         //create an account object
-                        serviceProvider = new ServiceProvider(id, username, password, companyname, address, phonenumber, description, licensed);
+                    serviceProvider = new ServiceProvider(id, username, password, companyname, address, phonenumber, description, licensed);
 
                         //saving the account
-                        databaseServiceProviders.child(id).setValue(serviceProvider);
-                        finish();
-                        startActivity(new Intent(RegisterServiceProviderActivity.this, LoginServiceProvider.class));
-                    }
-                }
+                    databaseServiceProviders.child(id).setValue(serviceProvider);
+                    finish();
+                    startActivity(new Intent(RegisterServiceProviderActivity.this, LoginServiceProvider.class));
 
+                }
 
             }
         });
@@ -197,6 +194,34 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
         }
 
 
+        return true;
+    }
+
+    public boolean onRadioButtonClicked(View view, boolean is_licensed){
+
+        boolean checked = ((RadioButton) view).isChecked();
+
+        if(!checked){
+            Toast.makeText(getApplicationContext(), "Please select if you are licensed", Toast.LENGTH_SHORT);
+            }else{
+                switch(view.getId()){
+                    case R.id.radio_Yes:
+                        is_licensed = true;
+                        break;
+                    case R.id.radio_No:
+                        is_licensed = false;
+                        break;
+            }
+        }
+
+        return is_licensed;
+    }
+
+    public boolean is_radioButton_checked(RadioGroup radioGroup){
+        if(radioGroup.getCheckedRadioButtonId() == -1){
+            Toast.makeText(getApplicationContext(),"Please select your licence status", Toast.LENGTH_SHORT);
+            return false;
+        }
         return true;
     }
 
