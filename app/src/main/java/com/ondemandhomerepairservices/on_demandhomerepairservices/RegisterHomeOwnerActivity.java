@@ -174,7 +174,7 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
             return false;
         }
 
-        if (pc || postalCode.length() < 6) {
+        if (pc || postalCode.length() < 6 || postalCode.length()>8) {
             Toast.makeText(getApplicationContext(), "Invalid Post Code", Toast.LENGTH_SHORT).show();
             return false;
         }
