@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/textViewRole"-->
+        <!--android:text="What is your role?"-->
+        <!--android:textSize="20dp"-->
+        <!--android:paddingBottom="10dp"/>-->
+
+    <Button
+        android:id="@+id/buttonAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Admin" />
+
+    <Button
+        android:id="@+id/buttonServiceProvider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Service Provider" />
+
+    <Button
+        android:id="@+id/buttonHomeOwner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Home Owner" />
+
+
+
+</LinearLayout>

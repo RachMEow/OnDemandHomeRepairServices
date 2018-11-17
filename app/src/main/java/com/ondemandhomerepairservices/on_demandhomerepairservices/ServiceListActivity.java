@@ -232,7 +232,6 @@ public class ServiceListActivity extends AppCompatActivity {
             }
         });
 
-        //TODO: update hours rate button event listener
         btnUpdateHoursRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

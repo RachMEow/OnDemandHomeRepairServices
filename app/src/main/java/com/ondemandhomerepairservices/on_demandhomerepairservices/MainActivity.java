@@ -2,9 +2,11 @@ package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,126 +18,151 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.accounts.Account;
+import com.ondemandhomerepairservices.on_demandhomerepairservices.accounts.Admin;
+import com.ondemandhomerepairservices.on_demandhomerepairservices.accounts.HomeOwner;
+import com.ondemandhomerepairservices.on_demandhomerepairservices.accounts.ServiceProvider;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText _username, _password;
+//    private EditText _username, _password;
     private Button btnLogin, btnRegister;
 
-    List<Account> accounts;
+    List<Admin> admins;
+    List<ServiceProvider> serviceProviders;
+    List<HomeOwner> homeOwners;
 
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-    //get reference to 'accounts' node
-    DatabaseReference databaseAccounts = database.getReference("message");
+    DatabaseReference databaseAdmins = database.getReference("message");
+    DatabaseReference databaseServiceProviders = database.getReference("message");
+    DatabaseReference databaseHomeOwners = database.getReference("message");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        _username = (EditText)findViewById(R.id.editTextUsername);
-        _password = (EditText)findViewById(R.id.editTextPassword);
+//        _username = (EditText)findViewById(R.id.editTextUsername);
+//        _password = (EditText)findViewById(R.id.editTextPassword);
         btnLogin = (Button) findViewById(R.id.buttonLogin);
         btnRegister = (Button) findViewById(R.id.buttonRegister);
 
-        databaseAccounts = FirebaseDatabase.getInstance().getReference("accounts");
+        databaseAdmins = FirebaseDatabase.getInstance().getReference("admins");
+        databaseServiceProviders = FirebaseDatabase.getInstance().getReference("serviceProviders");
+        databaseHomeOwners = FirebaseDatabase.getInstance().getReference("homeOwners");
 
-        accounts = new ArrayList<>();
+        admins = new ArrayList<>();
+        serviceProviders = new ArrayList<>();
+        homeOwners = new ArrayList<>();
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RegisterAdminActivity.class));
+                startActivity(new Intent(MainActivity.this, RegisterMainActivity.class));
             }
         });
 
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(View v) {
-//                                            final String usernameInput = _username.getText().toString().trim();
-//                                            final String passwordInput = _password.getText().toString().trim();
-//
-//                                            //attaching value event listener
-////                databaseAccounts.addValueEventListener(new ValueEventListener() {
-////                    @Override
-////                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-////                        //clearing the previous accounts list
-////                        accounts.clear();
-////
-////                        //iterating through all the nodes
-////                        for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
-////                            //getting accounts
-////                            Account account = postSnapShot.getValue(Account.class);
-////                            //adding account to the list
-////                            accounts.add(account);
-////                        }
-////
-////                        String listString = "";
-////                        for (Account a : accounts)
-////                        {
-////                            listString += a.get_firstName() + " " + a.get_lastName() + " (" + a.get_username() + "), " + a.get_role() + "\t";
-////                        }
-//
-////                        if(validate()){
-////                            for(Account account : accounts){
-////                                if(usernameInput.equals(account.get_username()) && passwordInput.equals(account.get_password())){
-//
-////                                    String role = account.get_role();
-////                                    String firstName = account.get_firstName();
-//
-////                                    Intent intent;
-////                                    switch(role){
-////                                        case "Admin":
-////                                            intent = new Intent(MainActivity.this, LoginAdmin.class);
-//////                                            intent.putExtra("FIRST_NAME", firstName);
-////                                            intent.putExtra("USER_LIST", listString);
-////                                            finish();
-////                                            startActivity(intent);
-////                                            break;
-////                                        case "Service Provider":
-////                                            intent = new Intent(MainActivity.this, LoginServiceProvider.class);
-//////                                            intent.putExtra("FIRST_NAME", firstName);
-////                                            startActivity(intent);
-////                                            break;
-////                                        case "Home Owner":
-////                                            intent = new Intent(MainActivity.this, LoginHomeOwner.class);
-//////                                            intent.putExtra("FIRST_NAME", firstName);
-////                                            startActivity(intent);
-////                                            break;
-////                                    }
-////                                    Toast.makeText(getApplicationContext(),"Login Success!", Toast.LENGTH_SHORT).show();
-////                                    return;//check if success originally exist
-////                                }else{
-////                                    Toast.makeText(getApplicationContext(),"Username or password wrong", Toast.LENGTH_SHORT).show();
-////                                }
-////                            }
-////
-////                        }
-////
-////                    }
-////
-////                    @Override
-////                    public void onCancelled(@NonNull DatabaseError databaseError) {
-////
-////                    }
-////                });
-////            }
-////        });
-//
-//                                        }
-////
-//                                    }
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                final View dialogView = inflater.inflate(R.layout.layout_login_dialog, null);
+                dialogBuilder.setView(dialogView);
+
+                final Button btnAdmin = (Button) dialogView.findViewById(R.id.buttonAdmin);
+                final Button btnServiceProvider = (Button) dialogView.findViewById(R.id.buttonServiceProvider);
+                final Button btnHomeOwner = (Button) dialogView.findViewById(R.id.buttonHomeOwner);
+
+                dialogBuilder.setTitle("What is your role?");
+                final AlertDialog b = dialogBuilder.create();
+                b.show();
+
+                btnAdmin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //todo: admin login
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                        LayoutInflater inflater = getLayoutInflater();
+                        final View dialogView = inflater.inflate(R.layout.layout_login_info_dialog, null);
+                        dialogBuilder.setView(dialogView);
+
+                        final EditText editTextUsername = (EditText)findViewById(R.id.editTextUsername);
+                        final EditText editTextPassword = (EditText)findViewById(R.id.editTextPassword);
+
+                        final Button btnLogin = (Button)findViewById(R.id.buttonLogin);
+
+                        dialogBuilder.setTitle("Admin Login");
+                        final AlertDialog b = dialogBuilder.create();
+                        b.show();
+
+                        btnLogin.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                final String usernameInput = editTextUsername.getText().toString().trim();
+                                final String passwordInput = editTextPassword.getText().toString().trim();
+
+                                databaseAdmins.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        admins.clear();
+                                        for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
+                                            Admin admin = postSnapShot.getValue(Admin.class);
+                                            admins.add(admin);
+                                        }
+
+                                        if(validate(editTextUsername, editTextPassword)){
+                                            for(Admin admin: admins){
+                                                if(usernameInput.equals(admin.get_username()) && passwordInput.equals(admin.get_password())){
+                                                    Intent intent;
+                                                    intent = new Intent(MainActivity.this, LoginAdmin.class);
+                                                    intent.putExtra("USERNAME", admin.get_username());
+                                                    b.dismiss();
+                                                    startActivity(intent);
+                                                }else{
+                                                    Toast.makeText(getApplicationContext(), "Username or password wrong", Toast.LENGTH_SHORT);
+                                                }
+                                            }
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+                            }
+                        });
+
+                    }
+                });
+
+                btnServiceProvider.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //todo: service provider login
+                    }
+                });
+
+                btnHomeOwner.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //todo: home owner login
+                    }
+                });
+            }
+        });
+
+
     }
 
-
-
     //Valid the inputs are not empty
-    private boolean validate(){
+    private boolean validate(EditText _username, EditText _password){
         String username = _username.getText().toString().trim();
         String password = _password.getText().toString().trim();
 
