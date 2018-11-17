@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class LoginServiceProvider extends AppCompatActivity {
 
-    Button buttonLogout;
+    Button buttonLogout,buttonServicesProvided;
     TextView firstName;
 
     @Override
@@ -27,5 +27,17 @@ public class LoginServiceProvider extends AppCompatActivity {
             }
         });
         firstName.setText(getIntent().getStringExtra("FIRST_NAME"));
+
+
+        buttonServicesProvided.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent (LoginServiceProvider.this, ServiceProvidedList.class) );
+            }
+        } );
+
+
+
+
     }
 }
