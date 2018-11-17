@@ -35,7 +35,7 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_provider_register);
+        setContentView(R.layout.activity_register_service_provider);
 
         _username = (EditText)findViewById(R.id.editTextUsername);
         _password = (EditText)findViewById(R.id.editTextPassword);
