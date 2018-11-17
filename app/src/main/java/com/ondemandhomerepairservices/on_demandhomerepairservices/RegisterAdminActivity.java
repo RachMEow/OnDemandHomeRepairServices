@@ -26,7 +26,7 @@ public class RegisterAdminActivity extends AppCompatActivity {
 
 //    private Spinner registerAs;
     private EditText _username, _password, _firstName, _lastName;
-    private Button btnReset, btnNext, btnLogin;
+    private Button btnReset, btnNext, btnLogin, btnCancel;
 
     private Admin admin = new Admin();
     List<Admin> admins;
@@ -59,10 +59,18 @@ public class RegisterAdminActivity extends AppCompatActivity {
         _lastName = (EditText)findViewById(R.id.editTextLastName);
         btnReset = (Button) findViewById( R.id.buttonReset );
         btnNext = (Button) findViewById( R.id.buttonRegister );
+        btnCancel = (Button) findViewById(R.id.buttonCancel);
 
         databaseAdmins = FirebaseDatabase.getInstance().getReference( "admins" );
 
         admins = new ArrayList<>();
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         btnReset.setOnClickListener( new View.OnClickListener() {
             @Override
