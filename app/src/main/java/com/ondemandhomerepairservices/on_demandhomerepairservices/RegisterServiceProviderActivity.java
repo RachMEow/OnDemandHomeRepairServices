@@ -80,14 +80,10 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
                 String description  = _description.getText().toString().trim();
                 boolean licensed = false;
 
-                if(is_validated(username, password, companyname, address, phonenumber, description)
-                        && is_radioButton_checked(radioGroup)
-                        )
+                if(is_validated(username, password, companyname, address, phonenumber, description))
                 {
 
                     int selectedId = radioGroup.getCheckedRadioButtonId();
-//                    Toast.makeText(getApplicationContext(),"Id is "+selectedId,Toast.LENGTH_SHORT);
-
                     radioButton = (RadioButton) findViewById(selectedId);
 
                     licensed = onRadioButtonClicked(radioButton, licensed);
