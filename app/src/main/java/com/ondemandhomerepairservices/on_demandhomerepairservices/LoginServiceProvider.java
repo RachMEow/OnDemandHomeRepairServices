@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class LoginServiceProvider extends AppCompatActivity {
 
-    Button buttonLogout,buttonServicesProvided;
+    Button buttonLogout, buttonServicesProvided;
     TextView firstName;
 
     @Override
@@ -26,15 +26,15 @@ public class LoginServiceProvider extends AppCompatActivity {
                 finish();
             }
         });
-        firstName.setText(getIntent().getStringExtra("FIRST_NAME"));
+        firstName.setText(getIntent().getStringExtra("USERNAME"));
 
 
-        buttonServicesProvided.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity( new Intent (LoginServiceProvider.this, ServiceProvidedList.class) );
-            }
-        } );
+//        buttonServicesProvided.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity( new Intent (LoginServiceProvider.this, ServiceListActivity.class) );
+//            }
+//        } );
 
 
 

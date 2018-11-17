@@ -28,7 +28,7 @@ public class LoginAdmin extends AppCompatActivity {
 //        userList = (ListView) findViewById(R.id._userlist);
 
         firstName = (TextView) findViewById(R.id.textViewFirstName);
-        firstName.setText(getIntent().getStringExtra("FIRST_NAME"));
+        firstName.setText(getIntent().getStringExtra("USERNAME"));
 
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonLogout.setOnClickListener(new View.OnClickListener() {

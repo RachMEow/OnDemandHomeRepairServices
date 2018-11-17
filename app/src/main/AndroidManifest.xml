@@ -30,8 +30,12 @@
         <activity android:name=".UserListActivity" />
         <activity android:name=".ServiceListActivity" />
         <activity android:name=".RegisterAdminActivity" />
-        <activity android:name=".RegisterHomeOwnerActivity"/>
-        <activity android:name=".RegisterMainActivity"></activity>
+        <activity android:name=".RegisterHomeOwnerActivity" />
+        <activity android:name=".RegisterMainActivity" />
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".LoginCheckAdminActivity" />
+        <activity android:name=".LoginCheckSPActivity" />
+        <activity android:name=".LoginCheckHOActivity"></activity>
     </application>
 
 </manifest>
