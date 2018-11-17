@@ -54,6 +54,13 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
         databaseServiceProviders = FirebaseDatabase.getInstance().getReference("serviceProviders");
         serviceProviders = new ArrayList<>();
 
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         btnReset.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
