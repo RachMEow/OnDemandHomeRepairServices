@@ -54,25 +54,31 @@
             android:textSize="21dp"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="LOGOUT"
-        android:layout_marginTop="10dp"/>
+
 
     <Button
         android:id="@+id/buttonServicesProvided"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Services Provided" />
+        android:text="Edit Your Provided Services" />
+
+    <Button
+        android:id="@+id/buttonAvailableTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Your Available Time" />
 
     <Button
         android:id="@+id/buttonAddNewService"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add new Service" />
+        android:text="Add new Provided Service" />
 
-
+    <Button
+        android:id="@+id/buttonLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:text="LOGOUT" />
 </LinearLayout>

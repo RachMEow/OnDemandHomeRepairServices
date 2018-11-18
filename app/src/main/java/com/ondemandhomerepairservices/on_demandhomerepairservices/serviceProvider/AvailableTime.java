@@ -5,10 +5,11 @@ public class AvailableTime {
     private TimeSlot _timeSlot;
 
     public AvailableTime(){
-
+        super();
     }
 
     public AvailableTime(DayOfWeek dayOfWeek, TimeSlot timeSlot){
+        super();
         this._dayOfWeek = dayOfWeek;
         this._timeSlot = timeSlot;
     }
@@ -27,5 +28,10 @@ public class AvailableTime {
 
     public void set_timeSlot(TimeSlot _timeSlot) {
         this._timeSlot = _timeSlot;
+    }
+
+    @Override
+    public String toString() {
+        return this._dayOfWeek + " " + this._timeSlot.getTimeSlot();
     }
 }
