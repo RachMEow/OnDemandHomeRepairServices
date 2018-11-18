@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 //                btnAdmin.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
-//                        //todo: admin login
+//
 //                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
 //                        LayoutInflater inflater = getLayoutInflater();
 //                        final View dialogView = inflater.inflate(R.layout.layout_login_info_dialog, null);
@@ -152,14 +152,14 @@ public class MainActivity extends AppCompatActivity {
 //                btnServiceProvider.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
-//                        //todo: service provider login
+//
 //                    }
 //                });
 //
 //                btnHomeOwner.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
-//                        //todo: home owner login
+//
 //                    }
 //                });
 //            }

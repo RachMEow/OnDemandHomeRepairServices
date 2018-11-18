@@ -63,7 +63,7 @@ public class LoginCheckAdminActivity extends AppCompatActivity {
                                                         admins.add(admin);
                                                     }
 
-                                                    //todo: get dataSnapshots of SPs and HOs
+                                                    //todo: also get dataSnapshots of SPs and HOs, and make s listView for each
                                                     String listString = "";
                                                     for (Admin a : admins)
                                                     {
