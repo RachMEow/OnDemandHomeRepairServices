@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class LoginServiceProvider extends AppCompatActivity {
 
-    Button buttonLogout, buttonServicesProvided;
+    Button buttonLogout, btnServicesProvided, btnAvailableTime, btnAddNewService;
     TextView firstName;
 
     @Override
@@ -32,7 +32,7 @@ public class LoginServiceProvider extends AppCompatActivity {
 //        buttonServicesProvided.setOnClickListener( new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                startActivity( new Intent (LoginServiceProvider.this, ServiceListActivity.class) );
+//                startActivity( new Intent (LoginServiceProvider.this, AdminServiceListActivity.class) );
 //            }
 //        } );
 

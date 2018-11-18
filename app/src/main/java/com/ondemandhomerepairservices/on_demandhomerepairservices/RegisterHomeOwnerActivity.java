@@ -7,13 +7,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.ondemandhomerepairservices.on_demandhomerepairservices.accounts.Account;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.accounts.HomeOwner;
 
 import java.util.ArrayList;
@@ -35,7 +32,7 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_owner_register);
+        setContentView(R.layout.activity_register_home_owner);
 
         _username = (EditText) findViewById(R.id.editTextUsername);
         _password = (EditText) findViewById(R.id.editTextPassword);
