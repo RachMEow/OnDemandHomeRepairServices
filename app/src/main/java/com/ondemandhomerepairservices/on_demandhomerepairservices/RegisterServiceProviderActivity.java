@@ -103,7 +103,7 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
                         //saving the account
                     databaseServiceProviders.child(id).setValue(serviceProvider);
                     finish();
-                    startActivity(new Intent(RegisterServiceProviderActivity.this, LoginServiceProvider.class));
+                    startActivity(new Intent(RegisterServiceProviderActivity.this, RegisterSuccess.class));
 
                 }
 

@@ -1,5 +1,13 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices.accounts;
 
+import android.widget.ArrayAdapter;
+
+import com.ondemandhomerepairservices.on_demandhomerepairservices.admin.Service;
+import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.AvailableTime;
+import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.DayOfWeek;
+
+import java.util.ArrayList;
+
 public class ServiceProvider extends Account{
 
     private String _companyName;
@@ -7,6 +15,8 @@ public class ServiceProvider extends Account{
     private String _phoneNum;
     private String _generalDescription;// = "Nothing here";
     private boolean _licensed;
+    private ArrayList<Service> _providedServices = new ArrayList<>();
+    private ArrayList<AvailableTime> _availableTimes = new ArrayList<AvailableTime>();
 
     public ServiceProvider(){}
 
@@ -17,6 +27,11 @@ public class ServiceProvider extends Account{
         this._phoneNum = phoneNum;
         this._generalDescription = generalDescription;
         this._licensed = licensed;
+    }
+
+    public ServiceProvider(String id, ArrayList<AvailableTime> availableTimes){
+        super(id);
+        this._availableTimes = availableTimes;
     }
 
     public String get_companyName() {
@@ -57,5 +72,13 @@ public class ServiceProvider extends Account{
 
     public void set_licensed(boolean _licensed) {
         this._licensed = _licensed;
+    }
+
+    public ArrayList<AvailableTime> getAvailableTimes() {
+        return _availableTimes;
+    }
+
+    public void setAvailableTimes(ArrayList<AvailableTime> availableTimes) {
+        this._availableTimes = availableTimes;
     }
 }

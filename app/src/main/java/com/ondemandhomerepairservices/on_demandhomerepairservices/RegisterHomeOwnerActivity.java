@@ -98,7 +98,7 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Register succeeded!", Toast.LENGTH_SHORT);
                     finish();
 
-                    startActivity(new Intent(RegisterHomeOwnerActivity.this, LoginHomeOwner.class));
+                    startActivity(new Intent(RegisterHomeOwnerActivity.this, RegisterSuccess.class));
                 }
 
             }
