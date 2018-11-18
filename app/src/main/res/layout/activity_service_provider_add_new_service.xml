@@ -26,7 +26,7 @@
         android:id="@+id/textHintAddAvailability"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(Long click on the service to add it)"
+        android:text="(Long click on the service to add it to your profile)"
         android:textSize="12dp" />
 
     <LinearLayout
@@ -35,7 +35,7 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/listViewAdminAddServiceList"
+            android:id="@+id/listViewAdminServiceList"
             android:layout_width="match_parent"
             android:layout_height="776dp"
             android:layout_weight="5">

@@ -36,7 +36,7 @@ public class AdminServiceListActivity extends AppCompatActivity {
     List<String> serviceListString;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference databaseServices = database.getReference("messagem");
+    DatabaseReference databaseServices = database.getReference("message");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

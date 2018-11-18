@@ -32,4 +32,9 @@ public class Service {
     public double get_hoursRate(){
         return _hoursRate;
     }
+
+    @Override
+    public String toString() {
+        return this.get_serviceName() + " ($" + this.get_hoursRate() + "/hour)";
+    }
 }

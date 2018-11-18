@@ -14,11 +14,19 @@
         android:text="Add Available Time"
         android:textSize="20dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewHint"
+        android:text="( Please enter number between 0 and 24 )"
+        android:textSize="12dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="15dp">
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp">
 
         <TextView
             android:id="@+id/textViewDay"
@@ -26,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Day"
-            android:textSize="14dp" />
+            android:textSize="16dp" />
 
         <Spinner
             android:id="@+id/spinnerDay"
@@ -44,17 +52,34 @@
 
         <TextView
             android:id="@+id/textViewHoursRate"
-            android:layout_width="20dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Time"
-            android:textSize="14dp" />
-
-        <Spinner
-            android:id="@+id/spinnerTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:text="TIME:  "
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewTimeFrom"
+            android:text="From "/>
+
+        <EditText
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextTimeFrom"
+            android:textSize="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewTimeTo"
+            android:text="To "/>
+
+        <EditText
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextTimeTo"
+            android:textSize="10dp"/>
 
     </LinearLayout>
 
