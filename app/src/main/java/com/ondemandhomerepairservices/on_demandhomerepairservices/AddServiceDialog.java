@@ -1,6 +1,5 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -20,7 +19,7 @@ public class AddServiceDialog extends AppCompatDialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View view = inflater.inflate( R.layout. activity_add_service_dialog,null);
+        View view = inflater.inflate( R.layout.layout_add_service_dialog,null);
 
         builder.setView( view )
                 .setTitle("Submit")

@@ -15,22 +15,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterHomeOwnerActivity">
+        <activity android:name=".ServiceProviderAddNewService">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".RegisterServiceProviderActivity" />
         <activity android:name=".LoginHomeOwner" />
         <activity android:name=".LoginAdmin" />
         <activity android:name=".LoginServiceProvider" />
         <activity android:name=".RegisterSuccess" />
-        <activity android:name=".UserListActivity" />
-        <activity android:name=".ServiceListActivity" />
+        <activity android:name=".AdminUserListActivity" />
+        <activity android:name=".AdminServiceListActivity" />
         <activity android:name=".RegisterAdminActivity" />
-        <activity android:name=".RegisterMainActivity"></activity>
+        <activity android:name=".RegisterHomeOwnerActivity" />
+        <activity android:name=".RegisterMainActivity" />
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".LoginCheckAdminActivity" />
+        <activity android:name=".LoginCheckSPActivity" />
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".ServiceProviderAvailableTime"/>
+        <activity android:name=".LoginCheckHOActivity"></activity>
     </application>
 
 </manifest>

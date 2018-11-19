@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="18dp"
+    android:paddingRight="18dp"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:id="@+id/textViewAddAvailableTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Available Time"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewHint"
+        android:text="( Please enter number between 0 and 24 )"
+        android:textSize="12dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/textViewDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Day"
+            android:textSize="16dp" />
+
+        <Spinner
+            android:id="@+id/spinnerDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp">
+
+        <TextView
+            android:id="@+id/textViewHoursRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TIME:  "
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewTimeFrom"
+            android:text="From "/>
+
+        <EditText
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextTimeFrom"
+            android:textSize="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewTimeTo"
+            android:text="To "/>
+
+        <EditText
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextTimeTo"
+            android:textSize="10dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonAddAvailableTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Add Available Time"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:id="@+id/textViewAvailableTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List of Available Time:"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textHint"
+        android:text="(Long click on the available time to remove)"
+        android:textSize="12dp"/>
+
+    <ListView
+        android:id="@+id/listViewAvailableTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BACK"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

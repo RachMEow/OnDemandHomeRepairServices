@@ -11,16 +11,16 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.ondemandhomerepairservices.on_demandhomerepairservices.accounts.Account;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.accounts.HomeOwner;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class RegisterHomeOwnerActivity extends AppCompatActivity {
 
     private EditText _username, _password, _firstName, _lastName, _address, _postalCode;
-    private Button btnclear, btnRegister, btnCancel;
+    private Button btnClear, btnRegister, btnCancel, btnLogin;
 
     private HomeOwner homeOwner = new HomeOwner();
     List<HomeOwner> homeOwners;
@@ -32,7 +32,7 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_owner_register);
+        setContentView(R.layout.activity_register_home_owner);
 
         _username = (EditText) findViewById(R.id.editTextUsername);
         _password = (EditText) findViewById(R.id.editTextPassword);
@@ -41,9 +41,25 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
         _address = (EditText) findViewById(R.id.editTextAddress);
         _postalCode = (EditText) findViewById(R.id.editTextPostalCode);
 
+        btnCancel = (Button) findViewById(R.id.buttonCancel);
+        btnClear = (Button) findViewById(R.id.buttonClear);
+        btnRegister = (Button) findViewById(R.id.buttonRegister);
+        btnLogin = (Button) findViewById(R.id.buttonLogin);
+
+
         databaseHomeOwners = FirebaseDatabase.getInstance().getReference("homeOwners");
 
-        btnclear.setOnClickListener(new View.OnClickListener() {
+        homeOwners = new ArrayList<>();
+
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterHomeOwnerActivity.this, MainActivity.class));
+            }
+        });
+
+        btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 reset();
@@ -59,12 +75,14 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String username = _username.getText().toString().trim();
                 String password = _password.getText().toString().trim();
                 String firstName = _firstName.getText().toString().trim();
                 String lastName = _lastName.getText().toString().trim();
                 String address = _address.getText().toString().trim();
                 String postalCode = _postalCode.getText().toString().trim();
+
 
                 if(is_validate(username, password, firstName, lastName, address, postalCode)){
                       String id = databaseHomeOwners.push().getKey();
@@ -74,9 +92,10 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
                     //saving the account
                      databaseHomeOwners.child(id).setValue(homeOwner);
 
-                     Toast.makeText(getApplicationContext(), "Successfully registered!", Toast.LENGTH_SHORT);
-//                    finish();
-//                    startActivity(new Intent(RegisterHomeOwnerActivity.this, RegisterSuccess.class));
+                    Toast.makeText(getApplicationContext(), "Register succeeded!", Toast.LENGTH_SHORT);
+                    finish();
+
+                    startActivity(new Intent(RegisterHomeOwnerActivity.this, RegisterSuccess.class));
                 }
 
             }
@@ -84,6 +103,8 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
     }
 
     public void reset() {
+        _username.getText().clear();
+        _password.getText().clear();
         _firstName.getText().clear();
         _lastName.getText().clear();
         _address.getText().clear();
@@ -93,10 +114,10 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
 
     public boolean is_validate(String username, String password, String firstName, String lastName, String address, String postalCode){
 
-        Pattern p1 = Pattern.compile("[^-," +
+        Pattern p1 = Pattern.compile("[^-, " +
                 "^a-zA-Z_0-9" + "^\\t]", Pattern.CASE_INSENSITIVE);
         Pattern p2 = Pattern.compile("[^a-zA-z ]", Pattern.CASE_INSENSITIVE);
-        Pattern p3 = Pattern.compile("[^a-zA-Z0-9 \\t]");
+        Pattern p3 = Pattern.compile("[^a-zA-Z0-9"+"^\\t]");
 
         boolean un = p1.matcher( username ).find();
         boolean fn = p2.matcher(firstName).find();
@@ -163,8 +184,8 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
             return false;
         }
 
-        if (pc || postalCode.length() < 6) {
-            Toast.makeText(getApplicationContext(), "Invalid Post Code", Toast.LENGTH_SHORT).show();
+        if (pc || postalCode.length() != 6) {
+            Toast.makeText(getApplicationContext(), "Invalid Postal Code", Toast.LENGTH_SHORT).show();
             return false;
         }
 

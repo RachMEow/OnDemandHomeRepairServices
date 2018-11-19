@@ -27,6 +27,6 @@ public class LoginHomeOwner extends AppCompatActivity {
                 finish();
             }
         });
-        firstName.setText(getIntent().getStringExtra("FIRST_NAME"));
+        firstName.setText(getIntent().getStringExtra("USERNAME"));
     }
 }

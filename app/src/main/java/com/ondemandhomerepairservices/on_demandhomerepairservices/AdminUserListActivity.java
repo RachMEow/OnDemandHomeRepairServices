@@ -1,18 +1,16 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserListActivity extends AppCompatActivity {
+public class AdminUserListActivity extends AppCompatActivity {
 
     Button buttonBack;
     ListView userList;
@@ -20,7 +18,7 @@ public class UserListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_list);
+        setContentView(R.layout.activity_admin_user_list);
 
         userList = (ListView) findViewById(R.id.listViewUserList);
 

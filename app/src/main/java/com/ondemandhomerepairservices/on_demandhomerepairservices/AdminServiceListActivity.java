@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class ServiceListActivity extends AppCompatActivity {
+public class AdminServiceListActivity extends AppCompatActivity {
 
     private Button buttonBack, btnAddService;
     private ListView listViewServiceList;
@@ -36,12 +36,12 @@ public class ServiceListActivity extends AppCompatActivity {
     List<String> serviceListString;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference databaseServices = database.getReference("messagem");
+    DatabaseReference databaseServices = database.getReference("message");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_list);
+        setContentView(R.layout.activity_admin_service_list);
 
         serviceName = (EditText) findViewById(R.id.editTextServiceName);
         hoursRate = (EditText) findViewById(R.id.editTextHoursRate);
@@ -110,7 +110,7 @@ public class ServiceListActivity extends AppCompatActivity {
                     serviceListString.add(s);
                 }
 
-                ArrayAdapter<String> servicesAdapter = new ArrayAdapter<String>(ServiceListActivity.this, android.R.layout.simple_list_item_1, serviceListString);
+                ArrayAdapter<String> servicesAdapter = new ArrayAdapter<String>(AdminServiceListActivity.this, android.R.layout.simple_list_item_1, serviceListString);
                 listViewServiceList.setAdapter(servicesAdapter);
 
             }
@@ -232,7 +232,6 @@ public class ServiceListActivity extends AppCompatActivity {
             }
         });
 
-        //TODO: update hours rate button event listener
         btnUpdateHoursRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

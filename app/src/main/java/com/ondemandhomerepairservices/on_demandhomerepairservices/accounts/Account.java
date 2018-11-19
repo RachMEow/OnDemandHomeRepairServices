@@ -12,6 +12,10 @@ public class Account {
 
     }
 
+    public Account(String id){
+        _id = id;
+    }
+
     public Account(String id, String username, String password) {
         _id = id;
         _username = username;

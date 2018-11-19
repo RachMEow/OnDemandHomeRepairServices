@@ -1,11 +1,18 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices.accounts;
 
+import android.widget.ArrayAdapter;
+
+import com.ondemandhomerepairservices.on_demandhomerepairservices.admin.Service;
+import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.DayOfWeek;
+
+import java.util.ArrayList;
+
 public class ServiceProvider extends Account{
 
     private String _companyName;
     private String _address;
     private String _phoneNum;
-    private String _generalDescription;
+    private String _generalDescription;// = "Nothing here";
     private boolean _licensed;
 
     public ServiceProvider(){}
@@ -58,4 +65,5 @@ public class ServiceProvider extends Account{
     public void set_licensed(boolean _licensed) {
         this._licensed = _licensed;
     }
+
 }
