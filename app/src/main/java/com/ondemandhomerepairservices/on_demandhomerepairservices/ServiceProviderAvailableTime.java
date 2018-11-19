@@ -1,5 +1,6 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,7 +19,7 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
 
     Spinner spinnerDay, spinnerTime;
     ListView listViewAvailableTimes;
-    Button btnAddAvailableTime;
+    Button btnAddAvailableTime,btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,14 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
                 // Todo: button add available time
             }
         });
+
+        btnBack = (Button) findViewById(R.id.buttonBack);
+        btnBack.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent(ServiceProviderAvailableTime.this, LoginServiceProvider.class) );
+            }
+        } );
 
     }
 

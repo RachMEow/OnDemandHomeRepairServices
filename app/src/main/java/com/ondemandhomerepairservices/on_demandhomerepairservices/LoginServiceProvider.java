@@ -29,12 +29,29 @@ public class LoginServiceProvider extends AppCompatActivity {
         firstName.setText(getIntent().getStringExtra("USERNAME"));
 
 
-//        buttonServicesProvided.setOnClickListener( new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity( new Intent (LoginServiceProvider.this, AdminServiceListActivity.class) );
-//            }
-//        } );
+        btnServicesProvided = (Button) findViewById(R.id.buttonServicesProvided);
+        btnServicesProvided.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent (LoginServiceProvider.this, ServiceProviderServiceProvided.class) );
+            }
+        } );
+
+        btnAvailableTime = (Button) findViewById(R.id.buttonAvailableTime);
+        btnAvailableTime.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent (LoginServiceProvider.this, ServiceProviderAvailableTime.class) );
+            }
+        } );
+        btnAddNewService = (Button) findViewById(R.id.buttonAddNewService);
+        btnAddNewService.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent (LoginServiceProvider.this, ServiceProviderAddNewService.class) );
+            }
+        } );
+
 
 
 

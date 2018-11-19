@@ -1,9 +1,12 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +22,7 @@ import java.util.List;
 public class ServiceProviderAddNewService extends AppCompatActivity {
 
     ListView listViewAdminServices;
+    Button btnBack;
 
     private Service service = new Service();
     List<Service> services;
@@ -38,6 +42,14 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
         databaseServices = FirebaseDatabase.getInstance().getReference("services");
         services = new ArrayList<>();
         servicesListString = new ArrayList<>();
+
+        btnBack = (Button) findViewById(R.id.buttonBack);
+        btnBack.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent(ServiceProviderAddNewService.this, LoginServiceProvider.class) );
+            }
+        } );
 
     }
 
