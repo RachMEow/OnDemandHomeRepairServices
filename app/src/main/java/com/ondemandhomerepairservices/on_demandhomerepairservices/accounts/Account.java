@@ -8,9 +8,7 @@ public class Account {
     private String _username;
     private String _password;
 
-    public Account() {
-
-    }
+    public Account() {}
 
     public Account(String id){
         _id = id;
