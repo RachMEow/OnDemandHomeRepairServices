@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ServiceProviderAddNewService">
+        <activity android:name=".LoginCheckSPActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,9 +34,9 @@
         <activity android:name=".RegisterMainActivity" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".LoginCheckAdminActivity" />
-        <activity android:name=".LoginCheckSPActivity" />
+        <activity android:name=".ServiceProviderAvailableTime" />
         <activity android:name=".MainActivity"/>
-        <activity android:name=".ServiceProviderAvailableTime"/>
+        <activity android:name=".ServiceProviderAddNewService"/>
         <activity android:name=".LoginCheckHOActivity"></activity>
     </application>
 
