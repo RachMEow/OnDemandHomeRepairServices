@@ -9,15 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.DayOfWeek;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.SPAvailableTime;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ServiceProviderAvailableTime extends AppCompatActivity {
 
@@ -25,7 +21,7 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
 
     Spinner spinnerDay;
     ListView listViewAvailableTimes;
-    Button btnAddAvailableTime;
+    Button btnAddAvailableTime,btnBack;
 
     String spId;
     DayOfWeek day;
@@ -83,6 +79,14 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
 
             }
         });
+
+        btnBack = (Button) findViewById(R.id.buttonBack);
+        btnBack.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        } );
 
     }
 
