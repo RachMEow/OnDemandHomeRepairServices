@@ -35,7 +35,7 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
     List<String> spAvailableTimeListString;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference databaseAvailableTimes;
+    DatabaseReference databaseAvailableTimes = database.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,16 +69,22 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
                     int numTo = Integer.parseInt(String.valueOf(editTextTo.getText().toString().trim()));
                     day = (DayOfWeek) spinnerDay.getItemAtPosition(spinnerDay.getSelectedItemPosition());
 
-                    Toast.makeText(getApplicationContext(), "spId is" + spId, Toast.LENGTH_SHORT).show();
-
                     String id = databaseAvailableTimes.push().getKey();
                     spAvailableTime = new SPAvailableTime(id, spId, day, numFrom, numTo);
 
+                    databaseAvailableTimes.child(id).setValue(spAvailableTime);
+
+                    editTextFrom.setText("");
+                    editTextTo.setText("");
+
+
+                    Toast.makeText(getApplicationContext(), "New available time was added", Toast.LENGTH_SHORT).show();
+
                     }
 
+                }else{
+                    Toast.makeText(getApplicationContext(), "Unable to add new available time", Toast.LENGTH_SHORT).show();
                 }
-
-
 
             }
         });
