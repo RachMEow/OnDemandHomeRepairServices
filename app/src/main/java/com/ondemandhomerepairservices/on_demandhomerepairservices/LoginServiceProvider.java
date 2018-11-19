@@ -12,7 +12,7 @@ public class LoginServiceProvider extends AppCompatActivity {
 
     Button buttonLogout, btnServicesProvided, btnAvailableTime, btnAddNewService;
     TextView firstName;
-//    String spId;
+    String spId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +28,16 @@ public class LoginServiceProvider extends AppCompatActivity {
             }
         });
         firstName.setText(getIntent().getStringExtra("USERNAME"));
-//        spId = getIntent().getStringExtra("SPID");
+        spId = getIntent().getStringExtra("SPID");
 
         btnServicesProvided = (Button) findViewById(R.id.buttonServicesProvided);
         btnServicesProvided.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity( new Intent (LoginServiceProvider.this, ServiceProviderServiceProvided.class) );
+                Intent intent;
+                intent = new Intent (LoginServiceProvider.this, ServiceProviderServiceProvided.class);
+                intent.putExtra("SPID", spId);
+                startActivity(intent);
             }
         } );
 
@@ -42,14 +45,21 @@ public class LoginServiceProvider extends AppCompatActivity {
         btnAvailableTime.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity( new Intent (LoginServiceProvider.this, ServiceProviderAvailableTime.class) );
+                Intent intent;
+                intent = new Intent(LoginServiceProvider.this, ServiceProviderAvailableTime.class);
+                intent.putExtra("SPID", spId);
+                startActivity(intent);
             }
         } );
+
         btnAddNewService = (Button) findViewById(R.id.buttonAddNewService);
         btnAddNewService.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity( new Intent (LoginServiceProvider.this, ServiceProviderAddNewService.class) );
+                Intent intent;
+                intent = new Intent (LoginServiceProvider.this, ServiceProviderAddNewService.class);
+                intent.putExtra("SPID", spId);
+                startActivity(intent);
             }
         } );
 

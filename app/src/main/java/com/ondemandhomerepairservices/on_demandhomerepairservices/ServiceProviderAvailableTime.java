@@ -79,7 +79,6 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
                 }
 
 
-                // Todo: retrieve data from database
 
             }
         });
@@ -92,6 +91,12 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
             }
         } );
 
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        // Todo: retrieve data from database: "spAvailableTime"
     }
 
     public boolean isNotEmptyInputTime(EditText editTextFrom, EditText editTextTo){

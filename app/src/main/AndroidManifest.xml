@@ -37,6 +37,7 @@
         <activity android:name=".ServiceProviderAvailableTime" />
         <activity android:name=".MainActivity"/>
         <activity android:name=".ServiceProviderAddNewService"/>
+        <activity android:name=".ServiceProviderServiceProvided"/>
         <activity android:name=".LoginCheckHOActivity"></activity>
     </application>
 
