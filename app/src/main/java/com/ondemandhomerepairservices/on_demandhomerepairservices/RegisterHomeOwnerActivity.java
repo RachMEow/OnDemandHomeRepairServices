@@ -74,8 +74,9 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
                     //saving the account
                      databaseHomeOwners.child(id).setValue(homeOwner);
 
-                    finish();
-                    startActivity(new Intent(RegisterHomeOwnerActivity.this, LoginHomeOwner.class));
+                     Toast.makeText(getApplicationContext(), "Successfully registered!", Toast.LENGTH_SHORT);
+//                    finish();
+//                    startActivity(new Intent(RegisterHomeOwnerActivity.this, RegisterSuccess.class));
                 }
 
             }
