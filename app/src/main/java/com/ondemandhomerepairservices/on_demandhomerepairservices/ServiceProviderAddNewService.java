@@ -1,6 +1,5 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -47,7 +46,7 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
         btnBack.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity( new Intent(ServiceProviderAddNewService.this, LoginServiceProvider.class) );
+                finish();
             }
         } );
 
