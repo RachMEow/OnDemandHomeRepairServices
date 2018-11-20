@@ -63,6 +63,6 @@ public class SPAvailableTime {
 
     @Override
     public String toString() {
-        return this.getDay() + " From " + this.getTimeFrom() + " to " + this.getTimeTo();
+        return this.getDay() + " From " + String.valueOf(this.getTimeFrom()) + " to " + String.valueOf(this.getTimeTo());
     }
 }

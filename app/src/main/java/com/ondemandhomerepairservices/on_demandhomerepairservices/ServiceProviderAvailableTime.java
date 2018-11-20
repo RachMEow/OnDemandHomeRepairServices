@@ -39,7 +39,7 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
     List<String> spAvailableTimeListString;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference databaseAvailableTimes = database.getReference("message");
+    DatabaseReference databaseAvailableTimes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +58,10 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
         ArrayAdapter<DayOfWeek> adapterDay = new ArrayAdapter<DayOfWeek>(this, android.R.layout.simple_spinner_dropdown_item, DayOfWeek.values());
         spinnerDay.setAdapter(adapterDay);
 
-        databaseAvailableTimes = FirebaseDatabase.getInstance().getReference("spAvailableTimes");
+        databaseAvailableTimes = database.getReference("spAvailableTimes");
 
+        //I forgot to write this line
+        spAvailableTimes = new ArrayList<>();
         spAvailableTimeListString = new ArrayList<>();
 
         btnAddAvailableTime.setOnClickListener(new View.OnClickListener() {
@@ -111,23 +113,25 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
         databaseAvailableTimes.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Toast.makeText(getApplicationContext(),"TEST", Toast.LENGTH_SHORT).show();
 
-//                spAvailableTimes.clear();
-//
-//                for (DataSnapshot postSnapShot : dataSnapshot.getChildren()){
-//                    SPAvailableTime spATime = postSnapShot.getValue(SPAvailableTime.class);
-//                    spAvailableTimes.add(spATime);
-//                }
-//
-//                spAvailableTimeListString.clear();
-//
-//                for(SPAvailableTime spAT : spAvailableTimes){
-//                    String s = spAT.toString();
-//                    spAvailableTimeListString.add(s);
-//                }
-//
-//                ArrayAdapter<String> spAvailableTimesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, spAvailableTimeListString);
-//                listViewAvailableTimes.setAdapter(spAvailableTimesAdapter);
+                spAvailableTimes.clear();
+
+                for (DataSnapshot postSnapShot : dataSnapshot.getChildren()){
+                    SPAvailableTime spATime = postSnapShot.getValue(SPAvailableTime.class);
+                    spAvailableTimes.add(spATime);
+                }
+
+
+                spAvailableTimeListString.clear();
+
+                for(SPAvailableTime spAT : spAvailableTimes){
+                    String s = spAT.toString();
+                    spAvailableTimeListString.add(s);
+                }
+
+                ArrayAdapter<String> spAvailableTimesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, spAvailableTimeListString);
+                listViewAvailableTimes.setAdapter(spAvailableTimesAdapter);
             }
 
             @Override
