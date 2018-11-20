@@ -3,6 +3,8 @@ package com.ondemandhomerepairservices.on_demandhomerepairservices;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -39,6 +41,16 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
         services = new ArrayList<>();
         servicesListString = new ArrayList<>();
 
+        listViewAdminServices.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //Todo: create long click listener
+
+                return false;
+            }
+        });
+
     }
 
     @Override
@@ -73,4 +85,11 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
             }
         });
     }
+
+    //TODO: create dialogue
+    public void showAddServiceToProfileDialog(){
+
+
+    }
+
 }
