@@ -1,6 +1,7 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,8 +12,11 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.DayOfWeek;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.SPAvailableTime;
 
@@ -21,21 +25,21 @@ import java.util.List;
 
 public class ServiceProviderAvailableTime extends AppCompatActivity {
 
-    EditText editTextFrom, editTextTo;
+    private EditText editTextFrom, editTextTo;
 
-    Spinner spinnerDay;
-    ListView listViewAvailableTimes;
-    Button btnAddAvailableTime,btnBack;
+    private Spinner spinnerDay;
+    private ListView listViewAvailableTimes;
+    private Button btnAddAvailableTime,btnBack;
 
-    String spId;
-    DayOfWeek day;
+    private String spId;
+    private DayOfWeek day;
 
     private SPAvailableTime spAvailableTime = new SPAvailableTime();
     List<SPAvailableTime> spAvailableTimes;
     List<String> spAvailableTimeListString;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference databaseAvailableTimes = database.getReference();
+    DatabaseReference databaseAvailableTimes = database.getReference("message");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +106,36 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        // Todo: retrieve data from database: "spAvailableTime"
+
+        // Todo: retrieve data from database: "spAvailableTime" (there is error now)
+        databaseAvailableTimes.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+//                spAvailableTimes.clear();
+//
+//                for (DataSnapshot postSnapShot : dataSnapshot.getChildren()){
+//                    SPAvailableTime spATime = postSnapShot.getValue(SPAvailableTime.class);
+//                    spAvailableTimes.add(spATime);
+//                }
+//
+//                spAvailableTimeListString.clear();
+//
+//                for(SPAvailableTime spAT : spAvailableTimes){
+//                    String s = spAT.toString();
+//                    spAvailableTimeListString.add(s);
+//                }
+//
+//                ArrayAdapter<String> spAvailableTimesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, spAvailableTimeListString);
+//                listViewAvailableTimes.setAdapter(spAvailableTimesAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     public boolean isNotEmptyInputTime(EditText editTextFrom, EditText editTextTo){
