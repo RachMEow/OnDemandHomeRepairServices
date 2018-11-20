@@ -74,7 +74,7 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
 
         listViewAdminServices.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
-            int selectedService = listViewAdminServices.getSelectedItemPosition();
+//            int selectedService = listViewAdminServices.getSelectedItemPosition();
 
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -84,7 +84,7 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
                 final String serviceName = selectedService.get_serviceName();
                 final double hoursRate = selectedService.get_hoursRate();
 
-                Toast.makeText(ServiceProviderAddNewService.this,""+selectedService.get_serviceName(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ServiceProviderAddNewService.this,""+selectedService.get_serviceName(), Toast.LENGTH_SHORT).show();
 
                 AlertDialog.Builder yesorno = new AlertDialog.Builder(ServiceProviderAddNewService.this);
                 yesorno.setMessage( "Are you sure to add this service to your profile?" )
@@ -93,7 +93,7 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                //TODO: add the service to SP provided service
+                                //add the service to SP provided service
                                 if(isNotExistInProvidedService()){
                                     String id = databaseProvidedService.push().getKey();
                                     spProvidedService = new SPProvidedService(id, spId, serviceId, serviceName, hoursRate);

@@ -109,11 +109,10 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
 
-        // Todo: retrieve data from database: "spAvailableTime" (there is error now)
+        //retrieve data from database: "spAvailableTime"
         databaseAvailableTimes.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Toast.makeText(getApplicationContext(),"TEST", Toast.LENGTH_SHORT).show();
 
                 spAvailableTimes.clear();
 
