@@ -2,11 +2,15 @@ package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +25,8 @@ import java.util.List;
 public class ServiceProviderAddNewService extends AppCompatActivity {
 
     ListView listViewAdminServices;
+    Button btnBack;
+//    String spId;
 
     private Service service = new Service();
     List<Service> services;
@@ -41,15 +47,15 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
         services = new ArrayList<>();
         servicesListString = new ArrayList<>();
 
-        listViewAdminServices.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//        spId = getIntent().getStringExtra( "SPID" );
+
+        btnBack = (Button) findViewById(R.id.buttonBack);
+        btnBack.setOnClickListener( new View.OnClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-                //Todo: create long click listener
-
-                return false;
+            public void onClick(View v) {
+                finish();
             }
-        });
+        } );
 
     }
 
@@ -86,10 +92,12 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
         });
     }
 
-    //TODO: create dialogue
-    public void showAddServiceToProfileDialog(){
-
-
-    }
+//    public boolean isNotExistInProvidedService(){
+//        if(){
+//
+//        }
+//
+//        return true;
+//    }
 
 }

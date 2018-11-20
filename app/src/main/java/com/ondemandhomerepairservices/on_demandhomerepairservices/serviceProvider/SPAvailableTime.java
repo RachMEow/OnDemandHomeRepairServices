@@ -19,4 +19,50 @@ public class SPAvailableTime {
     }
 
     //TODO: setter and getting methods for SPAvailableTime
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getSpId() {
+        return spId;
+    }
+
+    public void setSpId(String spId) {
+        this.spId = spId;
+    }
+
+    public DayOfWeek getDay() {
+        return day;
+    }
+
+    public void setDay(DayOfWeek day) {
+        this.day = day;
+    }
+
+    public int getTimeFrom() {
+        return timeFrom;
+    }
+
+    public void setTimeFrom(int timeFrom) {
+        this.timeFrom = timeFrom;
+    }
+
+    public int getTimeTo() {
+        return timeTo;
+    }
+
+    public void setTimeTo(int timeTo) {
+        this.timeTo = timeTo;
+    }
+
+    @Override
+    public String toString() {
+        return "id is" + this.getId() + "\nspId is" + this.getSpId() + "\n" + this.getDay() + " From " + this.getTimeFrom() + " to " + this.getTimeTo();
+    }
 }
