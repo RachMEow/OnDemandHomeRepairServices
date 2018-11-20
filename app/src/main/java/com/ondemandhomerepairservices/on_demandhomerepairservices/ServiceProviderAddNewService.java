@@ -62,15 +62,6 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
 
         listViewAdminServices = (ListView)findViewById(R.id.listViewAdminServiceList);
 
-//        listViewServiceList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Service service = services.get(i);
-//                showUpdateServiceDialog(service.get_id(), service.get_serviceName(), service.get_hoursRate());
-//                return true;
-//            }
-//        });
-
         listViewAdminServices.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -97,9 +88,6 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
                 b.show();
 
 
-
-//                Service service = services.get(i);
-//                addNewServiceDialogue();
                 return true;
             }
         });
