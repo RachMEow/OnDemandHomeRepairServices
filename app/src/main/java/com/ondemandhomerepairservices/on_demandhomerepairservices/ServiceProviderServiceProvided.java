@@ -58,40 +58,39 @@ public class ServiceProviderServiceProvided extends AppCompatActivity{
             }
         } );
 
-        //TODO: long click to delete
-//        listViewServiceProvided.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-////                Log.d( "jjj", "kkk" )
-//                Service selectedService = services.get(i);
-//                final String serviceId = selectedService.get_id();
-//                final String serviceName = selectedService.get_serviceName();
-//                final double hoursRate = selectedService.get_hoursRate();
-//
-//                AlertDialog.Builder yesorno = new AlertDialog.Builder(ServiceProviderAddNewService.this);
-//                yesorno.setMessage( "Are you sure to add this service to your profile?" )
-//                        .setCancelable( false )
-//                        .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//
-//                            }
-//                        })
-//
-//                        .setNegativeButton("No",new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.cancel();
-//                            }
-//                        }) ;
-//                final AlertDialog b = yesorno.create();
-//                b.show();
-//
-//
-//                return true;
-//            }
-//        });
+        //long click to delete
+        listViewServiceProvided.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Log.d( "jjj", "kkk" )
+                final SPProvidedService selectedService = spProvidedServices.get(i);
+
+                AlertDialog.Builder yesorno = new AlertDialog.Builder(ServiceProviderServiceProvided.this);
+                yesorno.setMessage( "Are you sure to delete this service from your profile?" )
+                        .setCancelable( false )
+                        .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteServiceProvided(selectedService.getId());
+                                Toast.makeText(getApplicationContext(), "Service deleted", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+                        })
+
+                        .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }) ;
+
+                final AlertDialog b = yesorno.create();
+                b.show();
+
+                return true;
+            }
+        });
 
     }
 
