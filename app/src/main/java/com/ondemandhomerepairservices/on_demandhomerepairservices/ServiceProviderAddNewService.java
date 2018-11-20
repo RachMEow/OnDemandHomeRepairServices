@@ -6,11 +6,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.content.DialogInterface;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,11 +23,12 @@ import com.ondemandhomerepairservices.on_demandhomerepairservices.admin.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.util.Log;
 
 public class ServiceProviderAddNewService extends AppCompatActivity {
 
     ListView listViewAdminServices;
-    Button btnBack;
+    Button btnBack,btnYes;
 //    String spId;
 
     private Service service = new Service();
@@ -56,6 +59,50 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
                 finish();
             }
         } );
+
+        listViewAdminServices = (ListView)findViewById(R.id.listViewAdminServiceList);
+
+//        listViewServiceList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Service service = services.get(i);
+//                showUpdateServiceDialog(service.get_id(), service.get_serviceName(), service.get_hoursRate());
+//                return true;
+//            }
+//        });
+
+        listViewAdminServices.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Log.d( "jjj", "kkk" );
+
+                AlertDialog.Builder yesorno = new AlertDialog.Builder(ServiceProviderAddNewService.this);
+                yesorno.setMessage( "Are you sure to add this service to your profile?" )
+                        .setCancelable( false )
+                        .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                finish();
+                            }
+                        })
+
+                        .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }) ;
+                final AlertDialog b = yesorno.create();
+                b.show();
+
+
+
+//                Service service = services.get(i);
+//                addNewServiceDialogue();
+                return true;
+            }
+        });
 
     }
 
@@ -99,5 +146,9 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
 //
 //        return true;
 //    }
+
+
+
+
 
 }
