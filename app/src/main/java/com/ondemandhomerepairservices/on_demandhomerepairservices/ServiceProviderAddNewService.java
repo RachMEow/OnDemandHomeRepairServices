@@ -24,6 +24,7 @@ import com.ondemandhomerepairservices.on_demandhomerepairservices.admin.Service;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.SPProvidedService;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import android.util.Log;
 
@@ -100,10 +101,10 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
                                     spProvidedService = new SPProvidedService(id, spId, serviceId, serviceName, hoursRate);
                                     databaseProvidedService.child(id).setValue(spProvidedService);
 
-                                    Toast.makeText(getApplicationContext(), "Service added to your profile", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(getApplicationContext(), "Service added to your profile", Toast.LENGTH_SHORT).show();
 
-                                }else{
-                                    Toast.makeText(getApplicationContext(), "Unable to add service to your profile", Toast.LENGTH_SHORT).show();
+//                                }else{
+//                                    Toast.makeText(getApplicationContext(), "Unable to add service to your profile", Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -166,28 +167,27 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
         //get data that belongs to this SP
 
         Query queryRef = databaseProvidedService.orderByChild("spId").equalTo(spId);
-
         // Retrieve services added by ADMIN from database
         queryRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 //                spProvidedServices.clear();
-
-
+                Hashtable<String, Integer> check = new Hashtable<String, Integer>();
                 for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
-
-//                    SPProvidedService spProvidedService = postSnapShot.getValue(SPProvidedService.class);
-//                    spProvidedServices.add(spProvidedService);
-
-                    if(postSnapShot.child(selectedServiceId).exists()){
-                        Toast.makeText(getApplicationContext(), "Service has been added", Toast.LENGTH_LONG).show();
+                    Service temp = postSnapShot.getValue(Service.class);
+                    String serviceName = temp.get_serviceName();
+                    String id = temp.get_id();
+                    if(check.containsKey( serviceName )) {
+                        Toast.makeText(getApplicationContext(), "Unable to add service to your profile", Toast.LENGTH_SHORT).show();
+                        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("spProvidedServices").child(postSnapShot.getKey());
+                        Log.i("removing: ", postSnapShot.getKey());
+                        dR.removeValue();
                         return;
+                    } else {
+                        check.put( serviceName, 1 );
                     }
-
                 }
-
-
-
+                Toast.makeText(getApplicationContext(), "Service added to your profile", Toast.LENGTH_SHORT).show();
             }
 
             @Override
