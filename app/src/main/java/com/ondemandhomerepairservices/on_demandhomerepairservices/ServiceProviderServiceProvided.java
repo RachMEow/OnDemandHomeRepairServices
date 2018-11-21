@@ -16,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.admin.Service;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.SPProvidedService;
@@ -98,15 +99,21 @@ public class ServiceProviderServiceProvided extends AppCompatActivity{
     protected void onStart(){
         super.onStart();
 
+        //get data that belongs to this SP
+        Query queryRef = databaseProvidedServices.orderByChild("spId").equalTo(spId);
+
+
         // Retrieve services added by ADMIN from database
-        databaseProvidedServices.addValueEventListener(new ValueEventListener() {
+        queryRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 spProvidedServices.clear();
 
                 for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
+
                     SPProvidedService spProvidedService = postSnapShot.getValue(SPProvidedService.class);
                     spProvidedServices.add(spProvidedService);
+
                 }
 
                 spProvidedServicesListString.clear();
@@ -128,7 +135,7 @@ public class ServiceProviderServiceProvided extends AppCompatActivity{
         });
     }
 
-    //TODO: delete from spServiceProvided database
+    // delete from spServiceProvided database
     public boolean deleteServiceProvided(String id){
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("spProvidedServices").child(id);
         dR.removeValue();

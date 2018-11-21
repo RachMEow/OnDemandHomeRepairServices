@@ -18,6 +18,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.admin.Service;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.SPProvidedService;
@@ -94,15 +95,15 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 //add the service to SP provided service
-                                if(isNotExistInProvidedService()){
+                                if(isNotExistInProvidedService(serviceId)){
                                     String id = databaseProvidedService.push().getKey();
                                     spProvidedService = new SPProvidedService(id, spId, serviceId, serviceName, hoursRate);
                                     databaseProvidedService.child(id).setValue(spProvidedService);
 
-                                    Toast.makeText(getApplicationContext(), "Service added to your profile", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), "Service added to your profile", Toast.LENGTH_SHORT).show();
 
                                 }else{
-                                    Toast.makeText(getApplicationContext(), "Unable to add service to your profile", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), "Unable to add service to your profile", Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -161,10 +162,39 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
 
 
     //TODO: check if the service SP already added
-    public boolean isNotExistInProvidedService(){
-//        if(){
-//
-//        }
+    public boolean isNotExistInProvidedService(final String selectedServiceId){
+        //get data that belongs to this SP
+
+        Query queryRef = databaseProvidedService.orderByChild("spId").equalTo(spId);
+
+        // Retrieve services added by ADMIN from database
+        queryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                spProvidedServices.clear();
+
+
+                for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
+
+//                    SPProvidedService spProvidedService = postSnapShot.getValue(SPProvidedService.class);
+//                    spProvidedServices.add(spProvidedService);
+
+                    if(postSnapShot.child(selectedServiceId).exists()){
+                        Toast.makeText(getApplicationContext(), "Service has been added", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         return true;
     }
