@@ -178,7 +178,7 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
                     String serviceName = temp.get_serviceName();
                     String id = temp.get_id();
                     if(check.containsKey( serviceName )) {
-                        Toast.makeText(getApplicationContext(), "Unable to add service to your profile", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Service already added", Toast.LENGTH_LONG).show();
                         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("spProvidedServices").child(postSnapShot.getKey());
                         Log.i("removing: ", postSnapShot.getKey());
                         dR.removeValue();
@@ -187,7 +187,7 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
                         check.put( serviceName, 1 );
                     }
                 }
-                Toast.makeText(getApplicationContext(), "Service added to your profile", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "Service added to your profile", Toast.LENGTH_SHORT).show();
             }
 
             @Override
