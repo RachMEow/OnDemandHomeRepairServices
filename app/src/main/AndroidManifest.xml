@@ -35,10 +35,12 @@
         <activity android:name=".LoginCheckSPActivity" />
         <activity android:name=".LoginCheckAdminActivity" />
         <activity android:name=".ServiceProviderAvailableTime" />
-        <activity android:name=".Main2Activity"/>
-        <activity android:name=".ServiceProviderAddNewService"/>
-        <activity android:name=".ServiceProviderServiceProvided"/>
-        <activity android:name=".LoginCheckHOActivity"></activity>
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".ServiceProviderAddNewService" />
+        <activity android:name=".ServiceProviderServiceProvided" />
+        <activity android:name=".LoginCheckHOActivity" />
+        <activity android:name=".HomeOwnerServiceList" />
+        <activity android:name=".HomeOwnerBookedServices"></activity>
     </application>
 
 </manifest>

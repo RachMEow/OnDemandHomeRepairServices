@@ -48,19 +48,39 @@
 
         <TextView
             android:id="@+id/textViewRoleName"
-            android:layout_width="match_parent"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:text="USER"
-            android:textSize="25dp"/>
+            android:textSize="25dp" />
+
+        <Button
+            android:id="@+id/buttonLogout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="LOGOUT"
+            android:textSize="12dp"
+            android:layout_gravity="end"/>
+
+
     </LinearLayout>
 
     <Button
-        android:id="@+id/buttonLogout"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonListOfYourService"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="LOGOUT"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:text="List Of Booked Service" />
+
+    <Button
+        android:id="@+id/buttonListOfServiceProvided"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="List Of Service Provided" />
+
+
 
 
 
