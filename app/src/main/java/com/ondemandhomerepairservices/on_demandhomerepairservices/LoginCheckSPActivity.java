@@ -20,6 +20,8 @@ import com.ondemandhomerepairservices.on_demandhomerepairservices.accounts.Servi
 
 import java.util.ArrayList;
 import java.util.List;
+import lib.Sha1;
+import java.io.UnsupportedEncodingException;
 
 public class LoginCheckSPActivity extends AppCompatActivity {
 
@@ -66,7 +68,13 @@ public class LoginCheckSPActivity extends AppCompatActivity {
 
                         if (validate()) {
                             for (ServiceProvider serviceProvider : serviceProviders) {
-                                if (usernameInput.equals(serviceProvider.get_username()) && passwordInput.equals(serviceProvider.get_password())) {
+                                String hashedPassword = passwordInput;
+                                try {
+                                    hashedPassword = Sha1.hash( passwordInput );
+                                }  catch(UnsupportedEncodingException ex) {
+                                    System.out.println("UnsupportedEncodingException occurred!");
+                                }
+                                if (usernameInput.equals(serviceProvider.get_username()) && hashedPassword.equals(serviceProvider.get_password())) {
                                     String username = serviceProvider.get_username();
                                     String spId = serviceProvider.getId();
 

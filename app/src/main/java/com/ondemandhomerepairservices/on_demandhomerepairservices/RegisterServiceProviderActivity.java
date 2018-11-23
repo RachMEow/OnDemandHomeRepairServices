@@ -18,6 +18,8 @@ import com.ondemandhomerepairservices.on_demandhomerepairservices.accounts.Servi
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+import lib.Sha1;
+import java.io.UnsupportedEncodingException;
 
 public class RegisterServiceProviderActivity extends AppCompatActivity{
     private EditText _username, _password, _companyname, _address, _phonenumber, _description;
@@ -86,6 +88,12 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
                 String phonenumber =_phonenumber.getText().toString().trim();
                 String description  = _description.getText().toString().trim();
                 boolean licensed = false;
+
+                try {
+                    password = Sha1.hash(password);
+                } catch(UnsupportedEncodingException ex) {
+                    System.out.println("UnsupportedEncodingException occurred!");
+                }
 
                 if(is_validated(username, password, companyname, address, phonenumber, description))
                 {
