@@ -18,8 +18,6 @@ public class SPAvailableTime {
         this.timeTo = timeTo;
     }
 
-    //TODO: setter and getting methods for SPAvailableTime
-
 
     public String getId() {
         return id;

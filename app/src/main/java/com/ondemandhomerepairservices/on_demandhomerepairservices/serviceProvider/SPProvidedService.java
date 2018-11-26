@@ -7,9 +7,6 @@ public class SPProvidedService extends Service {
     private String id;
     private String spId;
 
-    //TODO: I will implement it in D4
-    private int rate;
-
     public SPProvidedService(){}
 
     public SPProvidedService( String id, String spId, String serviceId, String serviceName, double hoursRate){
