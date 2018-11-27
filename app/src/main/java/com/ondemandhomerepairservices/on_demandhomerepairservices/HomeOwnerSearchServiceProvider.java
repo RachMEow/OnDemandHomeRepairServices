@@ -4,10 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
-    Button btnBack;
+    private Button btnBack, buttonSearchTime;
+    private EditText startTime, endTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,5 +23,10 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
                 finish();
             }
         } );
+
+
+        //This is the search by time part
+
+        buttonSearchTime = (Button) findViewById(R.id.buttonSearch2);
     }
 }
