@@ -40,7 +40,9 @@
         <activity android:name=".ServiceProviderServiceProvided" />
         <activity android:name=".LoginCheckHOActivity" />
         <activity android:name=".HomeOwnerServiceList" />
-        <activity android:name=".HomeOwnerBookedServices" ></activity>
+        <activity android:name=".HomeOwnerBookedServices" />
+        <activity android:name=".HomeOwnerSearchServiceProvider"></activity>
+
     </application>
 
 </manifest>
