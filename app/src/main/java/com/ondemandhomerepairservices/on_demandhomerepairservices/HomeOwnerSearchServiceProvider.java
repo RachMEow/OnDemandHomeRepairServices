@@ -15,7 +15,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
     Button btnBack,btnSearch1,btnSearch2,btnSearch3;
     private DayOfWeek day;
-    private Spinner spinnerDay;
+    private Spinner spinnerDay,spinnerRating;
     private EditText editTextFrom, editTextTo;
 
     @Override
@@ -27,10 +27,14 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
         editTextTo = (EditText) findViewById(R.id.editTextTimeTo);
 
         spinnerDay = (Spinner) findViewById(R.id.spinnerDay);
-
         ArrayAdapter<DayOfWeek> adapterDay = new ArrayAdapter<DayOfWeek>(this, android.R.layout.simple_spinner_dropdown_item, DayOfWeek.values());
         spinnerDay.setAdapter(adapterDay);
         day = (DayOfWeek) spinnerDay.getItemAtPosition(spinnerDay.getSelectedItemPosition());
+
+        spinnerRating = (Spinner) findViewById(R.id.spinnerRating);
+        ArrayAdapter<CharSequence> adapterRating = ArrayAdapter.createFromResource( this,R.array.numbers, android.R.layout.simple_spinner_item );
+        adapterRating.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+        spinnerRating.setAdapter(adapterRating);
 
 
 
