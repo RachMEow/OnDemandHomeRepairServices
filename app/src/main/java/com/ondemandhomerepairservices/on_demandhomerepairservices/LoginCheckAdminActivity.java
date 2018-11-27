@@ -16,7 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.accounts.Admin;
-
+import lib.Sha1;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +73,13 @@ public class LoginCheckAdminActivity extends AppCompatActivity {
 
                                                     if (validate()) {
                                                         for (Admin admin : admins) {
-                                                            if (usernameInput.equals(admin.get_username()) && passwordInput.equals(admin.get_password())) {
+                                                            String hashedPassword = passwordInput;
+                                                            try {
+                                                                hashedPassword = Sha1.hash( passwordInput );
+                                                            }  catch(UnsupportedEncodingException ex) {
+                                                                System.out.println("UnsupportedEncodingException occurred!");
+                                                            }
+                                                            if (usernameInput.equals(admin.get_username()) && hashedPassword.equals(admin.get_password())) {
                                                                 String username = admin.get_username();
 
                                                                 Intent intent;

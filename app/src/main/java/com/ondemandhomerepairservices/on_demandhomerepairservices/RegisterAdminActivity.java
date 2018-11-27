@@ -15,13 +15,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.accounts.Account;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.accounts.Admin;
+import lib.Sha1;
+import java.io.UnsupportedEncodingException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
 //import com.google.firebase.auth.FirebaseAuth;
-
+import android.util.Log;
 public class RegisterAdminActivity extends AppCompatActivity {
 
 //    private Spinner registerAs;
@@ -81,13 +83,18 @@ public class RegisterAdminActivity extends AppCompatActivity {
 
         btnNext.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
 
                 String username = _username.getText().toString().trim();
                 String password = _password.getText().toString().trim();
                 String firstName = _firstName.getText().toString().trim();
                 String lastName = _lastName.getText().toString().trim();
 
+                try {
+                    password = Sha1.hash(password);
+                } catch(UnsupportedEncodingException ex) {
+                    System.out.println("UnsupportedEncodingException occurred!");
+                }
                 if(is_Validate(username, password, firstName, lastName)){
                     String id = databaseAdmins.push().getKey();
 //
@@ -96,7 +103,7 @@ public class RegisterAdminActivity extends AppCompatActivity {
 //                    admin.set_password(password);
 //                    admin.set_FirstName(firstName);
 //                    admin.set_LastName(lastName);
-
+                    Log.i( "hash: ",  password);
                     admin = new Admin(id, username, password, firstName, lastName);
 
                     //saving the account

@@ -18,8 +18,6 @@ public class SPAvailableTime {
         this.timeTo = timeTo;
     }
 
-    //TODO: setter and getting methods for SPAvailableTime
-
 
     public String getId() {
         return id;
@@ -63,6 +61,6 @@ public class SPAvailableTime {
 
     @Override
     public String toString() {
-        return this.getDay() + " From " + this.getTimeFrom() + " to " + this.getTimeTo();
+        return this.getDay() + " From " + String.valueOf(this.getTimeFrom()) + " to " + String.valueOf(this.getTimeTo());
     }
 }

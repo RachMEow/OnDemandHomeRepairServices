@@ -5,19 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.ListView;
 import android.widget.Button;
-import android.content.SharedPreferences;
 
 public class LoginHomeOwner extends AppCompatActivity {
 
-    Button buttonLogout;
+    Button buttonLogout,buttonBookedService,buttonServiceProvided;
     TextView firstName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_user);
+        setContentView(R.layout.activity_login_home_owner );
 
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         firstName = (TextView) findViewById(R.id.textViewFirstName);
@@ -28,5 +26,21 @@ public class LoginHomeOwner extends AppCompatActivity {
             }
         });
         firstName.setText(getIntent().getStringExtra("USERNAME"));
+
+        buttonBookedService = (Button) findViewById(R.id.buttonListOfBookedService);
+        buttonBookedService.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent (LoginHomeOwner.this, HomeOwnerBookedServices.class) );
+            }
+        } );
+
+        buttonServiceProvided = (Button) findViewById(R.id.buttonListOfServiceProvided);
+        buttonServiceProvided.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent(LoginHomeOwner.this, HomeOwnerServiceList.class) );
+            }
+        } );
     }
 }

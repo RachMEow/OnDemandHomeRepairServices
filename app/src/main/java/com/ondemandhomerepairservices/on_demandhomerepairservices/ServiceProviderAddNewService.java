@@ -18,10 +18,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.admin.Service;
+import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.SPProvidedService;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import android.util.Log;
 
@@ -29,15 +32,20 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
 
     ListView listViewAdminServices;
     Button btnBack,btnYes;
-//    String spId;
+    String spId;
 
     private Service service = new Service();
     List<Service> services;
     List<String> servicesListString;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference databaseServices;
+    DatabaseReference databaseServices = database.getReference("message");
 
+    private SPProvidedService spProvidedService = new SPProvidedService();
+    List<SPProvidedService> spProvidedServices;
+    List<String> spProvidedServicesListString;
+
+    DatabaseReference databaseProvidedService = database.getReference("message2");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +58,11 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
         services = new ArrayList<>();
         servicesListString = new ArrayList<>();
 
-//        spId = getIntent().getStringExtra( "SPID" );
+        databaseProvidedService = FirebaseDatabase.getInstance().getReference("spProvidedServices");
+        spProvidedServices = new ArrayList<>();
+        spProvidedServicesListString = new ArrayList<>();
+
+        spId = getIntent().getStringExtra( "SPID" );
 
         btnBack = (Button) findViewById(R.id.buttonBack);
         btnBack.setOnClickListener( new View.OnClickListener() {
@@ -63,9 +75,18 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
         listViewAdminServices = (ListView)findViewById(R.id.listViewAdminServiceList);
 
         listViewAdminServices.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+//            int selectedService = listViewAdminServices.getSelectedItemPosition();
+
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Log.d( "jjj", "kkk" );
+//                Log.d( "jjj", "kkk" )
+                Service selectedService = services.get(i);
+                final String serviceId = selectedService.get_id();
+                final String serviceName = selectedService.get_serviceName();
+                final double hoursRate = selectedService.get_hoursRate();
+
+//                Toast.makeText(ServiceProviderAddNewService.this,""+selectedService.get_serviceName(), Toast.LENGTH_SHORT).show();
 
                 AlertDialog.Builder yesorno = new AlertDialog.Builder(ServiceProviderAddNewService.this);
                 yesorno.setMessage( "Are you sure to add this service to your profile?" )
@@ -74,7 +95,19 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                finish();
+                                //add the service to SP provided service
+                                if(isNotExistInProvidedService(serviceId)){
+                                    String id = databaseProvidedService.push().getKey();
+                                    spProvidedService = new SPProvidedService(id, spId, serviceId, serviceName, hoursRate);
+                                    databaseProvidedService.child(id).setValue(spProvidedService);
+
+//                                    Toast.makeText(getApplicationContext(), "Service added to your profile", Toast.LENGTH_SHORT).show();
+
+//                                }else{
+//                                    Toast.makeText(getApplicationContext(), "Unable to add service to your profile", Toast.LENGTH_SHORT).show();
+
+                                }
+
                             }
                         })
 
@@ -98,6 +131,7 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
 
+        // Retrieve services added by ADMIN from database
         databaseServices.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -127,13 +161,43 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
         });
     }
 
-//    public boolean isNotExistInProvidedService(){
-//        if(){
-//
-//        }
-//
-//        return true;
-//    }
+
+    //TODO: check if the service SP already added
+    public boolean isNotExistInProvidedService(final String selectedServiceId){
+        //get data that belongs to this SP
+
+        Query queryRef = databaseProvidedService.orderByChild("spId").equalTo(spId);
+        // Retrieve services added by ADMIN from database
+        queryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                spProvidedServices.clear();
+                Hashtable<String, Integer> check = new Hashtable<String, Integer>();
+                for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
+                    Service temp = postSnapShot.getValue(Service.class);
+                    String serviceName = temp.get_serviceName();
+                    String id = temp.get_id();
+                    if(check.containsKey( serviceName )) {
+                        Toast.makeText(getApplicationContext(), "Service already added", Toast.LENGTH_LONG).show();
+                        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("spProvidedServices").child(postSnapShot.getKey());
+                        Log.i("removing: ", postSnapShot.getKey());
+                        dR.removeValue();
+                        return;
+                    } else {
+                        check.put( serviceName, 1 );
+                    }
+                }
+//                Toast.makeText(getApplicationContext(), "Service added to your profile", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return true;
+    }
 
 
 
