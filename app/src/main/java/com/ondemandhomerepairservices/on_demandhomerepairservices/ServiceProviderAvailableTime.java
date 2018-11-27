@@ -101,13 +101,7 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
             }
         } );
 
-    }
 
-    @Override
-    protected void onStart(){
-        super.onStart();
-
-        // Todo: retrieve data from database: "spAvailableTime" (there is error now)
         databaseAvailableTimes.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -118,7 +112,7 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
 //                    SPAvailableTime spATime = postSnapShot.getValue(SPAvailableTime.class);
 //                    spAvailableTimes.add(spATime);
 //                }
-//
+
 //                spAvailableTimeListString.clear();
 //
 //                for(SPAvailableTime spAT : spAvailableTimes){
@@ -135,6 +129,14 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        // Todo: retrieve data from database: "spAvailableTime" (there is error now)
+
 
     }
 
