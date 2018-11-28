@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.DayOfWeek;
+import android.widget.EditText;
 
 public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 

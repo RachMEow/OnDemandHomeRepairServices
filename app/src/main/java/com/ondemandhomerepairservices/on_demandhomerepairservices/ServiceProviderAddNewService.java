@@ -33,6 +33,7 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
     ListView listViewAdminServices;
     Button btnBack,btnYes;
     String spId;
+    String spCompanyName;
 
     private Service service = new Service();
     List<Service> services;
@@ -63,6 +64,8 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
         spProvidedServicesListString = new ArrayList<>();
 
         spId = getIntent().getStringExtra( "SPID" );
+        spCompanyName = getIntent().getStringExtra("SPCompanyName");
+//        Toast.makeText(getApplicationContext(), ""+spCompanyName,Toast.LENGTH_SHORT).show();
 
         btnBack = (Button) findViewById(R.id.buttonBack);
         btnBack.setOnClickListener( new View.OnClickListener() {
@@ -98,7 +101,7 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
                                 //add the service to SP provided service
                                 if(isNotExistInProvidedService(serviceId)){
                                     String id = databaseProvidedService.push().getKey();
-                                    spProvidedService = new SPProvidedService(id, spId, serviceId, serviceName, hoursRate);
+                                    spProvidedService = new SPProvidedService(id, spId, spCompanyName, serviceId, serviceName, hoursRate);
                                     databaseProvidedService.child(id).setValue(spProvidedService);
 
 //                                    Toast.makeText(getApplicationContext(), "Service added to your profile", Toast.LENGTH_SHORT).show();
@@ -162,7 +165,7 @@ public class ServiceProviderAddNewService extends AppCompatActivity {
     }
 
 
-    //TODO: check if the service SP already added
+    //check if the service SP already added
     public boolean isNotExistInProvidedService(final String selectedServiceId){
         //get data that belongs to this SP
 

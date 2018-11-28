@@ -9,8 +9,8 @@ public class HOBookedService extends SPProvidedService {
 
     public HOBookedService(){}
 
-    public HOBookedService(String hoBookedService_id, String ho_id, String spProvidedService_id, String spId, String service_id, String serviceName, double hoursRate){
-        super(spProvidedService_id, spId, service_id, serviceName, hoursRate);
+    public HOBookedService(String hoBookedService_id, String ho_id, String spProvidedService_id, String spCompanyName, String service_id, String serviceName, double hoursRate){
+        super(spProvidedService_id, spCompanyName, service_id, serviceName, hoursRate);
         this.hoBookedService_id = hoBookedService_id;
         this.ho_id = ho_id;
     }
