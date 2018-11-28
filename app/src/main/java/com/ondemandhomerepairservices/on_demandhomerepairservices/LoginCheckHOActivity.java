@@ -75,11 +75,13 @@ public class LoginCheckHOActivity extends AppCompatActivity {
                                     System.out.println("UnsupportedEncodingException occurred!");
                                 }
                                 if (usernameInput.equals(homeOwner.get_username()) && hashedPassword.equals(homeOwner.get_password())) {
+                                    String ho_id = homeOwner.getId();
                                     String username = homeOwner.get_username();
 
                                     Intent intent;
                                     intent = new Intent(LoginCheckHOActivity.this, LoginHomeOwner.class);
                                     intent.putExtra("USERNAME", username);
+                                    intent.putExtra("HOID", ho_id);
                                     finish();
                                     startActivity(intent);
                                     Toast.makeText(getApplicationContext(),"Login Success!", Toast.LENGTH_SHORT).show();
