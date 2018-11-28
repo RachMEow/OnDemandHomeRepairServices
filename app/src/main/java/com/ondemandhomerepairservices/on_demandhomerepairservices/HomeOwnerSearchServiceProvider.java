@@ -1,11 +1,10 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.DayOfWeek;
+import android.widget.EditText;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.SPAvailableTime;
 
 import java.util.ArrayList;
@@ -28,8 +28,10 @@ import java.util.List;
 public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
     Button btnBack,btnSearch1,btnSearch2,btnSearch3;
+
     private DayOfWeek day;
     private Spinner spinnerDay,spinnerRating;
+    private EditText editTextServiceName;
     private EditText editTextFrom, editTextTo;
     private AbsListView.RecyclerListener ResultList;
     private String timeId;
@@ -43,13 +45,20 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
     List<String> spAvailableTimeListString;
 
 
+    private String ho_id;
+    private String searchType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_home_owner_search_service_provider );
 
+        ho_id = getIntent().getStringExtra("HOID");
+
         editTextFrom = (EditText) findViewById(R.id.editTextTimeFrom);
         editTextTo = (EditText) findViewById(R.id.editTextTimeTo);
+
+        editTextServiceName = (EditText) findViewById(R.id.editTextServiceName);
 
         spinnerDay = (Spinner) findViewById(R.id.spinnerDay);
         ArrayAdapter<DayOfWeek> adapterDay = new ArrayAdapter<DayOfWeek>(this, android.R.layout.simple_spinner_dropdown_item, DayOfWeek.values());
@@ -77,6 +86,34 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
                 finish();
             }
         } );
+
+        btnSearch1 = (Button) findViewById(R.id.buttonSearch1);
+        btnSearch1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String serviceName = editTextServiceName.getText().toString().trim();
+
+                if(isServiceNameValidate(editTextServiceName)){
+                    searchType = "serviceName";
+
+                    Intent intent;
+                    intent = new Intent(HomeOwnerSearchServiceProvider.this, HomeOwnerServiceList.class);
+                    intent.putExtra("searchType", searchType);
+                    intent.putExtra("serviceName", serviceName);
+                    intent.putExtra("HOID", ho_id);
+                    startActivity(intent);
+                }
+
+
+            }
+        });
+    }
+
+
+    //TODO: service name validate
+    public boolean isServiceNameValidate(EditText editTextServiceName){
+        return true;
 
         btnSearch2 = (Button)findViewById(R.id.buttonSearch2);
         btnSearch2.setOnClickListener(new View.OnClickListener() {

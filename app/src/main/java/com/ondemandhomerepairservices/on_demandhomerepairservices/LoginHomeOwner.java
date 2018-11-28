@@ -12,10 +12,14 @@ public class LoginHomeOwner extends AppCompatActivity {
     Button buttonLogout,buttonBookedService,buttonServiceProvided;
     TextView firstName;
 
+    String ho_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_home_owner );
+
+        ho_id = getIntent().getStringExtra("HOID");
 
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         firstName = (TextView) findViewById(R.id.textViewFirstName);
@@ -31,7 +35,10 @@ public class LoginHomeOwner extends AppCompatActivity {
         buttonBookedService.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity( new Intent (LoginHomeOwner.this, HomeOwnerBookedServices.class) );
+                Intent intent;
+                intent = new Intent (LoginHomeOwner.this, HomeOwnerBookedServices.class);
+                intent.putExtra("HOID", ho_id);
+                startActivity(intent);
             }
         } );
 
@@ -39,7 +46,10 @@ public class LoginHomeOwner extends AppCompatActivity {
         buttonServiceProvided.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity( new Intent(LoginHomeOwner.this, HomeOwnerSearchServiceProvider.class) );
+                Intent intent;
+                intent = new Intent (LoginHomeOwner.this, HomeOwnerBookedServices.class);
+                intent.putExtra("HOID", ho_id);
+                startActivity(intent);
             }
         } );
     }

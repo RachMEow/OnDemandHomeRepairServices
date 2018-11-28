@@ -12,7 +12,7 @@ public class LoginServiceProvider extends AppCompatActivity {
 
     Button buttonLogout, btnServicesProvided, btnAvailableTime, btnAddNewService;
     TextView firstName;
-    String spId;
+    String spId, spCompanyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,7 @@ public class LoginServiceProvider extends AppCompatActivity {
         });
         firstName.setText(getIntent().getStringExtra("USERNAME"));
         spId = getIntent().getStringExtra("SPID");
+        spCompanyName = getIntent().getStringExtra("SPCompanyName");
 
         btnServicesProvided = (Button) findViewById(R.id.buttonServicesProvided);
         btnServicesProvided.setOnClickListener( new View.OnClickListener() {
@@ -59,6 +60,7 @@ public class LoginServiceProvider extends AppCompatActivity {
                 Intent intent;
                 intent = new Intent (LoginServiceProvider.this, ServiceProviderAddNewService.class);
                 intent.putExtra("SPID", spId);
+                intent.putExtra("SPCompanyName", spCompanyName);
                 startActivity(intent);
             }
         } );

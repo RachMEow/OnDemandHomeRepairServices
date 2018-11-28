@@ -77,11 +77,13 @@ public class LoginCheckSPActivity extends AppCompatActivity {
                                 if (usernameInput.equals(serviceProvider.get_username()) && hashedPassword.equals(serviceProvider.get_password())) {
                                     String username = serviceProvider.get_username();
                                     String spId = serviceProvider.getId();
+                                    String spCompanyName = serviceProvider.get_companyName();
 
                                     Intent intent;
                                     intent = new Intent(LoginCheckSPActivity.this, LoginServiceProvider.class);
                                     intent.putExtra("USERNAME", username);
                                     intent.putExtra( "SPID", spId );
+                                    intent.putExtra("SPCompanyName", spCompanyName);
                                     startActivity(intent);
 
                                     Toast.makeText(getApplicationContext(),"Login Success!", Toast.LENGTH_SHORT).show();
