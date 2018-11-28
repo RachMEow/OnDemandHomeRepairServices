@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,16 +34,13 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
     private Spinner spinnerDay,spinnerRating;
     private EditText editTextServiceName;
     private EditText editTextFrom, editTextTo;
-    private AbsListView.RecyclerListener ResultList;
     private String timeId;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseAvailableTimes;
 
 
-    private SPAvailableTime spAvailableTime = new SPAvailableTime();
-    List<SPAvailableTime> spAvailableTimes;
-    List<String> spAvailableTimeListString;
+
 
 
     private String ho_id;
@@ -53,13 +51,12 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_home_owner_search_service_provider );
 
+        //Service name case
         ho_id = getIntent().getStringExtra("HOID");
-
-        editTextFrom = (EditText) findViewById(R.id.editTextTimeFrom);
-        editTextTo = (EditText) findViewById(R.id.editTextTimeTo);
-
         editTextServiceName = (EditText) findViewById(R.id.editTextServiceName);
 
+
+        //Time case
         spinnerDay = (Spinner) findViewById(R.id.spinnerDay);
         ArrayAdapter<DayOfWeek> adapterDay = new ArrayAdapter<DayOfWeek>(this, android.R.layout.simple_spinner_dropdown_item, DayOfWeek.values());
         spinnerDay.setAdapter(adapterDay);
@@ -70,12 +67,12 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
         adapterRating.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         spinnerRating.setAdapter(adapterRating);
 
+        editTextFrom = (EditText) findViewById(R.id.editTextTimeFrom);
+        editTextTo = (EditText) findViewById(R.id.editTextTimeTo);
 
-        //timeDatabase
         timeId = getIntent().getStringExtra("TIMEID");
         databaseAvailableTimes = database.getReference("spAvailableTimes");
-        spAvailableTimes = new ArrayList<>();
-        spAvailableTimeListString = new ArrayList<>();
+
 
 
 
@@ -87,6 +84,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
             }
         } );
 
+        //If search service name
         btnSearch1 = (Button) findViewById(R.id.buttonSearch1);
         btnSearch1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,23 +106,28 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
             }
         });
-    }
-
-
-    //TODO: service name validate
-    public boolean isServiceNameValidate(EditText editTextServiceName){
-        return true;
 
         btnSearch2 = (Button)findViewById(R.id.buttonSearch2);
         btnSearch2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                String timeBegin = editTextFrom.getText().toString().trim();
+                String timeEnd = editTextTo.getText().toString().trim();
+
                 if(isNotEmptyInputTime(editTextFrom,editTextTo)){
                     if(isValidInputTime(editTextFrom, editTextTo)){
                         //search
+                        searchType = "time";
 
-                        //FirbaseSearchByTime();
+                        Intent intent;
+                        intent = new Intent(HomeOwnerSearchServiceProvider.this, HomeOwnerServiceList.class);
+                        intent.putExtra("searchType",searchType);
+                        intent.putExtra("timeBegin",timeBegin);
+                        intent.putExtra("timeEnd",timeEnd);
+                        intent.putExtra("Day",day);
+                        intent.putExtra("TIMEID",timeId);
+                        startActivity(intent);
 
                     }
                 }
@@ -134,6 +137,14 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    //TODO: service name validate
+    public boolean isServiceNameValidate(EditText editTextServiceName){
+        return true;
+
+
     }
 /*
     protected void FirbaseSearchByTime(){

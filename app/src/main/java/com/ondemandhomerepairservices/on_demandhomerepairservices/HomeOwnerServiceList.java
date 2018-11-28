@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.SPAvailableTime;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.SPProvidedService;
 
 import java.util.ArrayList;
@@ -37,6 +38,13 @@ public class HomeOwnerServiceList extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseProvidedServices = database.getReference("message");
 
+    //Time case variables
+
+    private SPAvailableTime spAvailableTime = new SPAvailableTime();
+    List<SPAvailableTime> spAvailableTimes;
+    List<String> spAvailableTimeListString;
+    DatabaseReference databaseAvailableTimes = database.getReference("spAvailableTimes");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -56,6 +64,11 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                 finish();
             }
         } );
+
+
+        //Time database
+        spAvailableTimes = new ArrayList<>();
+        spAvailableTimeListString = new ArrayList<>();
 
     }
 
@@ -99,6 +112,8 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
             case "time":
                 //TODO: do something
+
+
                 break;
 
             case "rate":
