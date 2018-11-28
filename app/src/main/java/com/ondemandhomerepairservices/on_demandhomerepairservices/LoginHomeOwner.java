@@ -39,7 +39,7 @@ public class LoginHomeOwner extends AppCompatActivity {
         buttonServiceProvided.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity( new Intent(LoginHomeOwner.this, HomeOwnerServiceList.class) );
+                startActivity( new Intent(LoginHomeOwner.this, HomeOwnerSearchServiceProvider.class) );
             }
         } );
     }
