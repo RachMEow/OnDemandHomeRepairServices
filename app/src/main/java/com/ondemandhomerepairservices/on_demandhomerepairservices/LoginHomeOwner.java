@@ -47,7 +47,7 @@ public class LoginHomeOwner extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent;
-                intent = new Intent (LoginHomeOwner.this, HomeOwnerBookedServices.class);
+                intent = new Intent (LoginHomeOwner.this, HomeOwnerSearchServiceProvider.class);
                 intent.putExtra("HOID", ho_id);
                 startActivity(intent);
             }

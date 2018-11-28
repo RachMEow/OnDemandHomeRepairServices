@@ -12,6 +12,7 @@ import android.widget.Spinner;
 
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.DayOfWeek;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
@@ -63,13 +64,15 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
             public void onClick(View view) {
 
                 String serviceName = editTextServiceName.getText().toString().trim();
+                searchType = "serviceName";
 
                 if(isServiceNameValidate(editTextServiceName)){
-                    searchType = "serviceName";
+
 
                     Intent intent;
                     intent = new Intent(HomeOwnerSearchServiceProvider.this, HomeOwnerServiceList.class);
                     intent.putExtra("searchType", searchType);
+                    Toast.makeText(getApplicationContext(), ""+searchType, Toast.LENGTH_SHORT).show();
                     intent.putExtra("serviceName", serviceName);
                     intent.putExtra("HOID", ho_id);
                     startActivity(intent);
