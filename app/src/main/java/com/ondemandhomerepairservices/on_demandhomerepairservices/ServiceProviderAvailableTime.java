@@ -95,9 +95,10 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
 
                     }
 
-                }else{
-                    Toast.makeText(getApplicationContext(), "Unable to add new available time", Toast.LENGTH_SHORT).show();
                 }
+//                else{
+//                    Toast.makeText(getApplicationContext(), "Unable to add new available time", Toast.LENGTH_SHORT).show();
+//                }
 
             }
         });
@@ -191,10 +192,10 @@ public class ServiceProviderAvailableTime extends AppCompatActivity {
         String userInputTo = editTextTo.getText().toString().trim();
 
         if(TextUtils.isEmpty(userInputFrom)){
-            Toast.makeText(this,"Please enter time from", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please enter time FROM", Toast.LENGTH_SHORT).show();
             return false;
         }else if(TextUtils.isEmpty(userInputTo)){
-            Toast.makeText(this,"Please enter time to", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please enter time TO", Toast.LENGTH_SHORT).show();
             return false;
         }
 

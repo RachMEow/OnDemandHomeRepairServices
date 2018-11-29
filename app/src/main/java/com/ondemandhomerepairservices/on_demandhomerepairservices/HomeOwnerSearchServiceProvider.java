@@ -126,7 +126,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
                         intent.putExtra("timeBegin",timeBegin);
                         intent.putExtra("timeEnd",timeEnd);
                         intent.putExtra("Day",day);
-                        intent.putExtra("SPID",spId);
+                       // intent.putExtra("SPID",spId);
                         startActivity(intent);
 
                     }
@@ -162,7 +162,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
     }
 
 
-    //TODO: service name validate
+    //service name validate
     public boolean isServiceNameValidate(EditText editTextServiceName){
 
         String stringEditTextServiceName = editTextServiceName.getText().toString().trim();

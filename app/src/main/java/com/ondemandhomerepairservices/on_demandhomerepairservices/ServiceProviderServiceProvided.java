@@ -73,7 +73,7 @@ public class ServiceProviderServiceProvided extends AppCompatActivity{
                         .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                deleteServiceProvided(selectedService.getId());
+                                deleteServiceProvided(selectedService.getSpProvidedService_id());
                                 Toast.makeText(getApplicationContext(), "Service deleted", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }
