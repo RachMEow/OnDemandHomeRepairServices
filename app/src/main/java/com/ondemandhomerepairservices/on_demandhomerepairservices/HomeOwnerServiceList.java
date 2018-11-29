@@ -34,7 +34,7 @@ import java.util.Set;
 public class HomeOwnerServiceList extends AppCompatActivity {
     Button btnBack;
     ListView listViewServiceProvided;
-    String spId,ho_id,sppsId;
+    String ho_id,sppsId;
     String spCompanyName;
 
     private Service service = new Service();
