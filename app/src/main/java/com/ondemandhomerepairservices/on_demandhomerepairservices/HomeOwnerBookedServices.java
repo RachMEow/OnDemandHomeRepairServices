@@ -31,7 +31,7 @@ public class HomeOwnerBookedServices extends AppCompatActivity {
     Button btnBack;
     ListView listViewServicebooked;
 
-    String bsId;
+    String hoId;
 
     private HOBookedService hoBookedService = new HOBookedService();
     List<HOBookedService> hoBookedServices;
@@ -50,13 +50,11 @@ public class HomeOwnerBookedServices extends AppCompatActivity {
 
         listViewServicebooked = (ListView)findViewById(R.id.listViewServiceList);
 
-        databaseBookedService = FirebaseDatabase.getInstance().getReference("BookedService");
+        databaseBookedService = FirebaseDatabase.getInstance().getReference("hoBookedServices");
         hoBookedServices = new ArrayList<>();
         hoBookedServicesListString = new ArrayList<>();
 
-        bsId = getIntent().getStringExtra( "bsId" );
-
-
+        hoId = getIntent().getStringExtra( "HOID" );
 
         listViewServicebooked.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
@@ -68,7 +66,7 @@ public class HomeOwnerBookedServices extends AppCompatActivity {
 //                Toast.makeText(ServiceProviderAddNewService.this,""+selectedService.get_serviceName(), Toast.LENGTH_SHORT).show();
 
                 AlertDialog.Builder yesorno = new AlertDialog.Builder(HomeOwnerBookedServices.this);
-                yesorno.setMessage( "Are you sure to book this service?" )
+                yesorno.setMessage( "Are you sure to rate this service?" )
                         .setCancelable( false )
                         .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
                             @Override
@@ -95,11 +93,6 @@ public class HomeOwnerBookedServices extends AppCompatActivity {
         });
 
 
-
-
-
-
-
         btnBack = (Button) findViewById(R.id.buttonBack);
         btnBack.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -113,8 +106,8 @@ public class HomeOwnerBookedServices extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
 
-        //get data that belongs to this SP
-        Query queryRef = databaseBookedService.orderByChild("bsId").equalTo(bsId);
+        //get data that belongs to this HO
+        Query queryRef = databaseBookedService.orderByChild("ho_id").equalTo(hoId);
 
 
         // Retrieve services added by ADMIN from database
