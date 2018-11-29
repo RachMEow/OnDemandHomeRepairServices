@@ -50,7 +50,7 @@ public class HomeOwnerBookedServices extends AppCompatActivity {
 
         listViewServicebooked = (ListView)findViewById(R.id.listViewServiceList);
 
-        databaseBookedService = FirebaseDatabase.getInstance().getReference("BookedService");
+        databaseBookedService = FirebaseDatabase.getInstance().getReference("hoBookedServices");
         hoBookedServices = new ArrayList<>();
         hoBookedServicesListString = new ArrayList<>();
 
@@ -68,7 +68,7 @@ public class HomeOwnerBookedServices extends AppCompatActivity {
 //                Toast.makeText(ServiceProviderAddNewService.this,""+selectedService.get_serviceName(), Toast.LENGTH_SHORT).show();
 
                 AlertDialog.Builder yesorno = new AlertDialog.Builder(HomeOwnerBookedServices.this);
-                yesorno.setMessage( "Are you sure to book this service?" )
+                yesorno.setMessage( "Do you want to rate this service?" )
                         .setCancelable( false )
                         .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
                             @Override
