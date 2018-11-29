@@ -35,7 +35,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
     private Spinner spinnerDay,spinnerRating;
     private EditText editTextServiceName;
     private EditText editTextFrom, editTextTo;
-    private String timeId;
+    private String spId;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseAvailableTimes;
@@ -75,7 +75,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
         editTextFrom = (EditText) findViewById(R.id.editTextTimeFrom);
         editTextTo = (EditText) findViewById(R.id.editTextTimeTo);
 
-        timeId = getIntent().getStringExtra("TIMEID");
+        spId = getIntent().getStringExtra("SPID");
         databaseAvailableTimes = database.getReference("spAvailableTimes");
 
 
@@ -133,7 +133,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
                         intent.putExtra("timeBegin",timeBegin);
                         intent.putExtra("timeEnd",timeEnd);
                         intent.putExtra("Day",day);
-                        intent.putExtra("TIMEID",timeId);
+                        intent.putExtra("SPID",spId);
                         startActivity(intent);
 
                     }

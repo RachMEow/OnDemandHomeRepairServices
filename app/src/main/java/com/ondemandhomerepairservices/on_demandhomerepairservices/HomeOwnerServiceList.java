@@ -20,8 +20,10 @@ import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvide
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class HomeOwnerServiceList extends AppCompatActivity {
     Button btnBack;
@@ -43,7 +45,10 @@ public class HomeOwnerServiceList extends AppCompatActivity {
     private SPAvailableTime spAvailableTime = new SPAvailableTime();
     List<SPAvailableTime> spAvailableTimes;
     List<String> spAvailableTimeListString;
-    DatabaseReference databaseAvailableTimes = database.getReference("spAvailableTimes");
+    List<SPProvidedService> spProvideServices2;
+    DatabaseReference databaseAvailableTimes = database.getReference("message");
+
+    String spId,timeFrom,timeTo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,12 @@ public class HomeOwnerServiceList extends AppCompatActivity {
         //Time database
         spAvailableTimes = new ArrayList<>();
         spAvailableTimeListString = new ArrayList<>();
+        databaseAvailableTimes = FirebaseDatabase.getInstance().getReference("spAvailableTimes");
+        spId = getIntent().getStringExtra("SPID");
+        timeFrom = getIntent().getStringExtra("timeBegin");
+        timeTo = getIntent().getStringExtra("timeEnd");
+
+      //  spProvideServices2 = new ArrayList<>();
 
     }
 
@@ -112,9 +123,65 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
             case "time":
                 //TODO: do something
+               Query searchQuery = databaseAvailableTimes.orderByChild("spId").equalTo(spId);
+                spProvideServices2 = new ArrayList<>();
+                searchQuery.addValueEventListener(new ValueEventListener(){
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                       // spAvailableTimes.clear();
+                        for (DataSnapshot postSnapShot : dataSnapshot.getChildren()) {
+                           // SPAvailableTime spATime = postSnapShot.getValue(SPAvailableTime.class);
+                            //spAvailableTimes.add(spATime);
+                            Map<String,Object> valueMap = (HashMap<String, Object>) dataSnapshot.getValue();
+                             String spidKey = (String)valueMap.get("spId");
+
+                        Query providerQuery = databaseProvidedServices.orderByChild("spId").equalTo(spidKey);
+                        providerQuery.addValueEventListener(new ValueEventListener(){
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                spProvidedServices.clear();
+                                for (DataSnapshot postSnapShot : dataSnapshot.getChildren()) {
+
+                                        SPProvidedService spProvidedService = postSnapShot.getValue(SPProvidedService.class);
+
+                                        //新的备用list
+                                        spProvideServices2.add(spProvidedService);
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        }
+
+                        spProvidedServicesListString.clear();
+                        for (SPProvidedService spProvidedService : spProvideServices2){
+                            String s = spProvidedService.toString();
+                            spProvidedServicesListString.add(s);
+
+                        }
+
+                        Set<String> spProvidedServiceListString2 = new LinkedHashSet<>(spProvidedServicesListString);
+
+                        spProvidedServicesListString.clear();
+                        spProvidedServicesListString.addAll(spProvidedServiceListString2);
+
+                        ArrayAdapter<String> servicesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, spProvidedServicesListString);
+                        listViewServiceProvided.setAdapter(servicesAdapter);
+                    }
 
 
-                break;
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
 
             case "rate":
                 //TODO: do something
