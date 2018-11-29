@@ -25,6 +25,8 @@ import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvide
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+
 import android.widget.Toast;
 
 public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
@@ -147,7 +149,21 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
     //TODO: service name validate
     public boolean isServiceNameValidate(EditText editTextServiceName){
+
+        String stringEditTextServiceName = editTextServiceName.getText().toString().trim();
+
+        Pattern p2 = Pattern.compile("[^a-z0-9_ ]", Pattern.CASE_INSENSITIVE );
+
+        if(TextUtils.isEmpty(stringEditTextServiceName)) {
+            Toast.makeText(this, "Please enter a service name", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if(p2.matcher(stringEditTextServiceName).find()){
+            Toast.makeText(getApplicationContext(), "Service name can only contain letter, number and underscore", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         return true;
+
 
 
     }
