@@ -10,13 +10,12 @@
     tools:ignore="MissingDefaultResource">
 
 
-
     <TextView
+        android:id="@+id/textViewServiceList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewServiceList"
         android:text="List of Service Provided: "
-        android:textSize="20dp"/>
+        android:textSize="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,13 +1,18 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.ondemandhomerepairservices.on_demandhomerepairservices.admin.Service;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.homeOwner.HOBookedService;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.SPProvidedService;
 
@@ -49,6 +55,49 @@ public class HomeOwnerBookedServices extends AppCompatActivity {
         hoBookedServicesListString = new ArrayList<>();
 
         bsId = getIntent().getStringExtra( "bsId" );
+
+
+
+        listViewServicebooked.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+//            int selectedService = listViewAdminServices.getSelectedItemPosition();
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+//                Toast.makeText(ServiceProviderAddNewService.this,""+selectedService.get_serviceName(), Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder yesorno = new AlertDialog.Builder(HomeOwnerBookedServices.this);
+                yesorno.setMessage( "Are you sure to book this service?" )
+                        .setCancelable( false )
+                        .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent;
+                                intent = new Intent(HomeOwnerBookedServices.this, HomeOwnerRatingService.class);
+                                startActivity(intent);
+//
+                            }
+                        })
+
+                        .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }) ;
+                final AlertDialog b = yesorno.create();
+                b.show();
+
+
+                return true;
+            }
+        });
+
+
+
+
+
 
 
         btnBack = (Button) findViewById(R.id.buttonBack);
