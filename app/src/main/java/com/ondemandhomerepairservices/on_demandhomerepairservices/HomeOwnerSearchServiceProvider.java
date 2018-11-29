@@ -100,11 +100,9 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
                 if(isServiceNameValidate(editTextServiceName)){
 
-
                     Intent intent;
                     intent = new Intent(HomeOwnerSearchServiceProvider.this, HomeOwnerServiceList.class);
                     intent.putExtra("searchType", searchType);
-                    Toast.makeText(getApplicationContext(), ""+searchType, Toast.LENGTH_SHORT).show();
                     intent.putExtra("serviceName", serviceName);
                     intent.putExtra("HOID", ho_id);
                     startActivity(intent);
