@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +34,8 @@ import java.util.Set;
 public class HomeOwnerServiceList extends AppCompatActivity {
     Button btnBack;
     ListView listViewServiceProvided;
+
+    TextView searched,searchedContent;
 //    String spId,ho_id,sppsId;
 //    String spCompanyName;
 //
@@ -58,13 +61,13 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 //    DatabaseReference databaseServices = database.getReference("message3");
 //    DatabaseReference databaseHomeOwners = database.getReference("message4");
 
-    //Time case variables
 
+    //Time case variables
     private SPAvailableTime spAvailableTime = new SPAvailableTime();
     List<SPAvailableTime> spAvailableTimes;
     List<String> spAvailableTimeListString;
     List<SPProvidedService> spProvideServices2;
-    DatabaseReference databaseAvailableTimes = database.getReference("message");
+    DatabaseReference databaseAvailableTimes;
 
     String spId,timeFrom,timeTo;
 
@@ -72,6 +75,9 @@ public class HomeOwnerServiceList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_home_owner_service_list );
+
+        searched = (TextView) findViewById(R.id.textViewYouSearched);
+        searchedContent = (TextView) findViewById(R.id.textViewSearchedContent);
 
         searchType = getIntent().getStringExtra("searchType");
 
@@ -146,6 +152,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
         databaseProvidedServices = FirebaseDatabase.getInstance().getReference("spProvidedServices");
         spProvidedServices = new ArrayList<>();
         spProvidedServicesListString = new ArrayList<>();
+        databaseAvailableTimes = database.getReference("spAvailableTimes");
 
         btnBack = (Button) findViewById(R.id.buttonBack);
         btnBack.setOnClickListener( new View.OnClickListener() {
@@ -161,8 +168,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
         spAvailableTimeListString = new ArrayList<>();
         databaseAvailableTimes = FirebaseDatabase.getInstance().getReference("spAvailableTimes");
         spId = getIntent().getStringExtra("SPID");
-        timeFrom = getIntent().getStringExtra("timeBegin");
-        timeTo = getIntent().getStringExtra("timeEnd");
+
 
       //  spProvideServices2 = new ArrayList<>();
 
@@ -210,31 +216,41 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
             case "time":
                 //TODO: do something
+                timeFrom = getIntent().getStringExtra("timeBegin");
+                timeTo = getIntent().getStringExtra("timeEnd");
+
+                searched.setText(searchType);
+                searchedContent.setText(timeFrom+"+"+timeTo);
+
+               spId = getIntent().getStringExtra("SPID");
+
                Query searchQuery = databaseAvailableTimes.orderByChild("spId").equalTo(spId);
-                spProvideServices2 = new ArrayList<>();
+               // spProvideServices2 = new ArrayList<>();
                 searchQuery.addValueEventListener(new ValueEventListener(){
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                       // spAvailableTimes.clear();
+                       spAvailableTimes.clear();
                         for (DataSnapshot postSnapShot : dataSnapshot.getChildren()) {
-                           // SPAvailableTime spATime = postSnapShot.getValue(SPAvailableTime.class);
-                            //spAvailableTimes.add(spATime);
-                            Map<String,Object> valueMap = (HashMap<String, Object>) dataSnapshot.getValue();
-                             String spidKey = (String)valueMap.get("spId");
+                            SPAvailableTime spATime = postSnapShot.getValue(SPAvailableTime.class);
+                            spAvailableTimes.add(spATime);
+                            //Map<String,Object> valueMap = (HashMap<String, Object>) dataSnapshot.getValue();
+                            //String spidKey = (String)valueMap.get("spId");
 
-                        Query providerQuery = databaseProvidedServices.orderByChild("spId").equalTo(spidKey);
+                        }
+                       /* Query providerQuery = databaseProvidedServices.orderByChild("spId").equalTo(spId);
                         providerQuery.addValueEventListener(new ValueEventListener(){
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                spProvidedServices.clear();
+                              //  spProvidedServices.clear();
                                 for (DataSnapshot postSnapShot : dataSnapshot.getChildren()) {
 
+                                    if(spidKey == spId) {
                                         SPProvidedService spProvidedService = postSnapShot.getValue(SPProvidedService.class);
 
                                         //新的备用list
                                         spProvideServices2.add(spProvidedService);
+                                    }
                                 }
-
                             }
 
                             @Override
@@ -245,23 +261,27 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
                         }
 
-                        spProvidedServicesListString.clear();
+                       /* spProvidedServicesListString.clear();
                         for (SPProvidedService spProvidedService : spProvideServices2){
                             String s = spProvidedService.toString();
                             spProvidedServicesListString.add(s);
 
+                        }*/
+
+                       // Set<String> spProvidedServiceListString2 = new LinkedHashSet<>(spProvidedServicesListString);
+
+                        //spProvidedServicesListString.clear();
+                       // spProvidedServicesListString.addAll(spProvidedServiceListString2);
+
+                      //  spAvailableTimeListString.clear();
+                        for(SPAvailableTime spAvailableTime:spAvailableTimes){
+                            String s = spAvailableTime.getTimeFrom()+" to "+spAvailableTime.getTimeTo()+" with "+spAvailableTime.getSpId();
+                            spAvailableTimeListString.add(s);
                         }
 
-                        Set<String> spProvidedServiceListString2 = new LinkedHashSet<>(spProvidedServicesListString);
-
-                        spProvidedServicesListString.clear();
-                        spProvidedServicesListString.addAll(spProvidedServiceListString2);
-
-                        ArrayAdapter<String> servicesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, spProvidedServicesListString);
+                        ArrayAdapter<String> servicesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, spAvailableTimeListString);
                         listViewServiceProvided.setAdapter(servicesAdapter);
                     }
-
-
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {

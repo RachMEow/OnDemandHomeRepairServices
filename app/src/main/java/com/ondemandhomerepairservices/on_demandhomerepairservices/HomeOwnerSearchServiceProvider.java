@@ -131,7 +131,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
                         intent.putExtra("timeBegin",timeBegin);
                         intent.putExtra("timeEnd",timeEnd);
                         intent.putExtra("Day",day);
-                        intent.putExtra("SPID",spId);
+                       // intent.putExtra("SPID",spId);
                         startActivity(intent);
 
                     }
