@@ -76,7 +76,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
     List<SPProvidedService> spProvideServices2;
     DatabaseReference databaseAvailableTimes = database.getReference("message");
 
-    String spId,timeFrom,timeTo;
+//    String spId,timeFrom,timeTo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +125,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                 final String service_name = selectedSPProvidedService.get_serviceName();
                 final double hoursRate = selectedSPProvidedService.get_hoursRate();
 
-//                Toast.makeText(ServiceProviderAddNewService.this,""+selectedService.get_serviceName(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(HomeOwnerServiceList.this,""+selectedSPProvidedService.getSpProvidedService_id(), Toast.LENGTH_SHORT).show();
 
                 AlertDialog.Builder yesorno = new AlertDialog.Builder(HomeOwnerServiceList.this);
                 yesorno.setMessage( "Are you sure to book this service?" )
@@ -134,7 +134,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                if(true){
+                                if(isNotExistInProvidedService()){
                                     String id = databasehoBookedService.push().getKey();
                                     hoBookedService = new HOBookedService(id, ho_id, spProvidedService_id, sp_id, sp_companyName,service_id,service_name,hoursRate);
                                     databasehoBookedService.child(id).setValue(hoBookedService);
@@ -186,9 +186,9 @@ public class HomeOwnerServiceList extends AppCompatActivity {
         spAvailableTimes = new ArrayList<>();
         spAvailableTimeListString = new ArrayList<>();
         databaseAvailableTimes = FirebaseDatabase.getInstance().getReference("spAvailableTimes");
-        spId = getIntent().getStringExtra("SPID");
+/*        spId = getIntent().getStringExtra("SPID");
         timeFrom = getIntent().getStringExtra("timeBegin");
-        timeTo = getIntent().getStringExtra("timeEnd");
+        timeTo = getIntent().getStringExtra("timeEnd");*/
 
       //  spProvideServices2 = new ArrayList<>();
 
@@ -260,8 +260,9 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
             case "time":
                 //TODO: searchType = time
-               Query searchQuery = databaseAvailableTimes.orderByChild("spId").equalTo(spId);
+               /*Query searchQuery = databaseAvailableTimes.orderByChild("spId").equalTo(spId);
                 spProvideServices2 = new ArrayList<>();
+
                 searchQuery.addValueEventListener(new ValueEventListener(){
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -318,6 +319,8 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
                     }
                 });
+                */
+
 
 
             case "rate":

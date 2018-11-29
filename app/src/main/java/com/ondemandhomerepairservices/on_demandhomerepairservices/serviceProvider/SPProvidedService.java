@@ -16,9 +16,9 @@ public class SPProvidedService extends Service {
 //        this.spId = spId;
 //    }
 
-    public SPProvidedService( String id, String spId, String spCompanyName, String serviceId, String serviceName, double hoursRate){
+    public SPProvidedService( String spProvidedService_id, String spId, String spCompanyName, String serviceId, String serviceName, double hoursRate){
         super(serviceId, serviceName, hoursRate);
-        this.spProvidedService_id = id;
+        this.spProvidedService_id = spProvidedService_id;
         this.spId = spId;
         this.spCompanyName = spCompanyName;
     }
@@ -27,8 +27,8 @@ public class SPProvidedService extends Service {
         return spProvidedService_id;
     }
 
-    public void setSpProvidedService_id(String id) {
-        this.spProvidedService_id = id;
+    public void setSpProvidedService_id(String spProvidedService_id) {
+        this.spProvidedService_id = spProvidedService_id;
     }
 
     public String getSpId() {
