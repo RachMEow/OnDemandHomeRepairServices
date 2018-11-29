@@ -43,7 +43,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
     // get the value of intent.putExtra
     String searchType;
-    String userInputServiceName = "Cleaning";
+    String userInputServiceName = "Electrical";
 
     private SPProvidedService spProvidedService = new SPProvidedService();
     List<SPProvidedService> spProvidedServices;
@@ -168,7 +168,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                         spProvidedServicesListString.clear();
 
                         for(SPProvidedService spProvidedService : spProvidedServices){
-                            String s = spProvidedService.toString();
+                            String s = spProvidedService.get_serviceName() + " provided by " + spProvidedService.getSpCompanyName();
                             spProvidedServicesListString.add(s);
                         }
 
