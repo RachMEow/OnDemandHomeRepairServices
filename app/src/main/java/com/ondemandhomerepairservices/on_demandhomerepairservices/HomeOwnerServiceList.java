@@ -256,7 +256,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                 timeTo = getIntent().getStringExtra("timeEnd");
 
                 searched.setText(searchType);
-                searchedContent.setText(timeFrom+"+"+timeTo);
+                searchedContent.setText(timeFrom+" to "+timeTo);
 
                spId = getIntent().getStringExtra("SPID");
 
@@ -268,7 +268,10 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                        spAvailableTimes.clear();
                         for (DataSnapshot postSnapShot : dataSnapshot.getChildren()) {
                             SPAvailableTime spATime = postSnapShot.getValue(SPAvailableTime.class);
-                            spAvailableTimes.add(spATime);
+                            spAvailableTimes.add(spATime);  //我尝试先用时间list来测试
+
+                            //**这个部分是和原先的版本，可以run，但是同样不能显示**//
+
                             //Map<String,Object> valueMap = (HashMap<String, Object>) dataSnapshot.getValue();
                             //String spidKey = (String)valueMap.get("spId");
 
@@ -310,6 +313,9 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                        // spProvidedServicesListString.addAll(spProvidedServiceListString2);
 
                       //  spAvailableTimeListString.clear();
+
+
+                        //**这个部分继续**//
                         for(SPAvailableTime spAvailableTime:spAvailableTimes){
                             String s = spAvailableTime.getTimeFrom()+" to "+spAvailableTime.getTimeTo()+" with "+spAvailableTime.getSpId();
                             spAvailableTimeListString.add(s);
