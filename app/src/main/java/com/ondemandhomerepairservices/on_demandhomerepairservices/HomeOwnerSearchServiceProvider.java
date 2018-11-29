@@ -42,10 +42,6 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseAvailableTimes;
 
-
-
-
-
     private String ho_id;
     private String searchType;
 
@@ -79,9 +75,6 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
         spId = getIntent().getStringExtra("SPID");
         databaseAvailableTimes = database.getReference("spAvailableTimes");
-
-
-
 
         btnBack = (Button) findViewById(R.id.buttonBack);
         btnBack.setOnClickListener( new View.OnClickListener() {
@@ -144,6 +137,28 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
             }
         });
+/*
+        btnSearch3 = (Button)findViewById(R.id.buttonSearch3);
+        btnSearch2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+                String rating  = spinnerRating.getSelectedItem().toString().trim();
+                searchType = "rating";
+                if(true) {
+
+                    Intent intent;
+                    intent = new Intent(HomeOwnerSearchServiceProvider.this, HomeOwnerServiceList.class);
+                    intent.putExtra("searchType", searchType);
+                    intent.putExtra("rating", rating);
+                    startActivity(intent);
+                }
+
+
+
+            }
+        });
+*/
     }
 
 
