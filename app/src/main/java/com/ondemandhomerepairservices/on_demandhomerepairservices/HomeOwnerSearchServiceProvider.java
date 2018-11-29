@@ -25,6 +25,8 @@ import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvide
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+
 import android.widget.Toast;
 
 public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
@@ -39,10 +41,6 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseAvailableTimes;
-
-
-
-
 
     private String ho_id;
     private String searchType;
@@ -77,9 +75,6 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
         spId = getIntent().getStringExtra("SPID");
         databaseAvailableTimes = database.getReference("spAvailableTimes");
-
-
-
 
         btnBack = (Button) findViewById(R.id.buttonBack);
         btnBack.setOnClickListener( new View.OnClickListener() {
@@ -142,12 +137,48 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
             }
         });
+/*
+        btnSearch3 = (Button)findViewById(R.id.buttonSearch3);
+        btnSearch2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+                String rating  = spinnerRating.getSelectedItem().toString().trim();
+                searchType = "rating";
+                if(true) {
+
+                    Intent intent;
+                    intent = new Intent(HomeOwnerSearchServiceProvider.this, HomeOwnerServiceList.class);
+                    intent.putExtra("searchType", searchType);
+                    intent.putExtra("rating", rating);
+                    startActivity(intent);
+                }
+
+
+
+            }
+        });
+*/
     }
 
 
     //TODO: service name validate
     public boolean isServiceNameValidate(EditText editTextServiceName){
+
+        String stringEditTextServiceName = editTextServiceName.getText().toString().trim();
+
+        Pattern p2 = Pattern.compile("[^a-z0-9_ ]", Pattern.CASE_INSENSITIVE );
+
+        if(TextUtils.isEmpty(stringEditTextServiceName)) {
+            Toast.makeText(this, "Please enter a service name", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if(p2.matcher(stringEditTextServiceName).find()){
+            Toast.makeText(getApplicationContext(), "Service name can only contain letter, number and underscore", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         return true;
+
 
 
     }
