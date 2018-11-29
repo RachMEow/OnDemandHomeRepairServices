@@ -4,7 +4,7 @@ import com.ondemandhomerepairservices.on_demandhomerepairservices.admin.Service;
 
 public class SPProvidedService extends Service {
 
-    private String id;
+    private String spProvidedService_id;
     private String spId;
     private String spCompanyName;
 
@@ -18,17 +18,17 @@ public class SPProvidedService extends Service {
 
     public SPProvidedService( String id, String spId, String spCompanyName, String serviceId, String serviceName, double hoursRate){
         super(serviceId, serviceName, hoursRate);
-        this.id = id;
+        this.spProvidedService_id = id;
         this.spId = spId;
         this.spCompanyName = spCompanyName;
     }
 
-    public String getId() {
-        return id;
+    public String getSpProvidedService_id() {
+        return spProvidedService_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSpProvidedService_id(String id) {
+        this.spProvidedService_id = id;
     }
 
     public String getSpId() {

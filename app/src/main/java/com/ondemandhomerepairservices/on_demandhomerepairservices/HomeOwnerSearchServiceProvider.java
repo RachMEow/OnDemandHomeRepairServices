@@ -147,7 +147,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
     }
 
 
-    //TODO: service name validate
+    //service name validate
     public boolean isServiceNameValidate(EditText editTextServiceName){
 
         String stringEditTextServiceName = editTextServiceName.getText().toString().trim();
