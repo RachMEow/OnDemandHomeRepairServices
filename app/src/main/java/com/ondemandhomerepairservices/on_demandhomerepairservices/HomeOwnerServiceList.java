@@ -28,7 +28,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
     // get the value of intent.putExtra
     String searchType;
-    String userInputServiceName = "Electrical";
+    String userInputServiceName;
 
     private SPProvidedService spProvidedService = new SPProvidedService();
     List<SPProvidedService> spProvidedServices;
@@ -65,6 +65,8 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
         switch (searchType){
             case "serviceName":
+
+                userInputServiceName = getIntent().getStringExtra("serviceName");
                 Query queryRef = databaseProvidedServices.orderByChild("_serviceName").equalTo(userInputServiceName);
 
                 queryRef.addValueEventListener(new ValueEventListener() {
