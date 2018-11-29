@@ -1,17 +1,30 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.DayOfWeek;
 import android.widget.EditText;
+import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.SPAvailableTime;
+
+import java.util.ArrayList;
+import java.util.List;
 import android.widget.Toast;
 
 public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
@@ -22,6 +35,14 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
     private Spinner spinnerDay,spinnerRating;
     private EditText editTextServiceName;
     private EditText editTextFrom, editTextTo;
+    private String spId;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference databaseAvailableTimes;
+
+
+
+
 
     private String ho_id;
     private String searchType;
@@ -31,6 +52,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_home_owner_search_service_provider );
 
+        //Service name case
         ho_id = getIntent().getStringExtra("HOID");
 
         editTextFrom = (EditText) findViewById(R.id.editTextTimeFrom);
@@ -38,6 +60,8 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
         editTextServiceName = (EditText) findViewById(R.id.editTextServiceName);
 
+
+        //Time case
         spinnerDay = (Spinner) findViewById(R.id.spinnerDay);
         ArrayAdapter<DayOfWeek> adapterDay = new ArrayAdapter<DayOfWeek>(this, android.R.layout.simple_spinner_dropdown_item, DayOfWeek.values());
         spinnerDay.setAdapter(adapterDay);
@@ -47,6 +71,13 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapterRating = ArrayAdapter.createFromResource( this,R.array.numbers, android.R.layout.simple_spinner_item );
         adapterRating.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         spinnerRating.setAdapter(adapterRating);
+
+        editTextFrom = (EditText) findViewById(R.id.editTextTimeFrom);
+        editTextTo = (EditText) findViewById(R.id.editTextTimeTo);
+
+        spId = getIntent().getStringExtra("SPID");
+        databaseAvailableTimes = database.getReference("spAvailableTimes");
+
 
 
 
@@ -58,6 +89,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
             }
         } );
 
+        //If search service name
         btnSearch1 = (Button) findViewById(R.id.buttonSearch1);
         btnSearch1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,11 +111,128 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
             }
         });
+
+        btnSearch2 = (Button)findViewById(R.id.buttonSearch2);
+        btnSearch2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String timeBegin = editTextFrom.getText().toString().trim();
+                String timeEnd = editTextTo.getText().toString().trim();
+
+                if(isNotEmptyInputTime(editTextFrom,editTextTo)){
+                    if(isValidInputTime(editTextFrom, editTextTo)){
+                        //search
+                        searchType = "time";
+
+                        Intent intent;
+                        intent = new Intent(HomeOwnerSearchServiceProvider.this, HomeOwnerServiceList.class);
+                        intent.putExtra("searchType",searchType);
+                        intent.putExtra("timeBegin",timeBegin);
+                        intent.putExtra("timeEnd",timeEnd);
+                        intent.putExtra("Day",day);
+                        intent.putExtra("SPID",spId);
+                        startActivity(intent);
+
+                    }
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Information cannot be empty", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
     }
 
 
     //TODO: service name validate
     public boolean isServiceNameValidate(EditText editTextServiceName){
+        return true;
+
+
+    }
+/*
+    protected void FirbaseSearchByTime(){
+       // String timeBegin = editTextFrom.getText().toString().trim();
+       // String timeEnd = editTextTo.getText().toString().trim();
+       // String weekDay = spinnerDay.getSelectedItem().toString().trim();
+
+        Query searchQuery = databaseAvailableTimes.orderByChild("timeId").endAt(timeId);
+        searchQuery.addChildEventListener(new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                spAvailableTimes.clear();
+
+                for (DataSnapshot postSnapShot : dataSnapshot.getChildren()) {
+                    SPAvailableTime spATime = postSnapShot.getValue(SPAvailableTime.class);
+                    spAvailableTimes.add(spATime);
+                }
+
+                spAvailableTimeListString.clear();
+
+                for(SPAvailableTime spAvailableTime1:spAvailableTimes){
+                    String time = spAvailableTime1.toString();
+                    spAvailableTimeListString.add(time);
+                }
+
+
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String> (getApplicationContext(),,spAvailableTimeListString);
+
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+    }*/
+    public boolean isValidInputTime(EditText editTextFrom, EditText editTextTo){
+
+        String userInputFrom = editTextFrom.getText().toString().trim();
+        String userInputTo = editTextTo.getText().toString().trim();
+        int numFrom = 0;
+        int numTo = 0;
+
+        if(isNotEmptyInputTime(editTextFrom, editTextTo)){
+
+            try{
+                numFrom = Integer.parseInt(String.valueOf(userInputFrom));
+                numTo = Integer.parseInt(String.valueOf(userInputTo));
+            }catch (NumberFormatException ignore){
+                Toast.makeText(this, "Enter a valid number!", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            if((numFrom < 0) || (numTo < 0) || (numFrom > 24) || (numFrom > 24)){
+                Toast.makeText(this,"Enter a number between 0 and 24", Toast.LENGTH_SHORT).show();
+                return false;
+            }else if((numFrom >= numTo)){
+                Toast.makeText(this,"FROM is larger than or equal to TO", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isNotEmptyInputTime(EditText editTextFrom, EditText editTextTo) {
+
+        String userInputFrom = editTextFrom.getText().toString().trim();
+        String userInputTo = editTextTo.getText().toString().trim();
+
+        if (TextUtils.isEmpty(userInputFrom)) {
+            Toast.makeText(this, "Please enter time from", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (TextUtils.isEmpty(userInputTo)) {
+            Toast.makeText(this, "Please enter time to", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         return true;
     }
 }
