@@ -4,9 +4,10 @@ import com.ondemandhomerepairservices.on_demandhomerepairservices.admin.Service;
 
 public class SPProvidedService extends Service {
 
-    private String id;
+    private String spProvidedService_id;
     private String spId;
     private String spCompanyName;
+//    private double avgRate;
 
     public SPProvidedService(){}
 
@@ -16,19 +17,19 @@ public class SPProvidedService extends Service {
 //        this.spId = spId;
 //    }
 
-    public SPProvidedService( String id, String spId, String spCompanyName, String serviceId, String serviceName, double hoursRate){
+    public SPProvidedService( String spProvidedService_id, String spId, String spCompanyName, String serviceId, String serviceName, double hoursRate){
         super(serviceId, serviceName, hoursRate);
-        this.id = id;
+        this.spProvidedService_id = spProvidedService_id;
         this.spId = spId;
         this.spCompanyName = spCompanyName;
     }
 
-    public String getId() {
-        return id;
+    public String getSpProvidedService_id() {
+        return spProvidedService_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSpProvidedService_id(String spProvidedService_id) {
+        this.spProvidedService_id = spProvidedService_id;
     }
 
     public String getSpId() {
@@ -47,6 +48,17 @@ public class SPProvidedService extends Service {
         this.spCompanyName = spCompanyName;
     }
 
+/*    public double getAvgRate() {
+        return avgRate;
+    }
+
+    public void setAvgRate(double avgRate) {
+        this.avgRate = avgRate;
+    }*/
+
+    public void calculateAvgRate(){
+
+    }
     //    @Override
 //    public String toString() {
 //        return super.toString();

@@ -1,6 +1,8 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -73,7 +75,7 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterServiceProviderActivity.this, MainActivity.class));
+                startActivity(new Intent(RegisterServiceProviderActivity.this, LoginCheckSPActivity.class));
             }
         });
 
@@ -110,6 +112,23 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
 
                         //saving the account
                     databaseServiceProviders.child(id).setValue(serviceProvider);
+
+//                    AlertDialog.Builder builder = new AlertDialog.Builder( RegisterServiceProviderActivity.this );
+//                    builder.setTitle( "Welcome" )
+//                            .setMessage( "Register Success" )
+//                            .setPositiveButton( "Login", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    Intent intent;
+//                                    intent = new Intent(RegisterServiceProviderActivity.this, LoginServiceProvider.class );
+//                                    startActivity( intent );
+//                                    finish();
+//                                }
+//                            } );
+//                    final AlertDialog b = builder.create();
+//                    b.show();
+//
+//                    reset();
                     finish();
                     startActivity(new Intent(RegisterServiceProviderActivity.this, RegisterSuccess.class));
 

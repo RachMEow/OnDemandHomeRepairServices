@@ -66,7 +66,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
         day = (DayOfWeek) spinnerDay.getItemAtPosition(spinnerDay.getSelectedItemPosition());
 
         spinnerRating = (Spinner) findViewById(R.id.spinnerRating);
-        ArrayAdapter<CharSequence> adapterRating = ArrayAdapter.createFromResource( this,R.array.numbers, android.R.layout.simple_spinner_item );
+        ArrayAdapter<CharSequence> adapterRating = ArrayAdapter.createFromResource( this,R.array.rating, android.R.layout.simple_spinner_item );
         adapterRating.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         spinnerRating.setAdapter(adapterRating);
 
@@ -162,7 +162,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
     }
 
 
-    //TODO: service name validate
+    //service name validate
     public boolean isServiceNameValidate(EditText editTextServiceName){
 
         String stringEditTextServiceName = editTextServiceName.getText().toString().trim();

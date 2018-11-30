@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:gravity="center"
     android:paddingLeft="5dp"
-    android:paddingRight="5dp">
+    android:paddingRight="5dp"
+    android:paddingTop="140dp">
 
     <!--<TextView-->
     <!--android:layout_width="wrap_content"-->
@@ -19,24 +20,37 @@
 
     <Button
         android:id="@+id/buttonAdmin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="Admin" />
+        android:text="Admin"
+        android:textSize="18dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/buttonServiceProvider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="Service Provider" />
+        android:text="Service Provider"
+        android:textSize="18dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/buttonHomeOwner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="Home Owner" />
+        android:text="Home Owner"
+        android:textSize="18dp" />
 
 
 

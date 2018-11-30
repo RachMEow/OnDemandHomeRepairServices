@@ -1,6 +1,9 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -109,8 +112,24 @@ public class RegisterAdminActivity extends AppCompatActivity {
                     //saving the account
                     databaseAdmins.child( id ).setValue( admin );
 
-                    finish();
+//                    AlertDialog.Builder builder = new AlertDialog.Builder( RegisterAdminActivity.this );
+//                    builder.setTitle( "Welcome" )
+//                            .setMessage( "Register Success" )
+//                            .setPositiveButton( "Login", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    Intent intent;
+//                                    intent = new Intent(RegisterAdminActivity.this, LoginCheckAdminActivity.class );
+//                                    startActivity( intent );
+//                                    finish();
+//                                    }
+//                            } );
+//                    final AlertDialog b = builder.create();
+//                    b.show();
+//
+//                    reset();
 
+                    finish();
                     startActivity( new Intent( RegisterAdminActivity.this, RegisterSuccess.class ) );
                 }
 
@@ -123,12 +142,14 @@ public class RegisterAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(RegisterAdminActivity.this, MainActivity.class));
+                startActivity(new Intent(RegisterAdminActivity.this, LoginCheckAdminActivity.class));
             }
         });
 
 
     }
+
+
     //Reset fields
     public void reset(){
         _username.getText().clear();
