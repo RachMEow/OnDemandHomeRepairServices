@@ -73,7 +73,7 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterServiceProviderActivity.this, MainActivity.class));
+                startActivity(new Intent(RegisterServiceProviderActivity.this, LoginCheckSPActivity.class));
             }
         });
 

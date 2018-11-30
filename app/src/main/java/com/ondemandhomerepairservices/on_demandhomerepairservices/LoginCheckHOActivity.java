@@ -26,7 +26,7 @@ import java.io.UnsupportedEncodingException;
 public class LoginCheckHOActivity extends AppCompatActivity {
 
     private EditText _username, _password;
-    private Button btnLogin;
+    private Button btnLogin,btnBack;
 
     List<HomeOwner> homeOwners;
 
@@ -45,6 +45,15 @@ public class LoginCheckHOActivity extends AppCompatActivity {
 
         databaseHOs = FirebaseDatabase.getInstance().getReference("homeOwners");
         homeOwners = new ArrayList<>();
+
+        btnBack = (Button) findViewById(R.id.buttonBack);
+        btnBack.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(LoginCheckHOActivity.this, MainActivity.class));
+            }
+        } );
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

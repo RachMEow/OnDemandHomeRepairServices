@@ -16,11 +16,12 @@
     </string>
 
     <string-array name="numbers">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
+        <item>No Preference</item>
+        <item>5 stars</item>
+        <item>4 stars and up</item>
+        <item>3 stars and up</item>
+        <item>2 stars and up</item>
+        <item>Under 2 stars</item>
 
     </string-array>
 </resources>

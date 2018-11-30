@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="ON-DEMAND"
         android:gravity="center"
-        android:textSize="25dp"
+        android:textSize="28dp"
         android:paddingTop="100dp"
         android:paddingBottom="10dp"/>
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="HOME REPAIR SERVICES"
         android:gravity="center"
-        android:textSize="25dp"
+        android:textSize="28dp"
         android:paddingBottom="20dp"/>
 
     <!--<LinearLayout-->
@@ -72,18 +72,19 @@
 
         <Button
             android:id="@+id/buttonRegister"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="OnsetRegisterButton"
-            android:text="REGISTER" />
+            android:text="REGISTER"
+            android:textSize="18dp" />
 
         <Button
             android:id="@+id/buttonLogin"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="LOGIN" />
+            android:text="LOGIN"
+            android:textSize="18dp" />
 
     </LinearLayout>
 
