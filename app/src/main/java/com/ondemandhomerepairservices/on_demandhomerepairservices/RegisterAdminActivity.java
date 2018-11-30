@@ -123,7 +123,7 @@ public class RegisterAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(RegisterAdminActivity.this, MainActivity.class));
+                startActivity(new Intent(RegisterAdminActivity.this, LoginCheckAdminActivity.class));
             }
         });
 
