@@ -37,7 +37,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
     private Spinner spinnerDay,spinnerRating;
     private EditText editTextServiceName;
     private EditText editTextFrom, editTextTo;
-    private String spId;
+    private String spId,dayString;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseAvailableTimes;
@@ -64,6 +64,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
         ArrayAdapter<DayOfWeek> adapterDay = new ArrayAdapter<DayOfWeek>(this, android.R.layout.simple_spinner_dropdown_item, DayOfWeek.values());
         spinnerDay.setAdapter(adapterDay);
         day = (DayOfWeek) spinnerDay.getItemAtPosition(spinnerDay.getSelectedItemPosition());
+        dayString = day.toString();
 
         spinnerRating = (Spinner) findViewById(R.id.spinnerRating);
 
@@ -130,7 +131,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
                         intent.putExtra("searchType",searchType);
                         intent.putExtra("timeBegin",timeBegin);
                         intent.putExtra("timeEnd",timeEnd);
-                        intent.putExtra("Day",day);
+                        intent.putExtra("Day",dayString);
                        // intent.putExtra("SPID",spId);
                         startActivity(intent);
 
