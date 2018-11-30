@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -63,8 +64,9 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
         spinnerDay = (Spinner) findViewById(R.id.spinnerDay);
         ArrayAdapter<DayOfWeek> adapterDay = new ArrayAdapter<DayOfWeek>(this, android.R.layout.simple_spinner_dropdown_item, DayOfWeek.values());
         spinnerDay.setAdapter(adapterDay);
-        day = (DayOfWeek) spinnerDay.getItemAtPosition(spinnerDay.getSelectedItemPosition());
-        dayString = day.toString();
+
+//        Log.i("DayOfWeekHOSSP", day.toString());
+//        dayString = day.toString();
 
         spinnerRating = (Spinner) findViewById(R.id.spinnerRating);
 
@@ -121,6 +123,8 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
                 String timeBegin = editTextFrom.getText().toString().trim();
                 String timeEnd = editTextTo.getText().toString().trim();
 
+                day = (DayOfWeek) spinnerDay.getItemAtPosition(spinnerDay.getSelectedItemPosition());
+
                 if(isNotEmptyInputTime(editTextFrom,editTextTo)){
                     if(isValidInputTime(editTextFrom, editTextTo)){
                         //search
@@ -131,7 +135,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
                         intent.putExtra("searchType",searchType);
                         intent.putExtra("timeBegin",timeBegin);
                         intent.putExtra("timeEnd",timeEnd);
-                        intent.putExtra("Day",dayString);
+                        intent.putExtra("Day",day);
                        // intent.putExtra("SPID",spId);
                         startActivity(intent);
 
@@ -149,17 +153,17 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-                int rating  = (int) spinnerRating.getItemAtPosition(spinnerRating.getSelectedItemPosition());
-                searchType = "rating";
-
-                if(true) {
-
-                    Intent intent;
-                    intent = new Intent(HomeOwnerSearchServiceProvider.this, HomeOwnerServiceList.class);
-                    intent.putExtra("searchType", searchType);
-                    intent.putExtra("rating", rating);
-                    startActivity(intent);
-                }
+//                int rating  = (int) spinnerRating.getItemAtPosition(spinnerRating.getSelectedItemPosition());
+//                searchType = "rating";
+//
+//                if(true) {
+//
+//                    Intent intent;
+//                    intent = new Intent(HomeOwnerSearchServiceProvider.this, HomeOwnerServiceList.class);
+//                    intent.putExtra("searchType", searchType);
+//                    intent.putExtra("rating", rating);
+//                    startActivity(intent);
+//                }
 
 
 

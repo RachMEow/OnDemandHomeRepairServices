@@ -254,7 +254,8 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                 //Query searchQuery = databaseAvailableTimes.orderByChild("spId").equalTo(spId);
                 timeFrom = getIntent().getStringExtra("timeBegin");
                 timeTo = getIntent().getStringExtra("timeEnd");
-                final String day = getIntent().getStringExtra("Day");
+                final DayOfWeek day = (DayOfWeek) getIntent().getSerializableExtra("Day");
+//                Toast.makeText(getApplicationContext(), ""+day, Toast.LENGTH_SHORT).show();
                 final int timeFrom1 = Integer.parseInt(timeFrom);
                 final int timeTo1 = Integer.parseInt(timeTo);
 
