@@ -66,8 +66,13 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
         day = (DayOfWeek) spinnerDay.getItemAtPosition(spinnerDay.getSelectedItemPosition());
 
         spinnerRating = (Spinner) findViewById(R.id.spinnerRating);
-        ArrayAdapter<CharSequence> adapterRating = ArrayAdapter.createFromResource( this,R.array.numbers, android.R.layout.simple_spinner_item );
-        adapterRating.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+
+        Integer[] items = new Integer[]{1,2,3,4,5};
+
+        ArrayAdapter<Integer> adapterRating = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        spinnerRating.setAdapter(adapterRating);
+//        ArrayAdapter<CharSequence> adapterRating = ArrayAdapter.createFromResource( this,R.array.numbers, android.R.layout.simple_spinner_item );
+//        adapterRating.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         spinnerRating.setAdapter(adapterRating);
 
         editTextFrom = (EditText) findViewById(R.id.editTextTimeFrom);
@@ -137,14 +142,15 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
             }
         });
-/*
+
         btnSearch3 = (Button)findViewById(R.id.buttonSearch3);
-        btnSearch2.setOnClickListener(new View.OnClickListener() {
+        btnSearch3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
 
-                String rating  = spinnerRating.getSelectedItem().toString().trim();
+                int rating  = (int) spinnerRating.getItemAtPosition(spinnerRating.getSelectedItemPosition());
                 searchType = "rating";
+
                 if(true) {
 
                     Intent intent;
@@ -158,7 +164,6 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
 
             }
         });
-*/
     }
 
 

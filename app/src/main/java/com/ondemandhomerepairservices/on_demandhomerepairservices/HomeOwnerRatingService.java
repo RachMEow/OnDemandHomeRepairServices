@@ -46,10 +46,11 @@ public class HomeOwnerRatingService extends AppCompatActivity {
 
         Integer[] items = new Integer[]{1,2,3,4,5};
 
-//        ArrayAdapter<CharSequence> adapterRating = ArrayAdapter.createFromResource( this,R.array.numbers, android.R.layout.simple_spinner_item );
         ArrayAdapter<Integer> adapterRating = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, items);
-//        adapterRating.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         spinnerRating.setAdapter(adapterRating);
+
+//        ArrayAdapter<CharSequence> adapterRating = ArrayAdapter.createFromResource( this,R.array.numbers, android.R.layout.simple_spinner_item );
+//        adapterRating.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
 
         databaseRatings = database.getReference("ratings");
         ratings = new ArrayList<>();
