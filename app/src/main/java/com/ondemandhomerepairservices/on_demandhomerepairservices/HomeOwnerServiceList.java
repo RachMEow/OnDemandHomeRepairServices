@@ -88,7 +88,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
    // List<SPProvidedService> spProvideServices2;
     DatabaseReference databaseAvailableTimes;
     List<SPProvidedService> spProvideServices2;
-    DatabaseReference databaseAvailableTimes = database.getReference("message");
+//    DatabaseReference databaseAvailableTimes = database.getReference("message");
 
 //    String spId,timeFrom,timeTo;
 
@@ -296,8 +296,8 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                         spProvidedServicesListString.addAll(spProvidedServiceListString2);
 
 
-                        //**这个部分继续**//
-                        for(SPAvailableTime spAvailableTime:spAvailableTimes){
+                        //**这个部分继续**/
+   /*                     for(SPAvailableTime spAvailableTime:spAvailableTimes){
                             String s = spAvailableTime.getTimeFrom()+" to "+spAvailableTime.getTimeTo()+" with "+spAvailableTime.getSpId();
                             spAvailableTimeListString.add(s);
                         }
@@ -314,8 +314,8 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
-                });
-                */
+                });*/
+
 
 
 
