@@ -7,6 +7,7 @@ public class SPProvidedService extends Service {
     private String spProvidedService_id;
     private String spId;
     private String spCompanyName;
+//    private double avgRate;
 
     public SPProvidedService(){}
 
@@ -47,6 +48,17 @@ public class SPProvidedService extends Service {
         this.spCompanyName = spCompanyName;
     }
 
+/*    public double getAvgRate() {
+        return avgRate;
+    }
+
+    public void setAvgRate(double avgRate) {
+        this.avgRate = avgRate;
+    }*/
+
+    public void calculateAvgRate(){
+
+    }
     //    @Override
 //    public String toString() {
 //        return super.toString();

@@ -21,8 +21,7 @@ public class HomeOwnerRatingService extends AppCompatActivity {
 
     private Spinner spinnerRating;
     private EditText editTextComment;
-    private String sp_id;
-    private String ho_id;
+    private String ho_id, spProvidedService_id;
 
     Button btnBack, btnRate;
 
@@ -38,17 +37,23 @@ public class HomeOwnerRatingService extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_home_owner_rating_service );
 
-        sp_id= getIntent().getStringExtra("SP_ID");
-        ho_id= getIntent().getStringExtra("HO_ID");
+        ho_id= getIntent().getStringExtra("HOID");
+        spProvidedService_id = getIntent().getStringExtra("spProvidedService_id");
 
         editTextComment = (EditText) findViewById(R.id.editTextComment);
 
         spinnerRating = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapterRating = ArrayAdapter.createFromResource( this,R.array.numbers, android.R.layout.simple_spinner_item );
-        adapterRating.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+
+        Integer[] items = new Integer[]{1,2,3,4,5};
+
+//        ArrayAdapter<CharSequence> adapterRating = ArrayAdapter.createFromResource( this,R.array.numbers, android.R.layout.simple_spinner_item );
+        ArrayAdapter<Integer> adapterRating = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, items);
+//        adapterRating.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         spinnerRating.setAdapter(adapterRating);
 
         databaseRatings = database.getReference("ratings");
+        ratings = new ArrayList<>();
+        ratingListString = new ArrayList<>();
 
         btnBack = (Button) findViewById(R.id.buttonBack);
         btnBack.setOnClickListener( new View.OnClickListener() {
@@ -63,26 +68,19 @@ public class HomeOwnerRatingService extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ratings = new ArrayList<>();
-                ratingListString = new ArrayList<>();
+                int rate = (int) spinnerRating.getItemAtPosition(spinnerRating.getSelectedItemPosition());
+//                Toast.makeText(getApplicationContext(), ""+rate, Toast.LENGTH_SHORT).show();
 
-                String comment = String.valueOf(editTextComment.getText().toString().trim());
-
-                //needs fixing
-                int rate = 0; /*= (Integer) spinnerRating.getAutofillValue();*/
+                String comment = editTextComment.getText().toString().trim();
 
                 String id = databaseRatings.push().getKey();
-
-                rating = new Rating(id,sp_id,ho_id,rate, comment);
-
+                rating = new Rating(id, spProvidedService_id, ho_id, rate, comment);
                 databaseRatings.child(id).setValue(rating);
 
-                editTextComment.setText("");
+//                editTextComment.setText("");
 
-
-
-                spinnerRating = (Spinner) spinnerRating.getItemAtPosition(spinnerRating.getSelectedItemPosition());
-                Toast.makeText(getApplicationContext(),"rating saved",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Rating saved",Toast.LENGTH_SHORT).show();
+                finish();
 
             }
 

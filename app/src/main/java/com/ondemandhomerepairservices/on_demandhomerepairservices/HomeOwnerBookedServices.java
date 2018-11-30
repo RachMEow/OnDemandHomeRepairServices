@@ -64,6 +64,8 @@ public class HomeOwnerBookedServices extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 //                Toast.makeText(ServiceProviderAddNewService.this,""+selectedService.get_serviceName(), Toast.LENGTH_SHORT).show();
+                HOBookedService selectedService = hoBookedServices.get(i);
+                final String spProvidedService_id = selectedService.getSpProvidedService_id();
 
                 AlertDialog.Builder yesorno = new AlertDialog.Builder(HomeOwnerBookedServices.this);
                 yesorno.setMessage( "Are you sure to rate this service?" )
@@ -73,6 +75,8 @@ public class HomeOwnerBookedServices extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent;
                                 intent = new Intent(HomeOwnerBookedServices.this, HomeOwnerRatingService.class);
+                                intent.putExtra("HOID", hoId);
+                                intent.putExtra("spProvidedService_id",spProvidedService_id);
                                 startActivity(intent);
 //
                             }

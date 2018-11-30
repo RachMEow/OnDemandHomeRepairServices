@@ -3,16 +3,16 @@ package com.ondemandhomerepairservices.on_demandhomerepairservices.homeOwner;
 public class Rating {
 
     private String rating_id;
-    private String sp_id;
+    private String spProvidedService_id;
     private String ho_id;
     private int rate;
     private String comment;
 
     public Rating(){}
 
-    public Rating(String rating_id, String sp_id, String ho_id, int rate, String comment){
+    public Rating(String rating_id, String spProvidedService_id, String ho_id, int rate, String comment){
         this.rating_id = rating_id;
-        this.sp_id = sp_id;
+        this.spProvidedService_id = spProvidedService_id;
         this.ho_id = ho_id;
         this.rate = rate;
         this.comment = comment;
@@ -26,12 +26,12 @@ public class Rating {
         this.rating_id = rating_id;
     }
 
-    public String getSp_id() {
-        return sp_id;
+    public String getSpProvidedService_id() {
+        return spProvidedService_id;
     }
 
-    public void setSp_id(String sp_id) {
-        this.sp_id = sp_id;
+    public void setSpProvidedService_id(String spProvidedService_id) {
+        this.spProvidedService_id = spProvidedService_id;
     }
 
     public String getHo_id() {
