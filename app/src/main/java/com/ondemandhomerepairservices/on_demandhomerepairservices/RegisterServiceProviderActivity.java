@@ -91,11 +91,6 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
                 String description  = _description.getText().toString().trim();
                 boolean licensed = false;
 
-                try {
-                    password = Sha1.hash(password);
-                } catch(UnsupportedEncodingException ex) {
-                    System.out.println("UnsupportedEncodingException occurred!");
-                }
 
                 if(is_validated(username, password, companyname, address, phonenumber, description))
                 {
@@ -106,6 +101,12 @@ public class RegisterServiceProviderActivity extends AppCompatActivity{
                     licensed = onRadioButtonClicked(radioButton, licensed);
 
                     String id = databaseServiceProviders.push().getKey();
+
+                    try {
+                        password = Sha1.hash(password);
+                    } catch(UnsupportedEncodingException ex) {
+                        System.out.println("UnsupportedEncodingException occurred!");
+                    }
 
                         //create an account object
                     serviceProvider = new ServiceProvider(id, username, password, companyname, address, phonenumber, description, licensed);

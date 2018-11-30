@@ -93,11 +93,7 @@ public class RegisterAdminActivity extends AppCompatActivity {
                 String firstName = _firstName.getText().toString().trim();
                 String lastName = _lastName.getText().toString().trim();
 
-                try {
-                    password = Sha1.hash(password);
-                } catch(UnsupportedEncodingException ex) {
-                    System.out.println("UnsupportedEncodingException occurred!");
-                }
+
                 if(is_Validate(username, password, firstName, lastName)){
                     String id = databaseAdmins.push().getKey();
 //
@@ -107,6 +103,13 @@ public class RegisterAdminActivity extends AppCompatActivity {
 //                    admin.set_FirstName(firstName);
 //                    admin.set_LastName(lastName);
                     Log.i( "hash: ",  password);
+
+                    try {
+                        password = Sha1.hash(password);
+                    } catch(UnsupportedEncodingException ex) {
+                        System.out.println("UnsupportedEncodingException occurred!");
+                    }
+
                     admin = new Admin(id, username, password, firstName, lastName);
 
                     //saving the account
@@ -129,9 +132,13 @@ public class RegisterAdminActivity extends AppCompatActivity {
 //
 //                    reset();
 
+
+
                     finish();
                     startActivity( new Intent( RegisterAdminActivity.this, RegisterSuccess.class ) );
                 }
+
+
 
             }
         } );
