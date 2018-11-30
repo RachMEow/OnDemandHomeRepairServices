@@ -80,7 +80,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
     private SPAvailableTime spAvailableTime = new SPAvailableTime();
     List<SPAvailableTime> spAvailableTimes;
     List<String> spAvailableTimeListString;
-    List<SPProvidedService> spProvideServices2;
+   // List<SPProvidedService> spProvideServices2;
     DatabaseReference databaseAvailableTimes;
 
     String spId,timeFrom,timeTo;
@@ -163,9 +163,9 @@ public class HomeOwnerServiceList extends AppCompatActivity {
         });
 
 
-        databaseProvidedServices = FirebaseDatabase.getInstance().getReference("spProvidedServices");
-        spProvidedServices = new ArrayList<>();
-        spProvidedServicesListString = new ArrayList<>();
+       // databaseProvidedServices = FirebaseDatabase.getInstance().getReference("spProvidedServices");
+       // spProvidedServices = new ArrayList<>();
+      //  spProvidedServicesListString = new ArrayList<>();
         databaseAvailableTimes = database.getReference("spAvailableTimes");
 
         btnBack = (Button) findViewById(R.id.buttonBack);
@@ -181,7 +181,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
         spAvailableTimes = new ArrayList<>();
         spAvailableTimeListString = new ArrayList<>();
         databaseAvailableTimes = FirebaseDatabase.getInstance().getReference("spAvailableTimes");
-        spId = getIntent().getStringExtra("SPID");
+      //  spId = getIntent().getStringExtra("SPID");
 
 
       //  spProvideServices2 = new ArrayList<>();
@@ -258,9 +258,9 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                 searched.setText(searchType);
                 searchedContent.setText(timeFrom+" to "+timeTo);
 
-               spId = getIntent().getStringExtra("SPID");
+               //spId = getIntent().getStringExtra("SPID");
 
-               Query searchQuery = databaseAvailableTimes.orderByChild("spId").equalTo(spId);
+               Query searchQuery = databaseAvailableTimes.orderByChild("spId").equalTo("-LRyznac2cWSv6XK-JMc");
                // spProvideServices2 = new ArrayList<>();
                 searchQuery.addValueEventListener(new ValueEventListener(){
                     @Override
@@ -312,7 +312,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                         //spProvidedServicesListString.clear();
                        // spProvidedServicesListString.addAll(spProvidedServiceListString2);
 
-                      //  spAvailableTimeListString.clear();
+                      spAvailableTimeListString.clear();
 
 
                         //**这个部分继续**//
@@ -321,8 +321,8 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                             spAvailableTimeListString.add(s);
                         }
 
-                        ArrayAdapter<String> servicesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, spAvailableTimeListString);
-                        listViewServiceProvided.setAdapter(servicesAdapter);
+                        ArrayAdapter<String> servicesAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, spAvailableTimeListString);
+                        listViewServiceProvided.setAdapter(servicesAdapter2);
                     }
 
                     @Override
