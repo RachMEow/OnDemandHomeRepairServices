@@ -250,7 +250,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
                 return false;
             }
 
-            if((numFrom < 0) || (numTo < 0) || (numFrom > 24) || (numFrom > 24)){
+            if((numFrom < 0) || (numTo < 0) || (numFrom > 24) || (numTo > 24)){
                 Toast.makeText(this,"Enter a number between 0 and 24", Toast.LENGTH_SHORT).show();
                 return false;
             }else if((numFrom >= numTo)){
