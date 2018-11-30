@@ -1,6 +1,8 @@
 package com.ondemandhomerepairservices.on_demandhomerepairservices;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -100,7 +102,25 @@ public class RegisterHomeOwnerActivity extends AppCompatActivity {
                     //saving the account
                      databaseHomeOwners.child(id).setValue(homeOwner);
 
+//                    AlertDialog.Builder builder = new AlertDialog.Builder( RegisterHomeOwnerActivity.this );
+//                    builder.setTitle( "Welcome" )
+//                            .setMessage( "Register Success" )
+//                            .setPositiveButton( "Login", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    Intent intent;
+//                                    intent = new Intent(RegisterHomeOwnerActivity.this, LoginCheckHOActivity.class );
+//                                    startActivity( intent );
+//                                    finish();
+//                                }
+//                            } );
+//                    final AlertDialog b = builder.create();
+//                    b.show();
+//
+//                    reset();
+
                     Toast.makeText(getApplicationContext(), "Register succeeded!", Toast.LENGTH_SHORT);
+
                     finish();
 
                     startActivity(new Intent(RegisterHomeOwnerActivity.this, RegisterSuccess.class));

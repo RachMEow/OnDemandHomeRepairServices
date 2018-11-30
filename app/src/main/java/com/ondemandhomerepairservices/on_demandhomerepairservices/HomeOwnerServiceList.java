@@ -85,6 +85,8 @@ public class HomeOwnerServiceList extends AppCompatActivity {
     private SPAvailableTime spAvailableTime = new SPAvailableTime();
     List<SPAvailableTime> spAvailableTimes;
     List<String> spAvailableTimeListString;
+   // List<SPProvidedService> spProvideServices2;
+    DatabaseReference databaseAvailableTimes;
     List<SPProvidedService> spProvideServices2;
     DatabaseReference databaseAvailableTimes = database.getReference("message");
 
@@ -168,6 +170,10 @@ public class HomeOwnerServiceList extends AppCompatActivity {
         });
 
 
+       // databaseProvidedServices = FirebaseDatabase.getInstance().getReference("spProvidedServices");
+       // spProvidedServices = new ArrayList<>();
+      //  spProvidedServicesListString = new ArrayList<>();
+        databaseAvailableTimes = database.getReference("spAvailableTimes");
         databaseProvidedServices = FirebaseDatabase.getInstance().getReference("spProvidedServices");
         spProvidedServices = new ArrayList<>();
         spProvidedServicesListString = new ArrayList<>();
@@ -185,6 +191,8 @@ public class HomeOwnerServiceList extends AppCompatActivity {
         spAvailableTimes = new ArrayList<>();
         spAvailableTimeListString = new ArrayList<>();
         databaseAvailableTimes = FirebaseDatabase.getInstance().getReference("spAvailableTimes");
+      //  spId = getIntent().getStringExtra("SPID");
+
 /*        spId = getIntent().getStringExtra("SPID");
         timeFrom = getIntent().getStringExtra("timeBegin");
         timeTo = getIntent().getStringExtra("timeEnd");*/
@@ -237,6 +245,10 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                /*Query searchQuery = databaseAvailableTimes.orderByChild("spId").equalTo(spId);
                 spProvideServices2 = new ArrayList<>();
 
+               //spId = getIntent().getStringExtra("SPID");
+
+               Query searchQuery = databaseAvailableTimes.orderByChild("spId").equalTo("-LRyznac2cWSv6XK-JMc");
+               // spProvideServices2 = new ArrayList<>();
                 searchQuery.addValueEventListener(new ValueEventListener(){
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -279,9 +291,19 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
                         Set<String> spProvidedServiceListString2 = new LinkedHashSet<>(spProvidedServicesListString);
 
+                      spAvailableTimeListString.clear();
                         spProvidedServicesListString.clear();
                         spProvidedServicesListString.addAll(spProvidedServiceListString2);
 
+
+                        //**这个部分继续**//
+                        for(SPAvailableTime spAvailableTime:spAvailableTimes){
+                            String s = spAvailableTime.getTimeFrom()+" to "+spAvailableTime.getTimeTo()+" with "+spAvailableTime.getSpId();
+                            spAvailableTimeListString.add(s);
+                        }
+
+                        ArrayAdapter<String> servicesAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, spAvailableTimeListString);
+                        listViewServiceProvided.setAdapter(servicesAdapter2);
                         ArrayAdapter<String> servicesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, spProvidedServicesListString);
                         listViewServiceProvided.setAdapter(servicesAdapter);
                     }
