@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.ondemandhomerepairservices.on_demandhomerepairservices.homeOwner.Rating;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.serviceProvider.SPAvailableTime;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.admin.Service;
 import com.ondemandhomerepairservices.on_demandhomerepairservices.homeOwner.HOBookedService;
@@ -67,6 +68,17 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
     DatabaseReference databasehoBookedService = database.getReference("message4");
 
+    private Rating rating = new Rating();
+    List<Rating> ratings;
+    List<String> spps_ids_from_rating;
+
+    List<Integer> ratingNums;
+
+    private SPProvidedService spProvidedService_from_rating = new SPProvidedService();
+    List<SPProvidedService> spProvidedServices_from_rating;
+    List<String> listStringSPPS_from_rating;
+
+    DatabaseReference databaseRating;
 
     //Time case variables
 
@@ -88,11 +100,6 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
         listViewServiceProvided = (ListView)findViewById(R.id.listViewServiceList);
 
-//        //long click
-        /*databaseServices = FirebaseDatabase.getInstance().getReference("services");
-        services = new ArrayList<>();
-        servicesListString = new ArrayList<>();*/
-
         databaseProvidedServices = FirebaseDatabase.getInstance().getReference("spProvidedServices");
         spProvidedServices = new ArrayList<>();
         spProvidedServicesListString = new ArrayList<>();
@@ -101,12 +108,19 @@ public class HomeOwnerServiceList extends AppCompatActivity {
         hoBookedServices = new ArrayList<>();
         hoBookedServicesListString = new ArrayList<>();
 
-//        spId = getIntent().getStringExtra( "SPID" );
-//        sppsId= getIntent().getStringExtra( "SPPSID" );
+        // for rating case
+        databaseRating = database.getReference("ratings");
+        ratings = new ArrayList<>();
+        spps_ids_from_rating = new ArrayList<>();
+
+        spProvidedServices_from_rating = new ArrayList<>();
+        listStringSPPS_from_rating = new ArrayList<>();
+
+        ratingNums = new ArrayList<>();
+
 
         ho_id = getIntent().getStringExtra("HOID");
-//        spCompanyName = getIntent().getStringExtra("SPCompanyName");
-//
+
         listViewServiceProvided.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
 //            int selectedService = listViewAdminServices.getSelectedItemPosition();
@@ -114,10 +128,6 @@ public class HomeOwnerServiceList extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                Log.d( "jjj", "kkk" )
-//                Service selectedService = services.get(i);
-//                final String serviceId = selectedService.get_id();
-//                final String serviceName = selectedService.get_serviceName();
-//                final double hoursRate = selectedService.get_hoursRate();
                 SPProvidedService selectedSPProvidedService = spProvidedServices.get(i);
                 final String spProvidedService_id = selectedSPProvidedService.getSpProvidedService_id();
                 final String sp_id = selectedSPProvidedService.getSpId();
@@ -140,17 +150,6 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                                     hoBookedService = new HOBookedService(id, ho_id, spProvidedService_id, sp_id, sp_companyName,service_id,service_name,hoursRate);
                                     databasehoBookedService.child(id).setValue(hoBookedService);
                                 }
-//                                //add the service to SP provided service
-////                                if(isNotExistInProvidedService(serviceId)){
-//                                    String id = databaseBookedService.push().getKey();
-//                                    hoBookedService = new HOBookedService(id, ho_id,sppsId,spId,spCompanyName, serviceId, serviceName, hoursRate);
-//                                    databaseBookedService.child(id).setValue(hoBookedService);
-////                                    Toast.makeText(getApplicationContext(), "Service added to your profile", Toast.LENGTH_SHORT).show();
-//
-////                                }else{
-////                                    Toast.makeText(getApplicationContext(), "Unable to add service to your profile", Toast.LENGTH_SHORT).show();
-//
-////                                }
 //
                             }
                         })
@@ -205,31 +204,6 @@ public class HomeOwnerServiceList extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-
-        // Retrieve services added by ADMIN from database
-/*        databaseServices.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                services.clear();
-
-                for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
-                    Service service = postSnapShot.getValue(Service.class);
-                    services.add(service);
-                }
-
-                servicesListString.clear();
-
-                for(Service service : services){
-                    String s = service.toString();
-                    servicesListString.add(s);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
 
         switch (searchType){
             case "serviceName":
@@ -346,15 +320,90 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
 
 
-            case "rate":
+
+            case "rating":
                 //TODO: searchType = rate
+                int rating = getIntent().getIntExtra("rating", 0);
+//                Toast.makeText(getApplicationContext(), ""+rating, Toast.LENGTH_SHORT).show();
+                databaseRating.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        ratings.clear();
+
+                        for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                            Rating rating1 = postSnapshot.getValue(Rating.class);
+                            ratings.add(rating1);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                spps_ids_from_rating.clear();
+
+                ratingNums.clear();
+//
+//                double sum = 0;
+//                int count = 0;
+//
+//                for(Rating rating2 : ratings){
+//                    int ratingNum2 = rating2.getRate();
+//                    sum += ratingNum2;
+//                    count++;
+//                    ratingNums.add(ratingNum2);
+//                }
+//
+//                double avgRating = sum/count;
+
+                //TODO: calculate the avg of the rating for the satisfied sppsIDs
+
+                for(Rating rating2 : ratings){
+                    if(rating2.getRate() >= rating){
+                        spps_ids_from_rating.add(rating2.getSpProvidedService_id());
+                    }
+                }
+
+                for(String spps_id_from_rating : spps_ids_from_rating){
+                    Query query = databaseProvidedServices.orderByChild("spProvidedService_id").equalTo(spps_id_from_rating);
+                    query.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                                SPProvidedService spProvidedService1 = postSnapshot.getValue(SPProvidedService.class);
+                                spProvidedServices_from_rating.add(spProvidedService1);
+                            }
+
+                            spProvidedServicesListString.clear();
+
+                            for(SPProvidedService spProvidedService : spProvidedServices){
+                                String s = spProvidedService.get_serviceName() + " provided by " + spProvidedService.getSpCompanyName();
+                                spProvidedServicesListString.add(s);
+                            }
+
+                            ArrayAdapter<String> servicesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, spProvidedServicesListString);
+                            listViewServiceProvided.setAdapter(servicesAdapter);
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
+
                 break;
         }
 
 
     }
 
-    //TODO: check if the provided service already in the booked list
+    //check if the provided service already in the booked list
     public boolean isNotExistInProvidedService(){
 
         Query queryRef = databasehoBookedService.orderByChild("ho_id").equalTo(ho_id);
@@ -386,5 +435,13 @@ public class HomeOwnerServiceList extends AppCompatActivity {
         });
 
         return true;
+    }
+
+    public double calculatedRate(List<Integer> ratingNums){
+        double result = 0;
+
+
+
+        return result;
     }
 }
