@@ -41,9 +41,6 @@ public class HomeOwnerRatingService extends AppCompatActivity {
         sp_id= getIntent().getStringExtra("SP_ID");
         ho_id= getIntent().getStringExtra("HO_ID");
 
-
-
-
         editTextComment = (EditText) findViewById(R.id.editTextComment);
 
         spinnerRating = (Spinner) findViewById(R.id.spinner);

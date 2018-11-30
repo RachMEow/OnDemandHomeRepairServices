@@ -126,7 +126,7 @@ public class HomeOwnerBookedServices extends AppCompatActivity {
                 hoBookedServicesListString.clear();
 
                 for(HOBookedService hoBookedService : hoBookedServices){
-                    String s = hoBookedService.toString();
+                    String s = hoBookedService.get_serviceName() + " provided by " + hoBookedService.getSpCompanyName();
                     hoBookedServicesListString.add(s);
                 }
 
