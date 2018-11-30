@@ -342,8 +342,24 @@ public class HomeOwnerServiceList extends AppCompatActivity {
             case "rating":
                 //TODO: searchType = rate
                 int rating = getIntent().getIntExtra("rating", 0);
+
+                Query query = databaseRating.orderByChild("rate").equalTo(rating);
+
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        ratings.clear();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
 //                Toast.makeText(getApplicationContext(), ""+rating, Toast.LENGTH_SHORT).show();
-                databaseRating.addValueEventListener(new ValueEventListener() {
+               /* databaseRating.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         ratings.clear();
@@ -362,7 +378,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
                 spps_ids_from_rating.clear();
 
-                ratingNums.clear();
+                ratingNums.clear();*/
 //
 //                double sum = 0;
 //                int count = 0;
@@ -375,7 +391,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 //                }
 //
 //                double avgRating = sum/count;
-
+                /*
                 //TODO: calculate the avg of the rating for the satisfied sppsIDs
 
                 for(Rating rating2 : ratings){
@@ -413,7 +429,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                         }
                     });
 
-                }
+                }*/
 
                 break;
         }
