@@ -24,7 +24,7 @@ import java.util.List;
 public class LoginCheckAdminActivity extends AppCompatActivity {
 
     private EditText _username, _password;
-    private Button btnLogin;
+    private Button btnLogin,btnBack;
 
     List<Admin> admins;
 
@@ -43,6 +43,15 @@ public class LoginCheckAdminActivity extends AppCompatActivity {
 
         databaseAdmins = FirebaseDatabase.getInstance().getReference("admins");
         admins = new ArrayList<>();
+
+        btnBack = (Button) findViewById(R.id.buttonBack);
+        btnBack.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(LoginCheckAdminActivity.this, MainActivity.class));
+            }
+        } );
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
                                         @Override
