@@ -83,6 +83,8 @@ public class HomeOwnerServiceList extends AppCompatActivity {
     List<SPProvidedService> spProvidedServices_from_rating;
     List<String> listStringSPPS_from_rating;
 
+    //List<String> RatingStringList;
+
     DatabaseReference databaseRating;
 
     //Time case variables
@@ -125,6 +127,8 @@ public class HomeOwnerServiceList extends AppCompatActivity {
         listStringSPPS_from_rating = new ArrayList<>();
 
         ratingNums = new ArrayList<>();
+
+
 
 
         ho_id = getIntent().getStringExtra("HOID");
@@ -270,10 +274,10 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                         spAvailableTimes.clear();
                         for (DataSnapshot postSnapShot : dataSnapshot.getChildren()) {
                             SPAvailableTime spATime = postSnapShot.getValue(SPAvailableTime.class);
-                            //DayOfWeek day2 = spATime.getDay();
+                            DayOfWeek day2 = spATime.getDay();
 
 
-                            if (spATime.getTimeTo() == timeTo1) {
+                            if (spATime.getTimeTo() <= timeTo1 && day2==day) {
                                 spAvailableTimes.add(spATime);
                                 //Map<String,Object> valueMap = (HashMap<String, Object>) dataSnapshot.getValue();
                                 //String spidKey = (String)valueMap.get("spId");
@@ -301,6 +305,10 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                                         String s = spProvidedService.get_serviceName()+" provided by " + spProvidedService.getSpCompanyName();
                                         spProvidedServicesListString.add(s);
                                     }
+
+                                    Set<String> removeDuplicate = new LinkedHashSet(spProvidedServicesListString);
+                                    spProvidedServicesListString.clear();
+                                    spProvidedServicesListString.addAll(removeDuplicate);
 
                                     ArrayAdapter<String> servicesAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, spProvidedServicesListString);
                                     listViewServiceProvided.setAdapter(servicesAdapter2);
@@ -342,7 +350,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
             case "rating":
                 //TODO: searchType = rate
-                int rating = getIntent().getIntExtra("rating", 0);
+                final int rating = getIntent().getIntExtra("rating", 0);
 
                 Query query = databaseRating.orderByChild("rate").equalTo(rating);
 
@@ -350,6 +358,55 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         ratings.clear();
+
+                        for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
+                            Rating rate = postSnapShot.getValue(Rating.class);
+                            ratings.add(rate);
+                        }
+
+
+                        for (Rating rate2 : ratings){
+
+                            String spps_id = rate2.getSpProvidedService_id();
+
+                            final Query query2 = databaseProvidedServices.orderByChild("spProvidedService_id").equalTo(spps_id);
+
+                            query2.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                    for(DataSnapshot postSnapShot : dataSnapshot.getChildren()){
+
+                                        SPProvidedService spps = postSnapShot.getValue(SPProvidedService.class);
+                                        spProvidedServices.add(spps);
+                                    }
+
+                                    for(SPProvidedService spProvidedService : spProvidedServices){
+                                        String s = spProvidedService.get_serviceName()+" provided by " + spProvidedService.getSpCompanyName();
+                                        spProvidedServicesListString.add(s);
+                                    }
+
+                                    Set<String> removeDuplicate = new LinkedHashSet(spProvidedServicesListString);
+                                    spProvidedServicesListString.clear();
+                                    spProvidedServicesListString.addAll(removeDuplicate);
+
+                                    ArrayAdapter<String> servicesAdapter3 = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, spProvidedServicesListString);
+                                    listViewServiceProvided.setAdapter(servicesAdapter3);
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+                        }
+
+                        ArrayAdapter<String> servicesAdapter3 = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, spps_ids_from_rating);
+                        listViewServiceProvided.setAdapter(servicesAdapter3);
+
+
                     }
 
                     @Override

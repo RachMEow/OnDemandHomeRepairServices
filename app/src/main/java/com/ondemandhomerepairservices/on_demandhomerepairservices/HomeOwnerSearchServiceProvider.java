@@ -153,17 +153,17 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-//                int rating  = (int) spinnerRating.getItemAtPosition(spinnerRating.getSelectedItemPosition());
-//                searchType = "rating";
-//
-//                if(true) {
-//
-//                    Intent intent;
-//                    intent = new Intent(HomeOwnerSearchServiceProvider.this, HomeOwnerServiceList.class);
-//                    intent.putExtra("searchType", searchType);
-//                    intent.putExtra("rating", rating);
-//                    startActivity(intent);
-//                }
+               int rating  = (int) spinnerRating.getItemAtPosition(spinnerRating.getSelectedItemPosition());
+                searchType = "rating";
+
+                if(true) {
+
+                    Intent intent;
+                    intent = new Intent(HomeOwnerSearchServiceProvider.this, HomeOwnerServiceList.class);
+                    intent.putExtra("searchType", searchType);
+                    intent.putExtra("rating", rating);
+                    startActivity(intent);
+                }
 
 
 
