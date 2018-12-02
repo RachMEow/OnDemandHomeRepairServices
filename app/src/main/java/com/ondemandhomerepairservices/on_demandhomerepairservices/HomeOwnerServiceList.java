@@ -220,6 +220,9 @@ public class HomeOwnerServiceList extends AppCompatActivity {
         switch (searchType) {
             case "serviceName":
 
+                searchTypeName.setText(getIntent().getStringExtra("searchType"));
+                content.setText(getIntent().getStringExtra("serviceName"));
+
                 userInputServiceName = getIntent().getStringExtra("serviceName");
                 Query queryRef = databaseProvidedServices.orderByChild("_serviceName").equalTo(userInputServiceName);
                 queryRef.addValueEventListener(new ValueEventListener() {
@@ -350,6 +353,10 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
             case "rating":
                 //TODO: searchType = rate
+                searchTypeName.setText(getIntent().getStringExtra("searchType"));
+                String rate = getIntent().getStringExtra("rating");
+                content.setText("Rating: "+rate);
+
                 final int rating = getIntent().getIntExtra("rating", 0);
 
                 Query query = databaseRating.orderByChild("rate").equalTo(rating);
