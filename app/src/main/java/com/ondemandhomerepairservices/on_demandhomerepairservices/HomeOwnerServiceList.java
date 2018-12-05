@@ -300,7 +300,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
                 final int timeTo1 = Integer.parseInt(timeTo);
 
                 searchTypeName.setText(getIntent().getStringExtra("searchType"));
-                content.setText(timeFrom+" to "+timeTo);
+                content.setText(day.toString() + " from " + timeFrom+ " to "+timeTo);
 
                 Query searchQuery = databaseAvailableTimes.orderByChild("timeFrom").equalTo(timeFrom1);
                 // spProvideServices2 = new ArrayList<>();
@@ -378,10 +378,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
                     }
                 });
-
-
-
-
+                break;
 
 
             case "rating":
