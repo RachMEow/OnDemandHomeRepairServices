@@ -13,11 +13,17 @@ Majeed Yusuf(8359705 ,eyusu010)
 ================================
 For your convenience,
 
+Admin:
+username: admin1
+password: 123456
+
 Service Provider Account:
 username: service1
 password: 123456
 
-
+Home Owner:
+username: home1
+password: 123456
 
 ================================
 Have fun exploring our app! 
