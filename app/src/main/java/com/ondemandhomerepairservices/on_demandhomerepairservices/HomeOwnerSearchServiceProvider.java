@@ -154,6 +154,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
             public void onClick(View v){
 
                int rating  = (int) spinnerRating.getItemAtPosition(spinnerRating.getSelectedItemPosition());
+              // String rate = String.valueOf(rating);
                 searchType = "rating";
 
                 if(true) {

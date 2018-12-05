@@ -354,7 +354,7 @@ public class HomeOwnerServiceList extends AppCompatActivity {
             case "rating":
                 //TODO: searchType = rate
                 searchTypeName.setText(getIntent().getStringExtra("searchType"));
-                String rate = getIntent().getStringExtra("rating");
+                int rate = getIntent().getIntExtra("rating",0);
                 content.setText("Rating: "+rate);
 
                 final int rating = getIntent().getIntExtra("rating", 0);
