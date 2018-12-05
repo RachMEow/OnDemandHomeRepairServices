@@ -234,7 +234,40 @@ public class HomeOwnerServiceList extends AppCompatActivity {
 
                             SPProvidedService spProvidedService = postSnapShot.getValue(SPProvidedService.class);
                             spProvidedServices.add(spProvidedService);
+                            searchTypeName.setText(getIntent().getStringExtra("searchType"));
+                            content.setText(getIntent().getStringExtra("serviceName"));
 
+                            userInputServiceName = getIntent().getStringExtra("serviceName");
+                            Query queryRef = databaseProvidedServices.orderByChild("_serviceName").equalTo(userInputServiceName);
+                            queryRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    spProvidedServices.clear();
+
+                                    for (DataSnapshot postSnapShot : dataSnapshot.getChildren()) {
+
+                                        SPProvidedService spProvidedService = postSnapShot.getValue(SPProvidedService.class);
+                                        spProvidedServices.add(spProvidedService);
+
+                                    }
+
+                                    spProvidedServicesListString.clear();
+
+                                    for (SPProvidedService spProvidedService : spProvidedServices) {
+                                        String s = spProvidedService.get_serviceName() + " provided by " + spProvidedService.getSpCompanyName();
+                                        spProvidedServicesListString.add(s);
+                                    }
+
+                                    ArrayAdapter<String> servicesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, spProvidedServicesListString);
+                                    listViewServiceProvided.setAdapter(servicesAdapter);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                            break;
                         }
 
                         spProvidedServicesListString.clear();

@@ -136,6 +136,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
                         intent.putExtra("timeBegin",timeBegin);
                         intent.putExtra("timeEnd",timeEnd);
                         intent.putExtra("Day",day);
+                        intent.putExtra("HOID", ho_id);
                        // intent.putExtra("SPID",spId);
                         startActivity(intent);
 
@@ -153,7 +154,8 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-                int rating  = (int) spinnerRating.getItemAtPosition(spinnerRating.getSelectedItemPosition());
+               int rating  = (int) spinnerRating.getItemAtPosition(spinnerRating.getSelectedItemPosition());
+              // String rate = String.valueOf(rating);
                 searchType = "rating";
 
                 if(true) {
@@ -162,6 +164,7 @@ public class HomeOwnerSearchServiceProvider extends AppCompatActivity {
                     intent = new Intent(HomeOwnerSearchServiceProvider.this, HomeOwnerServiceList.class);
                     intent.putExtra("searchType", searchType);
                     intent.putExtra("rating", rating);
+                    intent.putExtra("HOID", ho_id);
                     startActivity(intent);
                 }
 
