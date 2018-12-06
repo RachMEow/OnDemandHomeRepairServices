@@ -29,4 +29,5 @@ password: 123456
 Have fun exploring our app! 
 
 Build Status
-[![Build Status](https://circleci.com/gh/RachMEow/OnDemandHomeRepairServices.png?branch=master)](https://circleci.com/gh/RachMEow/OnDemandHomeRepairServices)
+
+[![CircleCI](https://circleci.com/gh/RachMEow/OnDemandHomeRepairServices/tree/master.svg?style=svg&circle-token=bed6e79259c77aa14892e417ed1d492a658b7549)](https://circleci.com/gh/RachMEow/OnDemandHomeRepairServices/tree/master)
