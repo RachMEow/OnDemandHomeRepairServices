@@ -61,8 +61,5 @@ username: home1
 
 password: 123456
 
-## UML Diagram
-![image](https://drive.google.com/uc?export=view&id=1913oZeBZPBNiUuk8gu3ZSbLBA2l_VQtG)
-
 ## Screenshots
-### 
+![image](https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.stack.imgur.com%2FWWTOi.png&imgrefurl=https%3A%2F%2Fwebapps.stackexchange.com%2Fquestions%2F105134%2Fwhy-is-the-github-file-upload-button-not-showing-up&docid=7JGRaVWePDgVXM&tbnid=z9o7d9mE9-rbwM%3A&vet=10ahUKEwirg8C065HnAhVSJt8KHRVnA-EQMwhQKAEwAQ..i&w=1288&h=762&client=safari&bih=714&biw=1280&q=upload%20image%20to%20github%20readme&ved=0ahUKEwirg8C065HnAhVSJt8KHRVnA-EQMwhQKAEwAQ&iact=mrc&uact=8)
