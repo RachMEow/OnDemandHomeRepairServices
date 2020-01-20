@@ -25,7 +25,7 @@ modify his/her available times at anytime.
 * Majeed Yusuf(eyusu010)
 
 ## Project Report
-In the [Project Report](https://drive.google.com/open?id=1F_nvhJb2kLYIOmMZPcLvIoD4y9WJ5_oX), you will know:
+In the [Project Report](https://drive.google.com/open?id=1F_nvhJb2kLYIOmMZPcLvIoD4y9WJ5_oX), you will know more details on:
 * What does this app do
 * UML design
 * Team roles
