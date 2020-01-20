@@ -62,7 +62,7 @@ username: home1
 password: 123456
 
 ## UML Diagram
-![alt text](https://drive.google.com/open?id=1ACJqrDXQl2hKQrl8Mc__vict0TeQ37xZ "UML Diagram")
+![image](https://drive.google.com/uc?export=view&id=1913oZeBZPBNiUuk8gu3ZSbLBA2l_VQtG)
 
 ## Screenshots
 ### 
