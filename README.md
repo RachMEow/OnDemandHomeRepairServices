@@ -38,12 +38,17 @@ In the [Project Report](https://drive.google.com/open?id=1F_nvhJb2kLYIOmMZPcLvIo
 1. Admin:
 
 username: admin1
+
 password: 123456
 
 2. Service Provider Account:
+
 username: service1
+
 password: 123456
 
 3. Home Owner:
+
 username: home1
+
 password: 123456
