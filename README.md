@@ -41,9 +41,6 @@ In the [Project Report](https://drive.google.com/open?id=1F_nvhJb2kLYIOmMZPcLvIo
 * Lessons learnt
 * Database stored on Firebase
 
-## Screenshots
-
-
 ## Account provided for testing
 
 1. Admin:
@@ -63,3 +60,9 @@ password: 123456
 username: home1
 
 password: 123456
+
+## UML Diagram
+![alt text](https://drive.google.com/open?id=1ACJqrDXQl2hKQrl8Mc__vict0TeQ37xZ "UML Diagram")
+
+## Screenshots
+### 
