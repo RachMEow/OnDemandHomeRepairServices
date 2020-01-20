@@ -1,6 +1,13 @@
 # OnDemandHomeRepairServices
 Circle CI Build Status [![CircleCI](https://circleci.com/gh/RachMEow/OnDemandHomeRepairServices/tree/master.svg?style=svg&circle-token=bed6e79259c77aa14892e417ed1d492a658b7549)](https://circleci.com/gh/RachMEow/OnDemandHomeRepairServices/tree/master)
 
+## Keywords
+* Android App
+* Continuous integration on Circle CI
+* Database stored on Firebase
+
+## Introduction 
+
 The On-Demand Home Repair Service Android application is an application that people
 can use to find service providers for work in their homes, such as appliance repair, window
 cleaning, furniture assembly and so on. Homeowners can request professional services using
