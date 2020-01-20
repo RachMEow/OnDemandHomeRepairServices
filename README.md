@@ -3,7 +3,7 @@ Circle CI Build Status [![CircleCI](https://circleci.com/gh/RachMEow/OnDemandHom
 (humm..permission issue..Hang on, I am working on it!)
 
 ## Install
-Install EasyA+_apk on An Android device
+Install EasyA+_debug.apk on An Android device
 
 ## Keywords
 * Android App
