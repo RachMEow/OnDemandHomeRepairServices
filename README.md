@@ -41,6 +41,9 @@ In the [Project Report](https://drive.google.com/open?id=1F_nvhJb2kLYIOmMZPcLvIo
 * Lessons learnt
 * Database stored on Firebase
 
+## Screenshots
+
+
 ## Account provided for testing
 
 1. Admin:
