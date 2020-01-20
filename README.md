@@ -37,9 +37,12 @@ In the [Project Report](https://drive.google.com/open?id=1F_nvhJb2kLYIOmMZPcLvIo
 * What does this app do
 * UML design
 * Team roles
-* Screenshots and interaction of the application
+* **Screenshots** and interaction of the application
 * Lessons learnt
 * Database stored on Firebase
+
+## Screenshots
+It is in the [Project Report](https://drive.google.com/open?id=1F_nvhJb2kLYIOmMZPcLvIoD4y9WJ5_oX)!
 
 ## Account provided for testing
 
@@ -60,6 +63,3 @@ password: 123456
 username: home1
 
 password: 123456
-
-## Screenshots
-![image](https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.stack.imgur.com%2FWWTOi.png&imgrefurl=https%3A%2F%2Fwebapps.stackexchange.com%2Fquestions%2F105134%2Fwhy-is-the-github-file-upload-button-not-showing-up&docid=7JGRaVWePDgVXM&tbnid=z9o7d9mE9-rbwM%3A&vet=10ahUKEwirg8C065HnAhVSJt8KHRVnA-EQMwhQKAEwAQ..i&w=1288&h=762&client=safari&bih=714&biw=1280&q=upload%20image%20to%20github%20readme&ved=0ahUKEwirg8C065HnAhVSJt8KHRVnA-EQMwhQKAEwAQ&iact=mrc&uact=8)
