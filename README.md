@@ -1,6 +1,5 @@
 # OnDemandHomeRepairServices
 Circle CI Build Status [![CircleCI](https://circleci.com/gh/RachMEow/OnDemandHomeRepairServices/tree/master.svg?style=svg&circle-token=bed6e79259c77aa14892e417ed1d492a658b7549)](https://circleci.com/gh/RachMEow/OnDemandHomeRepairServices/tree/master)
-(humm..permission issue..Hang on, I am working on it!)
 
 ## Install
 Install EasyA+_debug.apk on An Android device
